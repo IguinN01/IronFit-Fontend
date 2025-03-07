@@ -1,0 +1,221 @@
+/* BLOCO UNIDADE */
+.carrossel {
+  width: 100%;
+}
+
+.bloco_unidade {
+  margin-top: 72px;
+}
+
+.titulo_texto_unidade {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-inline: 6vw;
+  gap: 16px;
+}
+
+.titulo_unidade {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--azul-neon);
+}
+
+.texto_unidade {
+  font-size: .9rem;
+  margin-bottom: 32px;
+  font-family: var(--fonte-segundaria);
+}
+
+.imgs_unidade {
+  display: flex;
+  flex-direction: column;
+  margin-inline: 6.1vw;
+  border-radius: 12px;
+  background: rgb(61, 61, 61);
+  background: linear-gradient(0deg, rgba(61, 61, 61, 1) 0%, rgba(61, 61, 61, 1) 40%, rgba(61, 61, 61, 0.8995973389355743) 55%, rgba(61, 61, 61, 0.7511379551820728) 70%, rgba(61, 61, 61, 0) 100%);
+  box-shadow: 8px 8px 12px var(--preto), 4px 4px 16px var(--preto);
+}
+
+.img_unidade {
+  width: 100%;
+  height: 160px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.texto_local {
+  display: flex;
+  flex-direction: column;
+  margin: 14px 0 16px 16px;
+  font-size: 1.2rem;
+  color: var(--branco-f5);
+}
+
+.nome_rua_unidade {
+  font-size: .9rem;
+  font-family: var(--fonte-segundaria);
+}
+
+.flex_column {
+  display: flex;
+  align-items: center;
+  margin: 14px 0 5px -2px;
+  gap: 3px;
+}
+
+.img_icon_local {
+  height: 20px;
+  margin-top: -2px;
+}
+
+.links_unidade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  padding-bottom: 16px;
+  gap: 12px;
+  font-family: var(--fonte-segundaria);
+}
+
+.link_matricula_ver_mais {
+  display: flex;
+  justify-content: center;
+  width: 75%;
+  padding-block: 10px;
+  border-radius: 8px;
+  transition: 0.4s ease-in-out;
+  border: solid 1px var(--branco-f5);
+  color: var(--azul-neon);
+  background-color: var(--cinza);
+}
+
+.link_matricula_ver_mais:hover {
+  font-weight: 500;
+  transform: scale(1.05);
+  transition: 0.4s ease-in-out;
+  color: var(--cinza);
+  background-color: var(--branco-f5);
+}
+
+@media screen and (min-width: 375px) {
+
+  .texto_unidade,
+  .nome_rua_unidade {
+    font-size: 1rem;
+  }
+
+  .links_unidade {
+    gap: 18px;
+    padding-bottom: 28px;
+    font-size: 1.1rem;
+  }
+
+  .texto_local {
+    margin: 28px 0 28px 22px;
+    font-size: 1.3rem;
+  }
+
+  .titulo_unidade {
+    font-size: 1.4rem;
+  }
+
+  .img_unidade {
+    height: 180px;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .titulo_unidade {
+    font-size: 1.5rem;
+  }
+
+  .texto_unidade,
+  .nome_rua_unidade {
+    font-size: 1.1rem;
+  }
+
+  .texto_local {
+    font-size: 1.4rem;
+  }
+
+  .links_unidade {
+    font-size: 1.2rem;
+  }
+
+  .link_matricula_ver_mais {
+    padding-block: 12px;
+  }
+
+  .img_unidade {
+    height: 230px;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .titulo_unidade {
+    font-size: 1.6rem;
+  }
+
+  .texto_unidade,
+  .nome_rua_unidade {
+    font-size: 1.2rem;
+  }
+
+  .texto_local {
+    font-size: 1.5rem;
+  }
+
+  .links_unidade {
+    font-size: 1.3rem;
+  }
+
+  .img_unidade {
+    height: 280px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .titulo_unidade {
+    font-size: 1.7rem;
+  }
+
+  .texto_unidade,
+  .nome_rua_unidade {
+    font-size: 1.3rem;
+  }
+
+  .texto_local {
+    font-size: 1.6rem;
+  }
+
+  .links_unidade {
+    font-size: 1.4rem;
+  }
+
+  .bloco_imgs_unidade {
+    display: flex;
+  }
+
+  .carrossel-unidade {
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    width: 285px;
+    height: 285px;
+  }
+
+  .img_unidade {
+    margin: 2px 0 0 2px;
+    border-radius: 12px;
+  }
+
+  .nomes_links {
+    margin-left: 18px;
+  }
+
+  .imgs_unidade {
+    background-color: var(--cinza);
+  }
+}

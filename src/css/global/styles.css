@@ -1,0 +1,29 @@
+:root {
+	--branco-ff: #FFFFFF;
+	--branco-f5: #F5F5F5;
+	--cinza: #3D3D3D;
+	--cinza-claro: #5E5E5E;
+	--cinza-trans: #3D3D3DF1;
+	--preto: #252525;
+	--azul-neon: #47E0FF;
+	--teste: #ff0000;
+
+	--fonte-principal: "Poppins";
+	--fonte-segundaria: "Montserrat";
+}
+
+body {
+	font-size: 1rem;
+	font-weight: 400;
+	font-family: var(--fonte-principal);
+	color: var(--branco-ff);
+	background-color: var(--cinza-claro);
+}
+
+.input {
+	text-transform: capitalize;
+}
+
+button {
+	cursor: pointer;
+}

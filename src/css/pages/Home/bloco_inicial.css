@@ -1,0 +1,108 @@
+/* BLOCO INICIAL */
+.principal {
+  padding-top: 1px;
+}
+
+.bloco_principal {
+  margin-top: 68px;
+  height: 400px;
+  background-image: url("/public/images/pages/Home/Img_academia_fundo-425.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.gradiente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+  height: 100%;
+  background: rgb(94, 94, 94);
+  background: linear-gradient(0deg, rgba(94, 94, 94, 1) 0%, rgba(94, 94, 94, 0.4990371148459384) 40%, rgba(94, 94, 94, 0) 75%, rgba(94, 94, 94, 0) 100%);
+}
+
+.div_texto_inicial {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.texto_inicial {
+  padding-inline: 6vw;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.texto_comecar {
+  padding: 12px;
+  border-radius: 8px;
+  transition: 0.4s ease-in-out;
+  color: var(--cinza);
+  background-color: var(--branco-f5);
+}
+
+.texto_comecar:hover {
+  font-weight: 500;
+  transform: scale(1.05);
+  transition: 0.4s ease-in-out;
+  color: var(--azul-neon);
+  background-color: var(--cinza);
+  text-shadow: 0 0 5px var(--azul-neon);
+}
+
+@media screen and (min-width: 375px) {
+  .texto_inicial {
+    font-size: 1.4rem;
+  }
+
+  .texto_comecar {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .texto_inicial {
+    font-size: 1.5rem;
+  }
+
+  .texto_comecar {
+    font-size: 1.2rem;
+  }
+
+  .bloco_principal {
+    margin-top: 71px;
+    height: 425px;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .texto_inicial {
+    font-size: 1.6rem;
+  }
+
+  .texto_comecar {
+    font-size: 1.3rem;
+  }
+
+  .bloco_principal {
+    height: 480px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .texto_inicial {
+    font-size: 1.7rem;
+  }
+
+  .texto_comecar {
+    font-size: 1.4rem;
+  }
+
+  .bloco_principal {
+    height: 530px;
+  }
+}

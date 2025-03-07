@@ -1,0 +1,34 @@
+@import url("bloco_inicial.css");
+@import url("bloco_sobre_nos.css");
+@import url("bloco_planos.css");
+@import url("bloco_produtos.css");
+@import url("bloco_unidade.css");
+@import url("bloco_professores.css");
+
+@media screen and (min-width: 425px) {
+
+	.bloco_mais_sobre_nos,
+	.bloco_planos,
+	.bloco_produtos,
+	.bloco_unidade,
+	.bloco_professores {
+		padding-inline: 2vw;
+	}
+}
+
+@media screen and (min-width: 480px) {
+	.bloco_mais_sobre_nos,
+	.bloco_planos,
+	.bloco_produtos,
+	.bloco_unidade,
+	.bloco_professores {
+		padding-inline: 3vw;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.bloco_planos,
+	.bloco_produtos {
+		padding-inline: 0;
+	}
+}

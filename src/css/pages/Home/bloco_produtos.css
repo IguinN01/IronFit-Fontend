@@ -1,0 +1,158 @@
+/* BLOCO PRODUTOS */
+.img_categoria_produto {
+  width: 200px;
+}
+
+.div_produtos {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 72px;
+  padding-inline: 6vw;
+}
+
+.titulos_produtos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.titulo_produtos {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--azul-neon);
+}
+
+.descricao_produtos {
+  font-size: .9rem;
+  margin-bottom: 32px;
+  font-family: var(--fonte-segundaria);
+}
+
+.produtos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 28px 0px;
+  background-color: var(--cinza);
+}
+
+.infos_cadegoria {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  padding-inline: 7vw;
+  margin-block: 18px;
+  gap: 12px;
+  color: var(--branco-f5);
+}
+
+.nome_categoria {
+  font-size: 1.2rem;
+  color: var(--azul-neon);
+}
+
+.descricao_categoria {
+  font-size: .9rem;
+  font-weight: 300;
+  font-family: var(--fonte-segundaria);
+}
+
+.texto_link_produto {
+  padding-block: 12px;
+  margin-inline: 14vw;
+  border-radius: 12px;
+  border: solid 1px var(--branco-f5);
+  color: var(--cinza);
+  background-color: var(--branco-f5);
+}
+
+.texto_link_produto:hover {
+  font-weight: 500;
+  transition: 0.4s ease-in-out;
+  border: solid 1px var(--branco-f5);
+  color: var(--azul-neon);
+  background-color: var(--cinza);
+  text-shadow: 0 0 5px var(--azul-neon);
+}
+
+@media screen and (min-width: 375px) {
+
+  .descricao_produtos,
+  .descricao_categoria {
+    font-size: 1rem;
+  }
+
+  .nome_categoria {
+    font-size: 1.3rem;
+  }
+
+  .titulo_produtos {
+    font-size: 1.4rem;
+  }
+
+  .infos_cadegoria {
+    margin-block: 28px;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .titulo_produtos {
+    font-size: 1.5rem;
+  }
+
+  .descricao_produtos,
+  .descricao_categoria {
+    font-size: 1.1rem;
+  }
+
+  .nome_categoria {
+    font-size: 1.4rem;
+  }
+
+  .texto_link_produto {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .titulo_produtos {
+    font-size: 1.6rem;
+  }
+
+  .descricao_produtos,
+  .descricao_categoria {
+    font-size: 1.2rem;
+  }
+
+  .nome_categoria {
+    font-size: 1.5rem;
+  }
+
+  .texto_link_produto {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .titulo_produtos {
+    font-size: 1.7rem;
+  }
+
+  .descricao_produtos {
+    font-size: 1.3rem;
+  }
+
+  .div_produtos {
+    padding-inline: 0;
+  }
+
+  .titulos_produtos {
+    padding-inline: 8vw;
+  }
+
+  .produtos {
+    height: 432px;
+  }
+}

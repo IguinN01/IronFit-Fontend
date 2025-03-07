@@ -1,0 +1,153 @@
+/* BLOCO PROFESSORES */
+.titulos_professores {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 72px;
+  margin-bottom: 32px;
+  padding-inline: 6vw;
+  gap: 16px;
+}
+
+.titulo_professores {
+  font-size: 1.2rem;
+  color: var(--azul-neon);
+}
+
+.texto_professores {
+  font-size: .9rem;
+  font-family: var(--fonte-segundaria);
+}
+
+.swiper_professores {
+  display: flex;
+  justify-content: center;
+}
+
+.div_info_professores {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  border-radius: 12px;
+  padding: 20px 12px 20px 12px;
+  background-color: var(--cinza);
+}
+
+.div_img_professores {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.img_professores {
+  border-radius: 12px;
+}
+
+.titulo_texto_professores {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.nome_professor {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--azul-neon);
+}
+
+.sobre_professor {
+  font-size: .9rem;
+  font-family: var(--fonte-segundaria);
+}
+
+@media screen and (min-width: 375px) {
+
+  .texto_professores,
+  .sobre_professor {
+    font-size: 1rem;
+  }
+
+  .nome_professor {
+    font-size: 1.2rem;
+  }
+
+  .titulo_professores {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .titulo_professores {
+    font-size: 1.5rem;
+  }
+
+  .texto_professores,
+  .sobre_professor {
+    font-size: 1.1rem;
+  }
+
+  .nome_professor {
+    font-size: 1.3rem;
+  }
+
+  .div_info_professores {
+    width: 65%;
+    padding: 26px 18px;
+  }
+
+  .titulo_texto_professores {
+    padding-inline: 5px;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .titulo_professores {
+    font-size: 1.6rem;
+  }
+
+  .texto_professores,
+  .sobre_professor {
+    font-size: 1.2rem;
+  }
+
+  .nome_professor {
+    font-size: 1.4rem;
+  }
+
+  .titulo_texto_professores {
+    padding-inline: 13px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .titulo_professores {
+    font-size: 1.7rem;
+  }
+
+  .texto_professores,
+  .sobre_professor {
+    font-size: 1.3rem;
+  }
+
+  .nome_professor {
+    font-size: 1.5rem;
+  }
+
+  .div_info_professores {
+    flex-direction: row;
+    width: max-content;
+    margin-inline: 6vw;
+  }
+
+  .titulo_texto_professores {
+    justify-content: center;
+    margin: 0;
+    padding-inline: 0;
+    padding-left: 22px;
+  }
+}

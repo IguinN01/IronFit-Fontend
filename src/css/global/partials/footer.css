@@ -1,0 +1,184 @@
+.rodape {
+	margin-top: 42px;
+	background-color: var(--preto);
+}
+
+.rede__sociais {
+	display: flex;
+	justify-content: space-evenly;
+	padding-inline: 1.5rem;
+}
+
+.redes__sociais__icons {
+	margin-top: 32px;
+	height: 36px;
+}
+
+.titulo__sub {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 32px;
+	padding-inline: 10vw;
+}
+
+.titulo__rodape {
+	font-size: 1.3rem;
+}
+
+.titulo__rodape a {
+	font-size: 1.3rem;
+	font-weight: 600;
+	font-family: var(--fonte-principal);
+	color: var(--branco);
+}
+
+.titulo_academia_destaque_rodape,
+.fit_descricao {
+	font-weight: 500;
+	font-family: var(--fonte-segundaria);
+	color: var(--azul-neon);
+}
+
+.rodape__descricao {
+	font-size: .9rem;
+	font-weight: 300;
+	font-family: var(--fonte-segundaria);
+}
+
+.num_email__local {
+	display: flex;
+	flex-direction: column;
+	margin-top: 32px;
+	padding-inline: 10vw;
+	gap: 12px;
+}
+
+.num_email__local a {
+	font-size: .9rem;
+	font-weight: 300;
+	font-family: var(--fonte-segundaria);
+	color: var(--branco);
+}
+
+.rodape__icon {
+	padding-right: 8px;
+}
+
+.telefone,
+.e-mail,
+.local {
+	display: flex;
+}
+
+.rodape__mais__info {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding-inline: 10vw;
+	line-height: 22px;
+	margin-top: 32px;
+}
+
+.rodape__titulos {
+	font-size: .9rem;
+	color: var(--azul-neon);
+}
+
+.rodape__itens__info a {
+	font-size: .9rem;
+	color: var(--branco-f5);
+}
+
+.linha {
+	border: none;
+	height: 2px;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	background: var(--azul-neon);
+}
+
+.rodape__creditos {
+	padding-inline: 10vw;
+	font-weight: 300;
+	color: var(--branco-f5);
+	padding-bottom: 1px;
+}
+
+.creditos1 {
+	display: flex;
+	justify-content: center;
+}
+
+.creditos {
+	display: flex;
+	text-align: center;
+	justify-content: space-evenly;
+	margin: 22px 0;
+}
+
+@media screen and (min-width: 375px) {
+
+	.rodape__descricao,
+	.num_email__local a,
+	.rodape__titulos,
+	.rodape__itens__info a {
+		font-size: 1rem;
+	}
+
+	.titulo__rodape,
+	.titulo__rodape a {
+		font-size: 1.4rem;
+	}
+}
+
+@media screen and (min-width: 425px) {
+
+	.rodape__descricao,
+	.num_email__local a,
+	.rodape__titulos,
+	.rodape__itens__info a {
+		font-size: 1.1rem;
+	}
+
+	.titulo__rodape,
+	.titulo__rodape a {
+		font-size: 1.5rem;
+	}
+}
+
+@media screen and (min-width: 480px) {
+	.rodape__descricao,
+	.num_email__local a,
+	.rodape__titulos,
+	.rodape__itens__info a {
+		font-size: 1.2rem;
+	}
+
+	.titulo__rodape,
+	.titulo__rodape a {
+		font-size: 1.6rem;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.rodape__descricao,
+	.num_email__local a,
+	.rodape__titulos,
+	.rodape__itens__info a {
+		font-size: 1.3rem;
+	}
+
+	.titulo__rodape,
+	.titulo__rodape a {
+		font-size: 1.7rem;
+	}
+
+	.rodape__icon {
+		width: 20px;
+	}
+
+	.icon__local {
+		width: 30px;
+	}
+}
