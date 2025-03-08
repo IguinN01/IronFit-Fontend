@@ -62,6 +62,14 @@ const Header = () => {
         <Link to="/">
           <h1 className="titulo_academia">Iron <b className="titulo_academia_destaque">Fit</b></h1>
         </Link>
+        <div className="links_1024">
+          <Link to="/">
+            <p className="item_menu_hamburguer link_1024">Nossos Produtos</p>
+          </Link>
+          <Link to="/">
+            <p className="item_menu_hamburguer link_1024">Planos</p>
+          </Link>
+        </div>
         <button
           className="cabecalho__nav__menu_hamburguer"
           onClick={alternarMenu}
@@ -95,13 +103,13 @@ const Header = () => {
 
           <li className="nav-lista__item">
             <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer">Nossos Produtos</p>
+              <p className="item_menu_hamburguer menor_1024">Nossos Produtos</p>
             </Link>
           </li>
 
           <li className="nav-lista__item">
             <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer">Planos</p>
+              <p className="item_menu_hamburguer menor_1024">Planos</p>
             </Link>
           </li>
 

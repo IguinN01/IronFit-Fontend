@@ -6,7 +6,8 @@
 .bloco_principal {
   margin-top: 68px;
   height: 400px;
-  background-image: url("/public/images/pages/Home/Img_academia_fundo-425.avif");
+  background-image: url("/public/images/pages/Home/Img_academia_fundo.svg");
+  background-attachment: fixed;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -106,3 +107,5 @@
     height: 530px;
   }
 }
+
+@media screen and (min-width: 1024px) {}

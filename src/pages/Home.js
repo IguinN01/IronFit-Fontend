@@ -529,16 +529,16 @@ function Home() {
               </Swiper>
 
               <div className="nomes_links">
-                <Link to="/">
-                  <div className="texto_local">
+                <div className="div_texto_local">
+                  <Link className="texto_local" to="/">
                     <h2 className="nome_cidade_unidade">Metrópolis</h2>
                     <div className="flex_column">
                       <img className="img_icon_local" src="./images/pages/Home/icon_local.svg" alt="Ícone de localização" />
                       <p className="nome_rua_unidade">Clinton Street, 344</p>
                     </div>
                     <p className="nome_rua_unidade">New Troy, Metrópolis - EUA</p>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
 
                 <div className="links_unidade">
                   <Link className="link_matricula_ver_mais" to="/">

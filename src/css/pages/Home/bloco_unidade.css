@@ -186,16 +186,32 @@
     font-size: 1.3rem;
   }
 
-  .texto_local {
-    font-size: 1.6rem;
-  }
-
   .links_unidade {
     font-size: 1.4rem;
+    width: 100%;
+    padding-bottom: 0;
+  }
+
+  .div_texto_local {
+    display: flex;
+  }
+
+  .texto_local {
+    font-size: 1.6rem;
+    margin-left: 0;
+    margin-top: 0;
   }
 
   .bloco_imgs_unidade {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .nomes_links {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .carrossel-unidade {
@@ -209,10 +225,6 @@
   .img_unidade {
     margin: 2px 0 0 2px;
     border-radius: 12px;
-  }
-
-  .nomes_links {
-    margin-left: 18px;
   }
 
   .imgs_unidade {
