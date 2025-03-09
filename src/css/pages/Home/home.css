@@ -17,6 +17,7 @@
 }
 
 @media screen and (min-width: 480px) {
+
 	.bloco_mais_sobre_nos,
 	.bloco_planos,
 	.bloco_produtos,
@@ -27,6 +28,7 @@
 }
 
 @media screen and (min-width: 768px) {
+
 	.bloco_planos,
 	.bloco_produtos {
 		padding-inline: 0;

@@ -95,6 +95,15 @@ function Home() {
                   autoplay: false,
                   allowTouchMove: false,
                 },
+                1920: {
+                  slidesPerView: 3,
+                  centeredSlides: true,
+                  initialSlide: 1,
+                  loop: false,
+                  autoplay: false,
+                  allowTouchMove: false,
+                  spaceBetween: 40,
+                }
               }}
               className="carrossel_planos"
             >
@@ -346,6 +355,10 @@ function Home() {
                   slidesPerView: 2,
                   centeredSlides: false,
                   spaceBetween: 40,
+                },
+                1280: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
                 }
               }}
             >
@@ -596,8 +609,11 @@ function Home() {
             breakpoints={{
               1024: {
                 slidesPerView: 3,
-                // centeredSlides: false,
                 spaceBetween: 20,
+              },
+              1920: {
+                slidesPerView: 5,
+                spaceBetween: 40,
               }
             }}
             className="carrossel_professoress"

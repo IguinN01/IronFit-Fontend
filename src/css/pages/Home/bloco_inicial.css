@@ -4,8 +4,7 @@
 }
 
 .bloco_principal {
-  margin-top: 68px;
-  height: 400px;
+  height: 468px;
   background-image: url("/public/images/pages/Home/Img_academia_fundo.jpg");
   background-attachment: fixed;
   background-size: cover;
@@ -24,6 +23,10 @@
   height: 100%;
   background: rgb(94, 94, 94);
   background: linear-gradient(0deg, rgba(94, 94, 94, 1) 0%, rgba(94, 94, 94, 0.4990371148459384) 40%, rgba(94, 94, 94, 0) 75%, rgba(94, 94, 94, 0) 100%);
+}
+
+.div_img_academia_fundo {
+  padding-top: 32px;
 }
 
 .div_texto_inicial {
@@ -63,6 +66,10 @@
   .texto_comecar {
     font-size: 1.1rem;
   }
+
+  .bloco_principal {
+    height: 514px;
+  }
 }
 
 @media screen and (min-width: 425px) {
@@ -75,8 +82,7 @@
   }
 
   .bloco_principal {
-    margin-top: 71px;
-    height: 425px;
+    height: 560px;
   }
 }
 
@@ -90,7 +96,7 @@
   }
 
   .bloco_principal {
-    height: 480px;
+    height: 606px;
   }
 }
 
@@ -104,8 +110,7 @@
   }
 
   .bloco_principal {
-    margin-top: 80px;
-    height: 530px;
+    height: 652px;
   }
 }
 
@@ -119,7 +124,30 @@
   }
 
   .bloco_principal {
-    margin-top: 90px;
-    height: 580px;
+    height: 694px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bloco_principal {
+    height: 740px;
+  }
+
+  .img_academia_fundo {
+    width: 156px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .bloco_principal {
+    height: 786px;
+  }
+
+  .texto_inicial {
+    font-size: 2.1rem;
+  }
+
+  .texto_comecar {
+    font-size: 1.8rem;
   }
 }

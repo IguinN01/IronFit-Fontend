@@ -11,7 +11,10 @@
 
 .titulo_planos {
   font-size: 1.3rem;
-  color: var(--azul-neon);
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 16px;
 }
 
@@ -29,26 +32,29 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: pointer;
   height: 472px;
   padding: 0px 14px;
   border-radius: 12px;
   background-color: var(--cinza);
-  transition: background-color 0.3s ease;
-  transition: height 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .nome_plano {
-  margin-bottom: 10px;
+  height: 36px;
   font-size: 1.2rem;
-  color: var(--azul-neon);
-  transition: font-size 0.3s ease, font-weight 0.3s ease, color 0.3s ease;
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.3s ease;
 }
 
 .valor_plano {
   margin-bottom: 10px;
   font-size: 1.3rem;
   font-family: var(--fonte-segundaria);
-  transition: color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .descricao_plano {
@@ -56,7 +62,7 @@
   font-size: .9rem;
   font-weight: 300;
   font-family: var(--fonte-segundaria);
-  transition: font-size 0.3s ease, font-weight 0.3s ease, color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .beneficios_plano {
@@ -70,14 +76,17 @@
   font-size: .9rem;
   font-weight: 500;
   font-family: var(--fonte-segundaria);
-  transition: font-size 0.3s ease, color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .certo {
   font-size: 1rem;
   margin-right: 3px;
-  color: var(--azul-neon);
-  transition: font-size 0.3s ease, color 0.3s ease;
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.3s ease;
 }
 
 .link_matriculese {
@@ -86,21 +95,24 @@
   margin-inline: 4vw;
   font-size: 1.2rem;
   color: var(--cinza);
-  background-color: var(--azul-neon);
-  transition: color 0.3s ease, background-color 0.3s ease;
+  background: var(--azul-gradiente);
+  transition: 0.3s ease;
 }
 
 /* BLOCO PLANOS HOVER */
 .mensal_semestral_anual:hover {
   height: 480px;
-  background-color: var(--azul-neon);
-  transition: height 0.3s ease;
+  background: var(--azul-gradiente);
+  transition: 0.3s ease;
 }
 
 .mensal_semestral_anual:hover .nome_plano {
   font-weight: 500;
   font-size: 1.3rem;
-  color: var(--cinza);
+  background: var(--cinza);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .mensal_semestral_anual:hover .valor_plano {
@@ -117,7 +129,10 @@
 
 .mensal_semestral_anual:hover .certo {
   font-size: 1.1rem;
-  color: var(--cinza);
+  background: var(--cinza);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .mensal_semestral_anual:hover .texto_beneficios {
@@ -127,7 +142,8 @@
 
 .mensal_semestral_anual:hover .link_matriculese {
   color: var(--cinza);
-  background-color: var(--branco-f5);
+  background: var(--branco-f5);
+  transition: 0.6s ease;
 }
 
 @media screen and (min-width: 375px) {
@@ -315,5 +331,61 @@
 
   .mensal_semestral_anual:hover {
     height: 620px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+
+  .titulo_planos,
+  .valor_plano {
+    font-size: 2.1rem;
+  }
+
+  .texto_planos,
+  .descricao_plano,
+  .texto_beneficios {
+    font-size: 1.7rem;
+  }
+
+  .nome_plano,
+  .link_matriculese {
+    font-size: 2rem;
+  }
+
+  .nome_plano {
+    height: 42px;
+  }
+
+  .certo {
+    font-size: 1.8rem;
+  }
+
+  .mensal_semestral_anual:hover .nome_plano {
+    font-size: 2.1rem;
+  }
+
+  .mensal_semestral_anual:hover .descricao_plano {
+    margin: 0px 6px;
+    font-size: 1.7rem;
+  }
+
+  .mensal_semestral_anual:hover .certo {
+    font-size: 2.1rem;
+  }
+
+  .carrossel_planos {
+    padding-inline: 4vw;
+  }
+
+  .descricao_plano {
+    margin: 0px 8px 10px 8px;
+  }
+
+  .mensal_semestral_anual {
+    height: 734px;
+  }
+
+  .mensal_semestral_anual:hover {
+    height: 752px;
   }
 }

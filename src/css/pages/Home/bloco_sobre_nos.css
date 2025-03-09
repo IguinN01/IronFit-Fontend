@@ -18,7 +18,10 @@
 .titulo_sobre_nos {
   font-size: 1.3rem;
   font-weight: 500;
-  color: var(--azul-neon);
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .paragrafo_sobre_nos {
@@ -46,7 +49,10 @@
 .titulo_bloco_sobre {
   font-size: 1.2rem;
   font-weight: 500;
-  color: var(--azul-neon);
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .descricao_mais_sobre {
@@ -142,5 +148,30 @@
     height: 292px;
     width: 252px;
     margin: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bloco_mais_sobre {
+    width: 336px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .titulo_sobre_nos {
+    font-size: 2.1rem;
+  }
+
+  .paragrafo_sobre_nos,
+  .descricao_mais_sobre {
+    font-size: 1.7rem;
+  }
+
+  .titulo_bloco_sobre {
+    font-size: 1.8rem;
+  }
+
+  .bloco_mais_sobre {
+    width: 532px;
   }
 }

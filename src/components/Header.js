@@ -59,15 +59,20 @@ const Header = () => {
   return (
     <header className={`cabecalho ${mostrarHeader ? "visivel" : "escondido"}`}>
       <nav className={`cabecalho__nav ${menuAberto ? "ativo" : ""}`}>
-        <Link to="/">
-          <h1 className="titulo_academia">Iron <b className="titulo_academia_destaque">Fit</b></h1>
-        </Link>
+        <div className="div_titulo_academia">
+          <Link to="/">
+            <h1 className="titulo_academia">Iron <b className="titulo_academia_destaque">Fit</b></h1>
+          </Link>
+        </div>
         <div className="links_1024">
           <Link to="/">
             <p className="item_menu_hamburguer link_1024">Nossos Produtos</p>
           </Link>
           <Link to="/">
             <p className="item_menu_hamburguer link_1024">Planos</p>
+          </Link>
+          <Link to="/">
+            <p className="item_menu_hamburguer link_1024 link_1280">Sua Conta</p>
           </Link>
         </div>
         <button
@@ -91,7 +96,7 @@ const Header = () => {
 
           <li className="nav-lista__item">
             <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer">Sua Conta</p>
+              <p className="item_menu_hamburguer menor_1280">Sua Conta</p>
             </Link>
           </li>
 

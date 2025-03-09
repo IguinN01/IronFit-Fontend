@@ -6,6 +6,7 @@
 	--cinza-trans: #3D3D3DF1;
 	--preto: #252525;
 	--azul-neon: #47E0FF;
+	--azul-gradiente: linear-gradient(45deg, #47E0FF, #0099cc);
 	--teste: #ff0000;
 
 	--fonte-principal: "Poppins";

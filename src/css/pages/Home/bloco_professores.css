@@ -13,7 +13,10 @@
 
 .titulo_professores {
   font-size: 1.2rem;
-  color: var(--azul-neon);
+  background: var(--azul-gradiente);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .texto_professores {
@@ -58,7 +61,10 @@
 .nome_professor {
   font-size: 1.1rem;
   font-weight: 500;
-  color: var(--azul-neon);
+  background: var(--azul-gradiente);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .sobre_professor {
@@ -176,6 +182,7 @@
     gap: 18px;
     padding: 22px;
     height: 508px;
+    width: 302px;
   }
 
   .div_img_professores {
@@ -190,4 +197,6 @@
   .carrossel_professores {
     margin-inline: 1vw;
   }
-} 
+}
+
+@media screen and (min-width: 1280px) {}
