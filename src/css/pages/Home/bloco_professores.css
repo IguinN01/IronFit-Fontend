@@ -44,6 +44,7 @@
 }
 
 .img_professores {
+  object-fit: cover;
   border-radius: 12px;
 }
 
@@ -151,3 +152,42 @@
     padding-left: 22px;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .titulo_professores {
+    font-size: 1.8rem;
+  }
+
+  .texto_professores,
+  .sobre_professor {
+    font-size: 1.4rem;
+  }
+
+  .nome_professor {
+    font-size: 1.6rem;
+  }
+
+  .div_info_professores {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    margin: 0;
+    gap: 18px;
+    padding: 22px;
+    height: 508px;
+  }
+
+  .div_img_professores {
+    height: min-content;
+    width: min-content;
+  }
+
+  .titulo_texto_professores {
+    padding: 0;
+  }
+
+  .carrossel_professores {
+    margin-inline: 1vw;
+  }
+} 

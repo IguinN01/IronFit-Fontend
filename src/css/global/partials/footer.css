@@ -148,6 +148,7 @@
 }
 
 @media screen and (min-width: 480px) {
+
 	.rodape__descricao,
 	.num_email__local a,
 	.rodape__titulos,
@@ -162,6 +163,7 @@
 }
 
 @media screen and (min-width: 768px) {
+
 	.rodape__descricao,
 	.num_email__local a,
 	.rodape__titulos,
@@ -173,12 +175,23 @@
 	.titulo__rodape a {
 		font-size: 1.7rem;
 	}
+}
 
-	.rodape__icon {
-		width: 20px;
+@media screen and (min-width: 1024px) {
+
+	.rodape__descricao,
+	.num_email__local a,
+	.rodape__titulos,
+	.rodape__itens__info a {
+		font-size: 1.4rem;
 	}
 
-	.icon__local {
-		width: 30px;
+	.titulo__rodape,
+	.titulo__rodape a {
+		font-size: 1.8rem;
+	}
+
+	.rodape__mais__info {
+		line-height: 26px;
 	}
 }

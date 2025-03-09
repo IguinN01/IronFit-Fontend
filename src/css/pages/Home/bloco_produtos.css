@@ -156,3 +156,26 @@
     height: 432px;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .titulo_produtos {
+    font-size: 1.8rem;
+  }
+
+  .descricao_produtos,
+  .descricao_categoria {
+    font-size: 1.4rem;
+  }
+
+  .nome_categoria {
+    font-size: 1.7rem;
+  }
+
+  .texto_link_produto {
+    font-size: 1.4rem;
+  }
+
+  .carrossel_produtos {
+    padding-inline: 3.5vw;
+  }
+}

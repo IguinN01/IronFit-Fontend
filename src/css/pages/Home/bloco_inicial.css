@@ -6,7 +6,7 @@
 .bloco_principal {
   margin-top: 68px;
   height: 400px;
-  background-image: url("/public/images/pages/Home/Img_academia_fundo.svg");
+  background-image: url("/public/images/pages/Home/Img_academia_fundo.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -104,8 +104,22 @@
   }
 
   .bloco_principal {
+    margin-top: 80px;
     height: 530px;
   }
 }
 
-@media screen and (min-width: 1024px) {}
+@media screen and (min-width: 1024px) {
+  .texto_inicial {
+    font-size: 1.8rem;
+  }
+
+  .texto_comecar {
+    font-size: 1.5rem;
+  }
+
+  .bloco_principal {
+    margin-top: 90px;
+    height: 580px;
+  }
+}

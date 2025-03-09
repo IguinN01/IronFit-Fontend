@@ -287,3 +287,33 @@
     padding-inline: 8vw;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .titulo_planos {
+    font-size: 1.8rem;
+  }
+
+  .texto_planos {
+    font-size: 1.4rem;
+  }
+
+  .planos_1024 {
+    display: none;
+  }
+
+  .carrossel_planos {
+    padding-inline: 4vw;
+  }
+
+  .descricao_plano {
+    padding: 0px 6px;
+  }
+
+  .mensal_semestral_anual {
+    height: 608px;
+  }
+
+  .mensal_semestral_anual:hover {
+    height: 620px;
+  }
+}

@@ -117,3 +117,30 @@
     font-size: 1.6rem;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .titulo_sobre_nos {
+    font-size: 1.8rem;
+  }
+
+  .paragrafo_sobre_nos,
+  .descricao_mais_sobre {
+    font-size: 1.4rem;
+  }
+
+  .titulo_bloco_sobre {
+    font-size: 1.5rem;
+  }
+
+  .blocos_mais_sobre {
+    flex-direction: row;
+  }
+
+  .bloco_mais_sobre {
+    justify-content: center;
+    align-items: center;
+    height: 292px;
+    width: 252px;
+    margin: 0;
+  }
+}

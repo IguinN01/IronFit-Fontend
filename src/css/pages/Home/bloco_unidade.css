@@ -38,6 +38,7 @@
 }
 
 .img_unidade {
+  object-fit: cover;
   width: 100%;
   height: 160px;
   border-top-left-radius: 12px;
@@ -215,7 +216,6 @@
   }
 
   .carrossel-unidade {
-    object-fit: cover;
     margin: 0;
     padding: 0;
     width: 285px;
@@ -229,5 +229,43 @@
 
   .imgs_unidade {
     background-color: var(--cinza);
+  }
+
+  .nomes_links {
+    margin-left: 26px;
+    width: max-content;
+  }
+
+  .link_matricula_ver_mais {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .titulo_unidade {
+    font-size: 1.8rem;
+  }
+
+  .texto_unidade,
+  .nome_rua_unidade {
+    font-size: 1.4rem;
+  }
+
+  .links_unidade {
+    font-size: 1.5rem;
+  }
+
+  .texto_local {
+    font-size: 1.7rem;
+  }
+
+  .carrossel-unidade {
+    width: 342px;
+    height: 342px;
+  }
+
+  .img_unidade {
+    width: 342px;
+    height: 342px;
   }
 }

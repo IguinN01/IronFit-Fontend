@@ -74,7 +74,10 @@ function Home() {
               loop={true}
               rewind={true}
               autoplay={{
-                delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true, pauseOnTouch: true
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+                pauseOnTouch: true,
               }}
               speed={1000}
               spaceBetween={20}
@@ -83,8 +86,17 @@ function Home() {
               breakpoints={{
                 768: {
                   slidesPerView: 2,
-                }
+                },
+                1024: {
+                  slidesPerView: 3,
+                  centeredSlides: true,
+                  initialSlide: 1,
+                  loop: false,
+                  autoplay: false,
+                  allowTouchMove: false,
+                },
               }}
+              className="carrossel_planos"
             >
 
               <SwiperSlide>
@@ -195,7 +207,7 @@ function Home() {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="planos_1024">
                 <div className="mensal_semestral_anual plano_mensal">
                   <div className="div_nome_plano">
                     <h2 className="nome_plano">
@@ -229,7 +241,7 @@ function Home() {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="planos_1024">
                 <div className="mensal_semestral_anual plano_semestral inverter-hover">
                   <div className="div_nome_plano">
                     <h2 className="nome_plano">
@@ -269,7 +281,7 @@ function Home() {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="planos_1024">
                 <div className="mensal_semestral_anual plano_anual">
                   <div className="div_nome_plano">
                     <h2 className="nome_plano">
@@ -329,6 +341,11 @@ function Home() {
               breakpoints={{
                 768: {
                   slidesPerView: 2,
+                },
+                1024: {
+                  slidesPerView: 2,
+                  centeredSlides: false,
+                  spaceBetween: 40,
                 }
               }}
             >
@@ -341,10 +358,12 @@ function Home() {
                     <h2 className="nome_categoria">Suplementos</h2>
                     <p className="descricao_categoria">Aprimore seu desempenho e cuide da sua saúde com nossos suplementos.</p>
                   </div>
-                  <div className="link_categoria">
-                    <p className="texto_link_produto">Ver Produtos</p>
-                  </div>
                 </Link>
+                <div className="link_categoria">
+                  <Link className="aaa" to="/">
+                    <p className="texto_link_produto">Ver Produtos</p>
+                  </Link>
+                </div>
               </SwiperSlide>
 
               <SwiperSlide className="produtos">
@@ -358,7 +377,7 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link to="/">
+                  <Link className="aaa" to="/">
                     <p className="texto_link_produto">Ver Produtos</p>
                   </Link>
                 </div>
@@ -375,7 +394,7 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link to="/">
+                  <Link className="aaa" to="/">
                     <p className="texto_link_produto">Ver Produtos</p>
                   </Link>
                 </div>
@@ -392,13 +411,13 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link to="/">
+                  <Link className="aaa" to="/">
                     <p className="texto_link_produto">Ver Produtos</p>
                   </Link>
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide className="produtos">
+              {/* <SwiperSlide className="produtos">
                 <Link to="/" className="categoria_produto">
                   <div className="div_img_categoria_produto">
                     <img className="img_categoria_produto" src="./images/pages/Home/suplementos.webp" alt="Suplementos" />
@@ -407,10 +426,12 @@ function Home() {
                     <h2 className="nome_categoria">Suplementos</h2>
                     <p className="descricao_categoria">Aprimore seu desempenho e cuide da sua saúde com nossos suplementos.</p>
                   </div>
-                  <div className="link_categoria">
-                    <p className="texto_link_produto">Ver Produtos</p>
-                  </div>
                 </Link>
+                <div className="link_categoria">
+                  <Link to="/">
+                    <p className="texto_link_produto">Ver Produtos</p>
+                  </Link>
+                </div>
               </SwiperSlide>
 
               <SwiperSlide className="produtos">
@@ -462,7 +483,7 @@ function Home() {
                     <p className="texto_link_produto">Ver Produtos</p>
                   </Link>
                 </div>
-              </SwiperSlide>
+              </SwiperSlide> */}
             </Swiper>
           </div>
         </div>
@@ -572,6 +593,13 @@ function Home() {
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             speed={1000}
             slidesPerView={1}
+            breakpoints={{
+              1024: {
+                slidesPerView: 3,
+                // centeredSlides: false,
+                spaceBetween: 20,
+              }
+            }}
             className="carrossel_professoress"
           >
             <SwiperSlide className="swiper_professores">
