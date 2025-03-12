@@ -65,7 +65,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="links_1024">
-          <Link to="/">
+          <Link to="/todos_produtos">
             <p className="item_menu_hamburguer link_1024">Nossos Produtos</p>
           </Link>
           <Link to="/">
@@ -101,7 +101,7 @@ const Header = () => {
           </li>
 
           <li className="nav-lista_item">
-            <Link to="/" onClick={fecharMenu}>
+            <Link to="/todos_produtos" onClick={fecharMenu}>
               <p className="item_menu_hamburguer menor_1024">Nossos Produtos</p>
             </Link>
           </li>
@@ -113,14 +113,14 @@ const Header = () => {
           </li>
 
           <li className="nav-lista_item">
-            <Link to="/horarios" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer">Horários</p>
+            <Link to="/" onClick={fecharMenu}>
+              <p className="item_menu_hamburguer">Seu Carrinho</p>
             </Link>
           </li>
 
           <li className="nav-lista_item">
-            <Link to="https://www.google.com.br/maps/place/UNINOVE+-+Campus+Memorial/@-23.5291572,-46.6688474,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce580368f5da4b:0x758fb9438c746262!8m2!3d-23.5291621!4d-46.6662725!16s%2Fg%2F1tf498b2?entry=ttu&g_ep=EgoyMDI1MDMwOC4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer">Nossa Localização</p>
+            <Link to="/horarios" onClick={fecharMenu}>
+              <p className="item_menu_hamburguer">Horários</p>
             </Link>
           </li>
         </ul>

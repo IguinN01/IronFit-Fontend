@@ -374,7 +374,7 @@ function Home() {
                 </Link>
                 <div className="link_categoria">
                   <Link className="aaa" to="/">
-                    <p className="texto_link_produto">Ver Produtos</p>
+                    <p className="texto_link_produto">Ver Suplementos</p>
                   </Link>
                 </div>
               </SwiperSlide>
@@ -391,7 +391,7 @@ function Home() {
                 </Link>
                 <div className="link_categoria">
                   <Link className="aaa" to="/">
-                    <p className="texto_link_produto">Ver Produtos</p>
+                    <p className="texto_link_produto">Ver Snacks</p>
                   </Link>
                 </div>
               </SwiperSlide>
@@ -408,7 +408,7 @@ function Home() {
                 </Link>
                 <div className="link_categoria">
                   <Link className="aaa" to="/">
-                    <p className="texto_link_produto">Ver Produtos</p>
+                    <p className="texto_link_produto">Ver Roupas</p>
                   </Link>
                 </div>
               </SwiperSlide>
@@ -425,7 +425,7 @@ function Home() {
                 </Link>
                 <div className="link_categoria">
                   <Link className="aaa" to="/">
-                    <p className="texto_link_produto">Ver Produtos</p>
+                    <p className="texto_link_produto">Ver Acessórios</p>
                   </Link>
                 </div>
               </SwiperSlide>
@@ -442,7 +442,7 @@ function Home() {
                 </Link>
                 <div className="link_categoria">
                   <Link to="/">
-                    <p className="texto_link_produto">Ver Produtos</p>
+                    <p className="texto_link_produto">Ver Suplementos</p>
                   </Link>
                 </div>
               </SwiperSlide>
@@ -459,7 +459,7 @@ function Home() {
                 </Link>
                 <div className="link_categoria">
                   <Link to="/">
-                    <p className="texto_link_produto">Ver Produtos</p>
+                    <p className="texto_link_produto">Ver Snacks</p>
                   </Link>
                 </div>
               </SwiperSlide>
@@ -476,7 +476,7 @@ function Home() {
                 </Link>
                 <div className="link_categoria">
                   <Link to="/">
-                    <p className="texto_link_produto">Ver Produtos</p>
+                    <p className="texto_link_produto">Ver Roupas</p>
                   </Link>
                 </div>
               </SwiperSlide>
@@ -493,7 +493,7 @@ function Home() {
                 </Link>
                 <div className="link_categoria">
                   <Link to="/">
-                    <p className="texto_link_produto">Ver Produtos</p>
+                    <p className="texto_link_produto">Ver Acessórios</p>
                   </Link>
                 </div>
               </SwiperSlide>
