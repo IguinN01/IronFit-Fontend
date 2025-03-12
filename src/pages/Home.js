@@ -87,7 +87,7 @@ function Home() {
                 768: {
                   slidesPerView: 2,
                 },
-                1024: {
+                1280: {
                   slidesPerView: 3,
                   centeredSlides: true,
                   initialSlide: 1,
@@ -117,7 +117,7 @@ function Home() {
                     <h2 className="valor_plano">
                       R$149,99
                     </h2>
-                    <p className="descricao_plano">
+                    <p className="desc_149 descricao_plano">
                       Desafie seus limites com treinos intensos e uma jornada de transformação física.
                     </p>
                   </div>
@@ -151,7 +151,7 @@ function Home() {
                     <h2 className="valor_plano">
                       R$109,99
                     </h2>
-                    <p className="descricao_plano">
+                    <p className="desc_109 descricao_plano">
                       Potencialize seus resultados com mais suporte e benefícios exclusivos para seu treino.
                     </p>
                   </div>
@@ -191,7 +191,7 @@ function Home() {
                     <h2 className="valor_plano">
                       R$119,99
                     </h2>
-                    <p className="descricao_plano">
+                    <p className="desc_119 descricao_plano">
                       Para quem busca alcançar novos patamares, com avaliação física e acompanhamento contínuo.
                     </p>
                   </div>
@@ -225,7 +225,7 @@ function Home() {
                     <h2 className="valor_plano">
                       R$149,99
                     </h2>
-                    <p className="descricao_plano">
+                    <p className="desc_149 descricao_plano">
                       Desafie seus limites com treinos intensos e uma jornada de transformação física.
                     </p>
                   </div>
@@ -259,7 +259,7 @@ function Home() {
                     <h2 className="valor_plano">
                       R$109,99
                     </h2>
-                    <p className="descricao_plano">
+                    <p className="desc_109 descricao_plano">
                       Potencialize seus resultados com mais suporte e benefícios exclusivos para seu treino.
                     </p>
                   </div>
@@ -299,7 +299,7 @@ function Home() {
                     <h2 className="valor_plano">
                       R$119,99
                     </h2>
-                    <p className="descricao_plano">
+                    <p className="desc_119 descricao_plano">
                       Para quem busca alcançar novos patamares, com avaliação física e acompanhamento contínuo.
                     </p>
                   </div>
@@ -430,7 +430,7 @@ function Home() {
                 </div>
               </SwiperSlide>
 
-              {/* <SwiperSlide className="produtos">
+              <SwiperSlide className="produtos">
                 <Link to="/" className="categoria_produto">
                   <div className="div_img_categoria_produto">
                     <img className="img_categoria_produto" src="./images/pages/Home/suplementos.webp" alt="Suplementos" />
@@ -496,7 +496,7 @@ function Home() {
                     <p className="texto_link_produto">Ver Produtos</p>
                   </Link>
                 </div>
-              </SwiperSlide> */}
+              </SwiperSlide>
             </Swiper>
           </div>
         </div>
@@ -699,7 +699,6 @@ function Home() {
             </SwiperSlide>
           </Swiper>
         </div>
-
       </section>
     </main >
   );

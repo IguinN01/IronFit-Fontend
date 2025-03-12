@@ -1,0 +1,126 @@
+.bloco_horario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  margin-top: 70px;
+}
+
+.bloco_horario table {
+  text-align: left;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: .8rem;
+}
+
+.bloco_horario th,
+.bloco_horario td {
+  cursor: pointer;
+  padding: 12px;
+  border: 1px solid var(--branco-f5);
+}
+
+.bloco_horario th {
+  text-align: center;
+  font-weight: 600;
+  font-size: .8rem;
+  color: var(--cinza);
+  background: var(--azul-gradiente);
+}
+
+.bloco_horario tr {
+  background-color: var(--cinza);
+  transition: 0.3s;
+}
+
+.bloco_horario tr:hover {
+  font-weight: 500;
+  color: var(--cinza);
+  background: var(--azul-gradiente);
+  transition: 0.3s;
+}
+
+.titulo_horario {
+  font-size: 1.2rem;
+  margin-top: 22px;
+}
+
+.texto_horario {
+  font-size: .8rem;
+}
+
+.div_texto_horario,
+.div_titulo_horario {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+@media screen and (min-width: 425px) {
+  .titulo_horario {
+    font-size: 1.4rem;
+  }
+
+  .bloco_horario table,
+  .bloco_horario th,
+  .texto_horario {
+    font-size: 1rem;
+  }
+
+  .bloco_horario {
+    margin-inline: 3vw;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .titulo_horario {
+    font-size: 1.6rem;
+  }
+
+  .bloco_horario table,
+  .bloco_horario th,
+  .texto_horario {
+    font-size: 1.2rem;
+  }
+
+  .bloco_horario {
+    margin-top: 85px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .titulo_horario {
+    font-size: 1.8rem;
+  }
+
+  .bloco_horario table,
+  .bloco_horario th,
+  .texto_horario {
+    font-size: 1.4rem;
+  }
+
+  .bloco_horario {
+    margin-top: 94px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .titulo_horario {
+    font-size: 2rem;
+  }
+
+  .bloco_horario table,
+  .bloco_horario th,
+  .texto_horario {
+    font-size: 1.6rem;
+  }
+
+  .bloco_horario {
+    margin-top: 119px;
+  }
+
+  .bloco_horario th,
+  .bloco_horario td {
+    border: 2px solid var(--branco-f5);
+  }
+}

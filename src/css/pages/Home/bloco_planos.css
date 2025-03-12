@@ -10,7 +10,7 @@
 }
 
 .titulo_planos {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   background: var(--azul-gradiente);
   background-clip: text;
   -webkit-background-clip: text;
@@ -20,7 +20,7 @@
 
 .texto_planos {
   margin-bottom: 3px;
-  font-size: .9rem;
+  font-size: .8rem;
   font-family: var(--fonte-segundaria);
 }
 
@@ -52,14 +52,14 @@
 
 .valor_plano {
   margin-bottom: 10px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-family: var(--fonte-segundaria);
   transition: 0.3s ease;
 }
 
 .descricao_plano {
   margin-bottom: 32px;
-  font-size: .9rem;
+  font-size: .8rem;
   font-weight: 300;
   font-family: var(--fonte-segundaria);
   transition: 0.3s ease;
@@ -73,14 +73,14 @@
 }
 
 .texto_beneficios {
-  font-size: .9rem;
+  font-size: .8rem;
   font-weight: 500;
   font-family: var(--fonte-segundaria);
   transition: 0.3s ease;
 }
 
 .certo {
-  font-size: 1rem;
+  font-size: .8rem;
   margin-right: 3px;
   background: var(--azul-gradiente);
   background-clip: text;
@@ -108,7 +108,7 @@
 
 .mensal_semestral_anual:hover .nome_plano {
   font-weight: 500;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   background: var(--cinza);
   background-clip: text;
   -webkit-background-clip: text;
@@ -121,14 +121,14 @@
 }
 
 .mensal_semestral_anual:hover .descricao_plano {
-  font-size: .9rem;
+  font-size: .8rem;
   font-weight: 600;
   color: var(--cinza);
   font-family: var(--fonte-segundaria);
 }
 
 .mensal_semestral_anual:hover .certo {
-  font-size: 1.1rem;
+  font-size: .9rem;
   background: var(--cinza);
   background-clip: text;
   -webkit-background-clip: text;
@@ -147,75 +147,41 @@
 }
 
 @media screen and (min-width: 375px) {
-
-  .titulo_planos,
-  .valor_plano {
-    font-size: 1.4rem;
-  }
-
-  .texto_planos,
-  .descricao_plano,
-  .texto_beneficios {
-    font-size: 1rem;
-  }
-
-  .nome_plano,
-  .link_matriculese {
-    font-size: 1.3rem;
-  }
-
-  .certo {
-    font-size: 1.1rem;
-  }
-
-  .mensal_semestral_anual:hover .nome_plano {
-    font-size: 1.4rem;
-  }
-
-  .mensal_semestral_anual:hover .descricao_plano {
-    font-size: 1rem;
-  }
-
-  .mensal_semestral_anual:hover .certo {
-    font-size: 1.2rem;
+  .desc_149 {
+    padding-inline: 12px;
   }
 }
 
 @media screen and (min-width: 425px) {
-  .div_planos {
-    padding-inline: 6vw;
-  }
 
   .titulo_planos,
-  .valor_plano {
-    font-size: 1.5rem;
-  }
-
-  .texto_planos,
-  .descricao_plano,
-  .texto_beneficios {
-    font-size: 1.1rem;
-  }
-
+  .valor_plano,
   .nome_plano,
   .link_matriculese {
     font-size: 1.4rem;
   }
 
+  .texto_planos,
+  .descricao_plano,
+  .texto_beneficios,
   .certo {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .mensal_semestral_anual:hover .nome_plano {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .mensal_semestral_anual:hover .descricao_plano {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .mensal_semestral_anual:hover .certo {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+  }
+
+  .div_planos {
+    padding-inline: 6vw;
   }
 
   .mensal_semestral_anual {
@@ -226,35 +192,35 @@
     height: 512px;
   }
 
-  .mensal_semestral_anual:hover {
-    padding: 0px 13px;
+  .descricao_plano {
+    padding: 0px 14px;
   }
 }
 
 @media screen and (min-width: 480px) {
+  .descricao_plano {
+    padding: 0px 32px;
+  }
+}
+
+@media screen and (min-width: 768px) {
 
   .titulo_planos,
-  .valor_plano {
+  .valor_plano,
+  .nome_plano,
+  .link_matriculese {
     font-size: 1.6rem;
   }
 
   .texto_planos,
   .descricao_plano,
-  .texto_beneficios {
+  .texto_beneficios,
+  .certo {
     font-size: 1.2rem;
   }
 
-  .nome_plano,
-  .link_matriculese {
-    font-size: 1.5rem;
-  }
-
-  .certo {
-    font-size: 1.3rem;
-  }
-
   .mensal_semestral_anual:hover .nome_plano {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .mensal_semestral_anual:hover .descricao_plano {
@@ -262,37 +228,21 @@
   }
 
   .mensal_semestral_anual:hover .certo {
-    font-size: 1.4rem;
-  }
-
-  .mensal_semestral_anual {
-    height: 532px;
-  }
-
-  .mensal_semestral_anual:hover {
-    height: 548px;
-  }
-
-  .mensal_semestral_anual {
-    padding: 0px 16px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .titulo_planos {
-    font-size: 1.7rem;
-  }
-
-  .texto_planos {
     font-size: 1.3rem;
   }
 
+  .desc_119,
+  .desc_149 {
+    padding-inline: 0px;
+  }
+
   .mensal_semestral_anual {
-    height: 600px;
+    padding: 0;
+    height: 612px;
   }
 
   .mensal_semestral_anual:hover {
-    height: 612px;
+    height: 624px;
   }
 
   .div_planos {
@@ -305,87 +255,91 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .titulo_planos {
+
+  .titulo_planos,
+  .valor_plano,
+  .nome_plano,
+  .link_matriculese {
     font-size: 1.8rem;
   }
 
-  .texto_planos {
+  .texto_planos,
+  .descricao_plano,
+  .texto_beneficios,
+  .certo {
     font-size: 1.4rem;
   }
 
-  .planos_1024 {
-    display: none;
+  .mensal_semestral_anual:hover .nome_plano {
+    font-size: 2rem;
   }
 
-  .carrossel_planos {
-    padding-inline: 4vw;
+  .mensal_semestral_anual:hover .descricao_plano {
+    font-size: 1.4rem;
   }
 
-  .descricao_plano {
-    padding: 0px 6px;
+  .mensal_semestral_anual:hover .certo {
+    font-size: 1.5rem;
+  }
+
+  .desc_109 {
+    padding-inline: 0px;
+  }
+
+  .desc_149 {
+    padding-inline: 12px;
   }
 
   .mensal_semestral_anual {
-    height: 608px;
+    padding: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .carrossel_planos {
+    margin-inline: 4vw;
   }
 
-  .mensal_semestral_anual:hover {
-    height: 620px;
+  .desc_109 {
+    padding-inline: 10px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .desc_109 {
+    padding-inline: 16px;
   }
 }
 
 @media screen and (min-width: 1920px) {
 
   .titulo_planos,
-  .valor_plano {
-    font-size: 2.1rem;
-  }
-
-  .texto_planos,
-  .descricao_plano,
-  .texto_beneficios {
-    font-size: 1.7rem;
-  }
-
+  .valor_plano,
   .nome_plano,
   .link_matriculese {
     font-size: 2rem;
   }
 
-  .nome_plano {
-    height: 42px;
-  }
-
+  .texto_planos,
+  .descricao_plano,
+  .texto_beneficios,
   .certo {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .mensal_semestral_anual:hover .nome_plano {
-    font-size: 2.1rem;
+    font-size: 2.2rem;
   }
 
   .mensal_semestral_anual:hover .descricao_plano {
-    margin: 0px 6px;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
 
   .mensal_semestral_anual:hover .certo {
-    font-size: 2.1rem;
+    font-size: 1.7rem;
   }
 
-  .carrossel_planos {
-    padding-inline: 4vw;
-  }
-
-  .descricao_plano {
-    margin: 0px 8px 10px 8px;
-  }
-
-  .mensal_semestral_anual {
-    height: 734px;
-  }
-
-  .mensal_semestral_anual:hover {
-    height: 752px;
+  .desc_109 {
+    padding-inline: 24px;
   }
 }

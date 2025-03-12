@@ -6,6 +6,7 @@
   align-items: center;
   text-align: center;
   gap: 36px;
+  margin-top: 32px;
 }
 
 .div_texto_sobre_nos {
@@ -16,7 +17,7 @@
 }
 
 .titulo_sobre_nos {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 500;
   background: var(--azul-gradiente);
   background-clip: text;
@@ -25,7 +26,7 @@
 }
 
 .paragrafo_sobre_nos {
-  font-size: .9rem;
+  font-size: .8rem;
   font-family: var(--fonte-segundaria);
 }
 
@@ -56,6 +57,7 @@
 }
 
 .descricao_mais_sobre {
+  font-size: .8rem;
   font-family: var(--fonte-segundaria);
 }
 
@@ -65,28 +67,14 @@
   gap: 38px;
 }
 
-@media screen and (min-width: 375px) {
-  .titulo_sobre_nos {
-    font-size: 1.4rem;
-  }
-
-  .paragrafo_sobre_nos {
-    font-size: 1rem;
-  }
-
-  .titulo_bloco_sobre {
-    font-size: 1.3rem;
-  }
-}
-
 @media screen and (min-width: 425px) {
   .titulo_sobre_nos {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .paragrafo_sobre_nos,
   .descricao_mais_sobre {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .titulo_bloco_sobre {
@@ -94,7 +82,7 @@
   }
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 768px) {
   .titulo_sobre_nos {
     font-size: 1.6rem;
   }
@@ -105,37 +93,20 @@
   }
 
   .titulo_bloco_sobre {
-    font-size: 1.5rem;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .titulo_sobre_nos {
-    font-size: 1.7rem;
-  }
-
-  .paragrafo_sobre_nos,
-  .descricao_mais_sobre {
-    font-size: 1.3rem;
-  }
-
-  .titulo_bloco_sobre {
     font-size: 1.6rem;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .titulo_sobre_nos {
+
+  .titulo_sobre_nos,
+  .titulo_bloco_sobre {
     font-size: 1.8rem;
   }
 
   .paragrafo_sobre_nos,
   .descricao_mais_sobre {
     font-size: 1.4rem;
-  }
-
-  .titulo_bloco_sobre {
-    font-size: 1.5rem;
   }
 
   .blocos_mais_sobre {
@@ -159,16 +130,16 @@
 
 @media screen and (min-width: 1920px) {
   .titulo_sobre_nos {
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
 
   .paragrafo_sobre_nos,
   .descricao_mais_sobre {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
 
   .titulo_bloco_sobre {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .bloco_mais_sobre {

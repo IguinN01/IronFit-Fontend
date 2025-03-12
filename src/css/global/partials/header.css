@@ -17,7 +17,7 @@
 	width: min-content;
 }
 
-.cabecalho__nav {
+.cabecalho_nav {
 	background-color: var(--cinza);
 }
 
@@ -39,7 +39,7 @@
 	-webkit-text-fill-color: transparent;
 }
 
-.cabecalho__nav__menu_hamburguer {
+.cabecalho_nav_menu_hamburguer {
 	position: absolute;
 	cursor: pointer;
 	border: none;
@@ -50,7 +50,7 @@
 	top: 15px;
 }
 
-.linhas_harburguer div {
+.botao_hamburguer {
 	width: 32px;
 	height: 2px;
 	margin: 8px;
@@ -73,12 +73,12 @@
 	background-color: var(--branco-f5);
 }
 
-.cabecalho__nav.ativo .nav-lista {
+.cabecalho_nav.ativo .nav-lista {
 	pointer-events: all;
 	clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 100%);
 }
 
-.cabecalho__nav.ativo .nav-lista a {
+.cabecalho_nav.ativo .nav-lista a {
 	opacity: 1;
 }
 
@@ -112,13 +112,13 @@
 	-webkit-text-fill-color: transparent;
 }
 
-.nav-lista__item {
+.nav-lista_item {
 	opacity: 0;
 	transform: translateY(20px);
 	transition: 0.5s ease;
 }
 
-.nav-lista.ativo .nav-lista__item {
+.nav-lista.ativo .nav-lista_item {
 	opacity: 1;
 	transform: translateY(0);
 }
@@ -160,15 +160,7 @@
 		font-size: 1.9rem;
 	}
 
-	.item_menu_hamburguer {
-		font-size: 1.3rem;
-	}
-
-	.item_menu_hamburguer:hover {
-		font-size: 1.4rem;
-	}
-
-	.cabecalho__nav__menu_hamburguer {
+	.cabecalho_nav_menu_hamburguer {
 		top: 16px;
 	}
 }
@@ -179,14 +171,14 @@
 	}
 
 	.item_menu_hamburguer {
-		font-size: 1.4rem;
+		font-size: 1.3rem;
 	}
 
 	.item_menu_hamburguer:hover {
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 	}
 
-	.cabecalho__nav__menu_hamburguer {
+	.cabecalho_nav_menu_hamburguer {
 		top: 17px;
 	}
 }
@@ -196,16 +188,12 @@
 		font-size: 2.1rem;
 	}
 
-	.item_menu_hamburguer {
-		font-size: 1.5rem;
-	}
-
-	.item_menu_hamburguer:hover {
-		font-size: 1.6rem;
-	}
-
-	.cabecalho__nav__menu_hamburguer {
+	.cabecalho_nav_menu_hamburguer {
 		top: 19px;
+	}
+
+	.nav-lista.ativo {
+		top: 74px;
 	}
 }
 
@@ -216,22 +204,26 @@
 	}
 
 	.item_menu_hamburguer {
-		font-size: 1.6rem;
+		font-size: 1.5rem;
 	}
 
 	.item_menu_hamburguer:hover {
-		font-size: 1.7rem;
+		font-size: 1.6rem;
 	}
 
-	.cabecalho__nav__menu_hamburguer {
+	.cabecalho_nav_menu_hamburguer {
 		top: 24px;
 		right: 28px;
+	}
+
+	.nav-lista.ativo {
+		top: 85px;
 	}
 }
 
 @media screen and (min-width: 1024px) {
 	.nav-lista {
-		width: 42%;
+		width: 43%;
 		right: 0;
 	}
 
@@ -240,15 +232,7 @@
 		font-size: 2.4rem;
 	}
 
-	.item_menu_hamburguer {
-		font-size: 1.7rem;
-	}
-
-	.item_menu_hamburguer:hover {
-		font-size: 1.8rem;
-	}
-
-	.cabecalho__nav__menu_hamburguer {
+	.cabecalho_nav_menu_hamburguer {
 		top: 29px;
 		right: 32px;
 	}
@@ -306,30 +290,30 @@
 
 	.nav-lista {
 		padding-top: 32px;
-		width: 50%;
+		width: 45%;
 		right: 0;
 	}
 }
 
 @media screen and (min-width: 1920px) {
 	.nav-lista {
-		width: 32%;
+		width: 38%;
 	}
 
 	.titulo_academia {
 		padding: 38px 42px 38px 42px;
-		font-size: 2.7rem;
+		font-size: 2.5rem;
 	}
 
 	.item_menu_hamburguer {
-		font-size: 2rem;
+		font-size: 1.8rem;
 	}
 
 	.item_menu_hamburguer:hover {
-		font-size: 2.1rem;
+		font-size: 1.9rem;
 	}
 
-	.cabecalho__nav__menu_hamburguer {
+	.cabecalho_nav_menu_hamburguer {
 		top: 41px;
 		right: 42px;
 	}
@@ -361,5 +345,9 @@
 	.linhas_harburguer.ativo .linha3 {
 		transform: rotate(45deg) translate(-9px, -7px);
 		background-color: var(--branco-f5);
+	}
+
+	.nav-lista.ativo {
+		top: 116px;
 	}
 }

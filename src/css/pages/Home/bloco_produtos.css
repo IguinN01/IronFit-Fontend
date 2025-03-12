@@ -18,7 +18,7 @@
 }
 
 .titulo_produtos {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 500;
   background: var(--azul-gradiente);
   background-clip: text;
@@ -27,7 +27,7 @@
 }
 
 .descricao_produtos {
-  font-size: .9rem;
+  font-size: .8rem;
   margin-bottom: 32px;
   font-family: var(--fonte-segundaria);
 }
@@ -60,12 +60,13 @@
 }
 
 .descricao_categoria {
-  font-size: .9rem;
+  font-size: .8rem;
   font-weight: 300;
   font-family: var(--fonte-segundaria);
 }
 
 .texto_link_produto {
+  font-size: .9rem;
   padding-block: 12px;
   margin-inline: 14vw;
   border-radius: 12px;
@@ -86,38 +87,16 @@
   text-shadow: 0 0 5px var(--azul-neon);
 }
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 425px) {
+
+  .titulo_produtos,
+  .nome_categoria {
+    font-size: 1.4rem;
+  }
 
   .descricao_produtos,
   .descricao_categoria {
     font-size: 1rem;
-  }
-
-  .nome_categoria {
-    font-size: 1.3rem;
-  }
-
-  .titulo_produtos {
-    font-size: 1.4rem;
-  }
-
-  .infos_cadegoria {
-    margin-block: 28px;
-  }
-}
-
-@media screen and (min-width: 425px) {
-  .titulo_produtos {
-    font-size: 1.5rem;
-  }
-
-  .descricao_produtos,
-  .descricao_categoria {
-    font-size: 1.1rem;
-  }
-
-  .nome_categoria {
-    font-size: 1.4rem;
   }
 
   .texto_link_produto {
@@ -125,8 +104,10 @@
   }
 }
 
-@media screen and (min-width: 480px) {
-  .titulo_produtos {
+@media screen and (min-width: 768px) {
+
+  .titulo_produtos,
+  .nome_categoria {
     font-size: 1.6rem;
   }
 
@@ -135,21 +116,7 @@
     font-size: 1.2rem;
   }
 
-  .nome_categoria {
-    font-size: 1.5rem;
-  }
-
   .texto_link_produto {
-    font-size: 1.2rem;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .titulo_produtos {
-    font-size: 1.7rem;
-  }
-
-  .descricao_produtos {
     font-size: 1.3rem;
   }
 
@@ -167,7 +134,9 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .titulo_produtos {
+
+  .titulo_produtos,
+  .nome_categoria {
     font-size: 1.8rem;
   }
 
@@ -176,12 +145,8 @@
     font-size: 1.4rem;
   }
 
-  .nome_categoria {
-    font-size: 1.7rem;
-  }
-
   .texto_link_produto {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 
   .carrossel_produtos {
@@ -199,5 +164,22 @@
 
   .produtos {
     height: 446px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+
+  .titulo_produtos,
+  .nome_categoria {
+    font-size: 2rem;
+  }
+
+  .descricao_produtos,
+  .descricao_categoria {
+    font-size: 1.6rem;
+  }
+
+  .texto_link_produto {
+    font-size: 1.7rem;
   }
 }

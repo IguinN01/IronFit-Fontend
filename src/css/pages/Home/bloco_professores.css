@@ -14,13 +14,13 @@
 .titulo_professores {
   font-size: 1.2rem;
   background: var(--azul-gradiente);
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .texto_professores {
-  font-size: .9rem;
+  font-size: .8rem;
   font-family: var(--fonte-segundaria);
 }
 
@@ -59,47 +59,29 @@
 }
 
 .nome_professor {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   background: var(--azul-gradiente);
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .sobre_professor {
-  font-size: .9rem;
+  font-size: .8rem;
   font-family: var(--fonte-segundaria);
 }
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 425px) {
+
+  .titulo_professores,
+  .nome_professor {
+    font-size: 1.4rem;
+  }
 
   .texto_professores,
   .sobre_professor {
     font-size: 1rem;
-  }
-
-  .nome_professor {
-    font-size: 1.2rem;
-  }
-
-  .titulo_professores {
-    font-size: 1.3rem;
-  }
-}
-
-@media screen and (min-width: 425px) {
-  .titulo_professores {
-    font-size: 1.5rem;
-  }
-
-  .texto_professores,
-  .sobre_professor {
-    font-size: 1.1rem;
-  }
-
-  .nome_professor {
-    font-size: 1.3rem;
   }
 
   .div_info_professores {
@@ -112,37 +94,16 @@
   }
 }
 
-@media screen and (min-width: 480px) {
-  .titulo_professores {
+@media screen and (min-width: 768px) {
+
+  .titulo_professores,
+  .nome_professor {
     font-size: 1.6rem;
   }
 
   .texto_professores,
   .sobre_professor {
     font-size: 1.2rem;
-  }
-
-  .nome_professor {
-    font-size: 1.4rem;
-  }
-
-  .titulo_texto_professores {
-    padding-inline: 13px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .titulo_professores {
-    font-size: 1.7rem;
-  }
-
-  .texto_professores,
-  .sobre_professor {
-    font-size: 1.3rem;
-  }
-
-  .nome_professor {
-    font-size: 1.5rem;
   }
 
   .div_info_professores {
@@ -160,17 +121,15 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .titulo_professores {
+
+  .titulo_professores,
+  .nome_professor {
     font-size: 1.8rem;
   }
 
   .texto_professores,
   .sobre_professor {
     font-size: 1.4rem;
-  }
-
-  .nome_professor {
-    font-size: 1.6rem;
   }
 
   .div_info_professores {
@@ -199,4 +158,16 @@
   }
 }
 
-@media screen and (min-width: 1280px) {}
+@media screen and (min-width: 1920px) {
+
+  .titulo_professores,
+  .nome_professor {
+    font-size: 2rem;
+  }
+
+  .texto_professores,
+  .sobre_professor {
+    font-size: 1.6rem;
+  }
+
+}

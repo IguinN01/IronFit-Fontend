@@ -58,7 +58,7 @@ const Header = () => {
 
   return (
     <header className={`cabecalho ${mostrarHeader ? "visivel" : "escondido"}`}>
-      <nav className={`cabecalho__nav ${menuAberto ? "ativo" : ""}`}>
+      <nav className={`cabecalho_nav ${menuAberto ? "ativo" : ""}`}>
         <div className="div_titulo_academia">
           <Link to="/">
             <h1 className="titulo_academia">Iron <b className="titulo_academia_destaque">Fit</b></h1>
@@ -76,50 +76,50 @@ const Header = () => {
           </Link>
         </div>
         <button
-          className="cabecalho__nav__menu_hamburguer"
+          className="cabecalho_nav_menu_hamburguer"
           onClick={alternarMenu}
           aria-label="Menu"
         >
           <div className={`linhas_harburguer ${menuAberto ? "ativo" : ""}`}>
-            <div className="linha1"></div>
-            <div className="linha2"></div>
-            <div className="linha3"></div>
+            <div className="botao_hamburguer linha1"></div>
+            <div className="botao_hamburguer linha2"></div>
+            <div className="botao_hamburguer linha3"></div>
           </div>
         </button>
 
         <ul className={`nav-lista ${menuAberto ? "ativo" : ""}`}>
-          <li className="nav-lista__item">
+          <li className="nav-lista_item">
             <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer">Chat Especializado</p>
+              <p className="item_menu_hamburguer">Chat AI</p>
             </Link>
           </li>
 
-          <li className="nav-lista__item">
+          <li className="nav-lista_item">
             <Link to="/" onClick={fecharMenu}>
               <p className="item_menu_hamburguer menor_1280">Sua Conta</p>
             </Link>
           </li>
 
-          <li className="nav-lista__item">
+          <li className="nav-lista_item">
             <Link to="/" onClick={fecharMenu}>
               <p className="item_menu_hamburguer">Sobre Nós</p>
             </Link>
           </li>
 
-          <li className="nav-lista__item">
+          <li className="nav-lista_item">
             <Link to="/" onClick={fecharMenu}>
               <p className="item_menu_hamburguer menor_1024">Nossos Produtos</p>
             </Link>
           </li>
 
-          <li className="nav-lista__item">
+          <li className="nav-lista_item">
             <Link to="/" onClick={fecharMenu}>
               <p className="item_menu_hamburguer menor_1024">Planos</p>
             </Link>
           </li>
 
-          <li className="nav-lista__item">
-            <Link to="/" onClick={fecharMenu}>
+          <li className="nav-lista_item">
+            <Link to="/horarios" onClick={fecharMenu}>
               <p className="item_menu_hamburguer">Horários</p>
             </Link>
           </li>

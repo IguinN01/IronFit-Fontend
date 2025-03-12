@@ -37,7 +37,7 @@
 
 .texto_inicial {
   padding-inline: 6vw;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
@@ -59,14 +59,6 @@
 }
 
 @media screen and (min-width: 375px) {
-  .texto_inicial {
-    font-size: 1.4rem;
-  }
-
-  .texto_comecar {
-    font-size: 1.1rem;
-  }
-
   .bloco_principal {
     height: 514px;
   }
@@ -74,7 +66,7 @@
 
 @media screen and (min-width: 425px) {
   .texto_inicial {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .texto_comecar {
@@ -87,14 +79,6 @@
 }
 
 @media screen and (min-width: 480px) {
-  .texto_inicial {
-    font-size: 1.6rem;
-  }
-
-  .texto_comecar {
-    font-size: 1.3rem;
-  }
-
   .bloco_principal {
     height: 606px;
   }
@@ -102,7 +86,7 @@
 
 @media screen and (min-width: 768px) {
   .texto_inicial {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
 
   .texto_comecar {
@@ -116,7 +100,7 @@
 
 @media screen and (min-width: 1024px) {
   .texto_inicial {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .texto_comecar {
@@ -144,10 +128,10 @@
   }
 
   .texto_inicial {
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
 
   .texto_comecar {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 }
