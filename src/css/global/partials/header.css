@@ -266,6 +266,10 @@
 		display: none;
 	}
 
+	.nav-lista.ativo li:nth-child(5) {
+		transition-delay: .4s;
+	}
+
 	.nav-lista.ativo li:nth-child(6) {
 		transition-delay: .5s;
 	}
@@ -284,8 +288,12 @@
 		transition-delay: .3s;
 	}
 
-	.nav-lista.ativo li:nth-child(6) {
+	.nav-lista.ativo li:nth-child(5) {
 		transition-delay: .4s;
+	}
+
+	.nav-lista.ativo li:nth-child(6) {
+		transition-delay: .5s;
 	}
 
 	.nav-lista {

@@ -564,13 +564,13 @@ function Home() {
 
               <div className="nomes_links">
                 <div className="div_texto_local">
-                  <Link className="texto_local" to="/">
-                    <h2 className="nome_cidade_unidade">Metrópolis</h2>
+                  <Link className="texto_local" target="_blank" to="https://www.google.com.br/maps/place/UNINOVE+-+Campus+Memorial/@-23.5291621,-46.6662725,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce580368f5da4b:0x758fb9438c746262!8m2!3d-23.5291621!4d-46.6662725!16s%2Fg%2F1tf498b2?entry=ttu&g_ep=EgoyMDI1MDMwOC4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D">
+                    <h2 className="nome_cidade_unidade">Barra Funda</h2>
                     <div className="flex_column">
                       <img className="img_icon_local" src="./images/pages/Home/icon_local.svg" alt="Ícone de localização" />
-                      <p className="nome_rua_unidade">Clinton Street, 344</p>
+                      <p className="nome_rua_unidade">Av. Dr. Adolpho Pinto, 190</p>
                     </div>
-                    <p className="nome_rua_unidade">New Troy, Metrópolis - EUA</p>
+                    <p className="nome_rua_unidade">São Paulo, Barra Funda - BR</p>
                   </Link>
                 </div>
 

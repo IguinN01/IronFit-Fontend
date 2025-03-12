@@ -303,6 +303,14 @@
   .desc_109 {
     padding-inline: 10px;
   }
+
+  .mensal_semestral_anual {
+    height: 678px;
+  }
+
+  .mensal_semestral_anual:hover {
+    height: 700px;
+  }
 }
 
 @media screen and (min-width: 1440px) {

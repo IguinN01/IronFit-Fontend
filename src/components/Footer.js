@@ -14,18 +14,10 @@ const Rodape = () => {
 		{ id: "telefone", tipo: "Telefone", href: "https://wa.me/5511942957858", numero: "+55 (11) 94295-7858", imgSrc: "/images/global/telefone-icon.svg" },
 		{ id: "email", tipo: "E-Mail", href: "mailto:ironfitacademia05@gmail.com.com?subject=Duvida&body=Gostaria de saber mais sobre seus serviços.", numero: "ironfitacademia05@gmail.com", imgSrc: "/images/global/email-icon.svg" },
 		{
-			id: "local", tipo: "Local", href: "https://www.google.com/maps/place/R.+Narcise+Carbonel,+717...",
-			numero: "Brasil, São Paulo, São Paulo, Parque Esperança, R. Narcise Carbonel, N°717",
+			id: "local", tipo: "Local", href: "https://www.google.com.br/maps/place/UNINOVE+-+Campus+Memorial/@-23.5291572,-46.6688474,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce580368f5da4b:0x758fb9438c746262!8m2!3d-23.5291621!4d-46.6662725!16s%2Fg%2F1tf498b2?entry=ttu&g_ep=EgoyMDI1MDMwOC4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D",
+			numero: "Brasil, São Paulo, Av. Dr. Adolpho Pinto, 109 - Barra Funda, São Paulo - SP, 01156-050",
 			imgSrc: "/images/global/local-icon.svg"
 		}
-	];
-
-	const ajudaLinks = [
-		{ id: "contate-nos", nome: "Contate-nós", to: "/" },
-	];
-
-	const atendimentoLinks = [
-		{ id: "sobre-nos", nome: "Sobre nós", to: "/" }
 	];
 
 	return (
@@ -61,25 +53,7 @@ const Rodape = () => {
 				))}
 			</div>
 
-			<div className="rodape_mais_info">
-				<div>
-					<h4 className="rodape_titulos">Ajuda</h4>
-					{ajudaLinks.map(link => (
-						<p key={link.id} className="rodape_itens_info">
-							<Link to={link.to}>{link.nome}</Link>
-						</p>
-					))}
-				</div>
-
-				<div>
-					<h4 className="rodape_titulos">Atendimento ao Cliente</h4>
-					{atendimentoLinks.map(link => (
-						<p key={link.id} className="rodape_itens_info">
-							<Link to={link.to}>{link.nome}</Link>
-						</p>
-					))}
-				</div>
-			</div>
+			<div className="rodape_mais_info"></div>
 
 			<hr className="linha" />
 
