@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom"; // Importando o useLocation
+import { Link, useLocation } from "react-router-dom";
+import { usePesquisa } from "../context/PesquisaContext";
 
 import "../css/global/partials/header.css";
 
@@ -10,8 +11,10 @@ const Header = ({ tipo }) => {
   const alternarMenu = () => setMenuAberto((prev) => !prev);
   const fecharMenu = () => setMenuAberto(false);
 
-  const location = useLocation(); // Obtém a localização atual
+  const location = useLocation();
+  const { termoPesquisa, setTermoPesquisa } = usePesquisa();
 
+  // Controle de visibilidade do header ao rolar
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;
 
@@ -32,6 +35,7 @@ const Header = ({ tipo }) => {
     };
   }, []);
 
+  // Fecha menu hamburguer ao rolar para baixo
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;
 
@@ -63,10 +67,12 @@ const Header = ({ tipo }) => {
       <nav className={`cabecalho_nav ${menuAberto ? "ativo" : ""}`}>
         <div className="div_titulo_academia">
           <Link to="/">
-            <h1 className="titulo_academia">Iron <b className="titulo_academia_destaque">Fit</b></h1>
+            <h1 className="titulo_academia">
+              Iron <b className="titulo_academia_destaque">Fit</b>
+            </h1>
           </Link>
         </div>
-        
+
         <div className="links_1024">
           <Link to="/todos_produtos">
             <p className="item_menu_hamburguer link_1024">Nossos Produtos</p>
@@ -79,13 +85,18 @@ const Header = ({ tipo }) => {
           </Link>
         </div>
 
-        {/* Adicionando o campo de pesquisa se a rota for "/todos_produtos" */}
-        {location.pathname === '/todos_produtos' && (
+        {location.pathname === "/todos_produtos" && (
           <div className="campo-pesquisa">
             <input
               type="text"
               placeholder="Buscar produtos..."
               className="input-pesquisa"
+              value={termoPesquisa}
+              onChange={(e) =>
+                setTermoPesquisa(
+                  e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).toLowerCase()
+                )
+              }
             />
           </div>
         )}
