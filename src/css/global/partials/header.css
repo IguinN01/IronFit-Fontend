@@ -46,7 +46,7 @@
 	background: none;
 	justify-content: center;
 	z-index: 1;
-	right: 15px;
+	right: 14px;
 	top: 15px;
 }
 
@@ -141,10 +141,6 @@
 
 .nav-lista.ativo li:nth-child(5) {
 	transition-delay: .6s;
-}
-
-.nav-lista.ativo li:nth-child(6) {
-	transition-delay: .7s;
 }
 
 .links_1024 {
@@ -269,10 +265,6 @@
 	.nav-lista.ativo li:nth-child(5) {
 		transition-delay: .4s;
 	}
-
-	.nav-lista.ativo li:nth-child(6) {
-		transition-delay: .5s;
-	}
 }
 
 @media screen and (min-width: 1280px) {
@@ -290,10 +282,6 @@
 
 	.nav-lista.ativo li:nth-child(5) {
 		transition-delay: .4s;
-	}
-
-	.nav-lista.ativo li:nth-child(6) {
-		transition-delay: .5s;
 	}
 
 	.nav-lista {

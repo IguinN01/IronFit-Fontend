@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { usePesquisa } from "../context/PesquisaContext";
+import Slider from "rc-slider";
 
+import { usePesquisa } from "../context/PesquisaContext";
+import { useCarrinho } from "../context/CarrinhoContext";
+
+import "rc-slider/assets/index.css";
 import "../css/pages/TodosOsProdutos/todos_produtos.css";
 
 const TodosProdutos = () => {
   const [produtos, setProdutos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  const [precoMax, setPrecoMax] = useState(300);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
+
+  const [precoRange, setPrecoRange] = useState([0, 300]);
+
   const [ordenacao, setOrdenacao] = useState("relevancia");
   const [categoria, setCategoria] = useState("todas");
 
   const { termoPesquisa } = usePesquisa();
+
+  const { adicionarAoCarrinho } = useCarrinho();
 
   useEffect(() => {
     fetch("https://ironfit-backend.onrender.com/produtos")
@@ -24,11 +32,11 @@ const TodosProdutos = () => {
       .then(data => {
         console.log("Dados recebidos da API:", data);
         setProdutos(data);
-        setLoading(false);
+        setCarregando(false);
       })
       .catch(error => {
-        setError(error.message);
-        setLoading(false);
+        setErro(error.message);
+        setCarregando(false);
       });
   }, []);
 
@@ -36,36 +44,43 @@ const TodosProdutos = () => {
     .filter(produto =>
       produto.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
     )
-    .filter(produto => Number(produto.preco) <= precoMax)
-    .filter(produto => categoria === "todas" || produto.categoria.toLowerCase() === categoria.toLowerCase())
+    .filter(produto =>
+      Number(produto.preco) >= precoRange[0] && Number(produto.preco) <= precoRange[1]
+    )
+    .filter(produto =>
+      categoria === "todas" || produto.categoria.toLowerCase() === categoria.toLowerCase()
+    )
     .sort((a, b) => {
       if (ordenacao === "menorMaior") return Number(a.preco) - Number(b.preco);
       if (ordenacao === "maiorMenor") return Number(b.preco) - Number(a.preco);
       return Math.random() - 0.5;
     });
 
-  const exibirResultadoBusca = termoPesquisa ? `Resultados da busca por: "${termoPesquisa}"` : "Todos nossos produtos";
+  const exibirResultadoBusca = termoPesquisa
+    ? `Resultados da busca por: "${termoPesquisa}"`
+    : "Todos nossos produtos";
 
-  if (loading) return <p className="bloco_todos_produtos">Carregando produtos...</p>;
-  if (error) return <p className="bloco_todos_produtos">Erro: {error}</p>;
+  if (carregando) return <p className="bloco_todos_produtos">Carregando produtos...</p>;
+  if (erro) return <p className="bloco_todos_produtos">Erro: {erro}</p>;
 
   return (
     <section className="bloco_todos_produtos">
       <div className="div_todos_produtos">
+
         <section className="filtros">
           <h3>Filtros</h3>
 
-          <div className="filtro">
-            <p className="filtro-label">Preço máximo:</p>
-            <input
-              type="range"
-              min="0"
-              max="300"
-              step="5"
-              value={precoMax}
-              onChange={(e) => setPrecoMax(Number(e.target.value))}
+          <div className="filtro filtro_preco">
+            <p className="filtro-label">Preço:</p>
+            <Slider
+              range
+              min={0}
+              max={300}
+              step={5}
+              value={precoRange}
+              onChange={(val) => setPrecoRange(val)}
             />
-            <p>Até R${precoMax}</p>
+            <p>R$ {precoRange[0]},00 - R$ {precoRange[1]},00</p>
           </div>
 
           <div className="filtro">
@@ -99,19 +114,19 @@ const TodosProdutos = () => {
           </div>
         </section>
 
-        <p>{exibirResultadoBusca}</p>
+        <p className="resultado_busca">{exibirResultadoBusca}</p>
         {produtosFiltrados.length === 0 && <p>Nenhum produto encontrado com esses critérios.</p>}
 
         <ul>
           {produtosFiltrados.map((produto, index) => (
             <li key={produto.IDProduto || `produto-${index}`}>
               <Link to={`/produto/${produto.IDProduto}`}>
-                {produto.imagens && <img src={produto.imagens} alt={produto.nome} width="100" />}
+                {produto.imagens && <img className="img_produto" src={produto.imagens} alt={produto.nome} />}
                 <h2>{produto.nome}</h2>
                 <p>Preço: R${produto.preco}</p>
                 <p>{produto.descricao_produto}</p>
               </Link>
-              <button className="adicionar__carrinho add_car_todos">
+              <button className="adicionar__carrinho add_car_todos" onClick={() => adicionarAoCarrinho(produto)}>
                 Adicionar ao Carrinho
               </button>
             </li>

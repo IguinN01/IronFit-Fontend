@@ -113,12 +113,6 @@ const Header = () => {
           </li>
 
           <li className="nav-lista_item">
-            <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer">Seu Carrinho</p>
-            </Link>
-          </li>
-
-          <li className="nav-lista_item">
             <Link to="/horarios" onClick={fecharMenu}>
               <p className="item_menu_hamburguer">Horários</p>
             </Link>
