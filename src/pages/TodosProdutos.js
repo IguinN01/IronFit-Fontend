@@ -10,17 +10,13 @@ import "../css/pages/TodosOsProdutos/todos_produtos.css";
 
 const TodosProdutos = () => {
   const [produtos, setProdutos] = useState([]);
-
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
-
   const [precoRange, setPrecoRange] = useState([0, 300]);
-
   const [ordenacao, setOrdenacao] = useState("relevancia");
   const [categoria, setCategoria] = useState("todas");
 
   const { termoPesquisa } = usePesquisa();
-
   const { adicionarAoCarrinho } = useCarrinho();
 
   useEffect(() => {
@@ -31,7 +27,8 @@ const TodosProdutos = () => {
       })
       .then(data => {
         console.log("Dados recebidos da API:", data);
-        setProdutos(data);
+        const produtosEmbaralhados = [...data].sort(() => Math.random() - 0.5);
+        setProdutos(produtosEmbaralhados);
         setCarregando(false);
       })
       .catch(error => {
@@ -40,7 +37,7 @@ const TodosProdutos = () => {
       });
   }, []);
 
-  const produtosFiltrados = produtos
+  const produtosFiltrados = [...produtos]
     .filter(produto =>
       produto.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
     )
@@ -53,7 +50,7 @@ const TodosProdutos = () => {
     .sort((a, b) => {
       if (ordenacao === "menorMaior") return Number(a.preco) - Number(b.preco);
       if (ordenacao === "maiorMenor") return Number(b.preco) - Number(a.preco);
-      return Math.random() - 0.5;
+      return 0;
     });
 
   const exibirResultadoBusca = termoPesquisa
@@ -119,14 +116,17 @@ const TodosProdutos = () => {
 
         <ul>
           {produtosFiltrados.map((produto, index) => (
-            <li key={produto.IDProduto || `produto-${index}`}>
-              <Link to={`/produto/${produto.IDProduto}`}>
+            <li key={produto.idproduto || `produto-${index}`} id={`produto-${produto.idproduto}`}>
+              <Link to={`/produto/${produto.idproduto}`}>
                 {produto.imagens && <img className="img_produto" src={produto.imagens} alt={produto.nome} />}
                 <h2>{produto.nome}</h2>
                 <p>Preço: R${produto.preco}</p>
                 <p>{produto.descricao_produto}</p>
               </Link>
-              <button className="adicionar__carrinho add_car_todos" onClick={() => adicionarAoCarrinho(produto)}>
+              <button
+                className="adicionar__carrinho"
+                onClick={() => adicionarAoCarrinho(produto)}
+              >
                 Adicionar ao Carrinho
               </button>
             </li>

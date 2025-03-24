@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { usePesquisa } from "../context/PesquisaContext";
@@ -14,6 +14,14 @@ const Header = ({ tipo }) => {
 
   const location = useLocation();
   const { termoPesquisa, setTermoPesquisa } = usePesquisa();
+  const { carrinho, alterarQuantidade, removerDoCarrinho } = useCarrinho();
+
+  const fecharMenu = useCallback(() => setMenuAberto(false), []);
+
+  const fecharMenuCarrinho = useCallback(() => {
+    setMenuCarrinhoAberto(false);
+    fecharMenu();
+  }, [fecharMenu]);
 
   const alternarMenu = () => {
     setMenuAberto((prev) => !prev);
@@ -22,18 +30,9 @@ const Header = ({ tipo }) => {
     }
   };
 
-  const fecharMenu = () => setMenuAberto(false);
-
   const alternarMenuCarrinho = () => {
     setMenuCarrinhoAberto((prev) => !prev);
   };
-
-  const fecharMenuCarrinho = () => {
-    setMenuCarrinhoAberto(false);
-    fecharMenu();
-  };
-
-  const { carrinho } = useCarrinho();
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;
@@ -51,7 +50,7 @@ const Header = ({ tipo }) => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuAberto, menuCarrinhoAberto]);
+  }, [menuAberto, menuCarrinhoAberto, fecharMenu, fecharMenuCarrinho]);
 
   return (
     <header className={`cabecalho ${mostrarHeader ? "visivel" : "escondido"}`}>
@@ -88,7 +87,7 @@ const Header = ({ tipo }) => {
                 setTermoPesquisa(
                   e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).toLowerCase()
                 );
-                fecharMenu();
+                fecharMenuCarrinho();
               }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -161,7 +160,12 @@ const Header = ({ tipo }) => {
               <li key={index}>
                 <img src={produto.imagens} alt={produto.nome} width="50" />
                 <p>{produto.nome}</p>
-                <p>R$ {produto.preco}</p>
+                <p>Preço Total R${(produto.preco * produto.quantidade).toFixed(2)}</p>
+                <p>Quantidade: {produto.quantidade}</p>
+
+                <button onClick={() => alterarQuantidade(produto.idproduto, 1)}>+</button>
+                <button onClick={() => alterarQuantidade(produto.idproduto, -1)}>-</button>
+                <button onClick={() => removerDoCarrinho(produto.idproduto)}>&#x02A2F;</button>
               </li>
             ))}
           </ul>
