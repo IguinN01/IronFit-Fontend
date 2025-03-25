@@ -52,6 +52,8 @@ const Header = ({ tipo }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [menuAberto, menuCarrinhoAberto, fecharMenu, fecharMenuCarrinho]);
 
+  const quantidadeItensCarrinho = carrinho.length;
+
   return (
     <header className={`cabecalho ${mostrarHeader ? "visivel" : "escondido"}`}>
       <nav className={`cabecalho_nav ${menuAberto ? "ativo" : ""}`}>
@@ -103,11 +105,16 @@ const Header = ({ tipo }) => {
           onClick={alternarMenu}
           aria-label="Menu"
         >
-          <div className={`linhas_harburguer ${menuAberto ? "ativo" : ""}`}>
+          <div className={`linhas_hamburguer ${menuAberto ? "ativo" : ""}`}>
             <div className="botao_hamburguer linha1"></div>
             <div className="botao_hamburguer linha2"></div>
             <div className="botao_hamburguer linha3"></div>
           </div>
+          {quantidadeItensCarrinho > 0 && !menuAberto && (
+            <div className="bolinha">
+              <span>{quantidadeItensCarrinho}</span>
+            </div>
+          )}
         </button>
 
         <ul className={`nav-lista ${menuAberto ? "ativo" : ""}`}>
@@ -126,6 +133,9 @@ const Header = ({ tipo }) => {
           <li className="nav-lista_item">
             <button onClick={alternarMenuCarrinho} className="item_menu_hamburguer menor_1024 botao_carrinho_menu">
               Seu Carrinho
+              {quantidadeItensCarrinho > 0 && (
+                <span className="bolinha-carrinho">{quantidadeItensCarrinho}</span>
+              )}
             </button>
           </li>
 
@@ -145,7 +155,7 @@ const Header = ({ tipo }) => {
 
       <div className={`menu-carrinho ${menuCarrinhoAberto ? "ativo" : ""}`}>
         <button className="cabecalho_nav_menu_hamburguer" onClick={fecharMenuCarrinho} aria-label="Menu">
-          <div className={`linhas_harburguer ${menuAberto || menuCarrinhoAberto ? "ativo" : ""}`}>
+          <div className={`linhas_hamburguer ${menuAberto || menuCarrinhoAberto ? "ativo" : ""}`}>
             <div className="botao_hamburguer linha1"></div>
             <div className="botao_hamburguer linha2"></div>
             <div className="botao_hamburguer linha3"></div>

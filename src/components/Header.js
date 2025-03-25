@@ -80,7 +80,7 @@ const Header = () => {
           onClick={alternarMenu}
           aria-label="Menu"
         >
-          <div className={`linhas_harburguer ${menuAberto ? "ativo" : ""}`}>
+          <div className={`linhas_hamburguer ${menuAberto ? "ativo" : ""}`}>
             <div className="botao_hamburguer linha1"></div>
             <div className="botao_hamburguer linha2"></div>
             <div className="botao_hamburguer linha3"></div>

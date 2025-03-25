@@ -58,17 +58,17 @@
 	background: var(--branco-f5);
 }
 
-.linhas_harburguer.ativo .linha1 {
+.linhas_hamburguer.ativo .linha1 {
 	transform: rotate(-45deg) translate(-8px, 8px);
 	background-color: var(--branco-f5);
 }
 
-.linhas_harburguer.ativo .linha2 {
+.linhas_hamburguer.ativo .linha2 {
 	transition: 0.1s;
 	opacity: 0;
 }
 
-.linhas_harburguer.ativo .linha3 {
+.linhas_hamburguer.ativo .linha3 {
 	transform: rotate(45deg) translate(-5px, -7px);
 	background-color: var(--branco-f5);
 }
@@ -233,7 +233,7 @@
 		right: 32px;
 	}
 
-	.linhas_harburguer div {
+	.linhas_hamburguer div {
 		width: 42px;
 	}
 
@@ -314,7 +314,7 @@
 		right: 42px;
 	}
 
-	.linhas_harburguer div {
+	.linhas_hamburguer div {
 		width: 42px;
 		height: 3px;
 	}
@@ -333,12 +333,12 @@
 		font-size: 1.85rem;
 	}
 
-	.linhas_harburguer.ativo .linha1 {
+	.linhas_hamburguer.ativo .linha1 {
 		transform: rotate(-45deg) translate(-8px, 6px);
 		background-color: var(--branco-f5);
 	}
 
-	.linhas_harburguer.ativo .linha3 {
+	.linhas_hamburguer.ativo .linha3 {
 		transform: rotate(45deg) translate(-9px, -7px);
 		background-color: var(--branco-f5);
 	}
