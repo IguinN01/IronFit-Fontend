@@ -8,7 +8,7 @@ export const CarrinhoProvider = ({ children }) => {
   const adicionarAoCarrinho = (produto) => {
     setCarrinho((prevCarrinho) => {
       const itemExistente = prevCarrinho.find((item) => item.idproduto === produto.idproduto);
-      
+
       if (itemExistente) {
         return prevCarrinho.map((item) =>
           item.idproduto === produto.idproduto ? { ...item, quantidade: item.quantidade + 1 } : item
@@ -23,13 +23,19 @@ export const CarrinhoProvider = ({ children }) => {
     setCarrinho((prevCarrinho) => prevCarrinho.filter((item) => item.idproduto !== id));
   };
 
-  const alterarQuantidade = (id, quantidade) => {
-    setCarrinho((prevCarrinho) =>
-      prevCarrinho
-        .map((item) =>
-          item.idproduto === id ? { ...item, quantidade: item.quantidade + quantidade } : item
-        )
-        .filter((item) => item.quantidade > 0) 
+  const alterarQuantidade = (idproduto, quantidade) => {
+    setCarrinho((carrinhoAtual) =>
+      carrinhoAtual.map((produto) => {
+        if (produto.idproduto === idproduto) {
+          const novaQuantidade = produto.quantidade + quantidade;
+
+          if (novaQuantidade < 1) return produto;
+          if (novaQuantidade > 5) return produto;
+
+          return { ...produto, quantidade: novaQuantidade };
+        }
+        return produto;
+      })
     );
   };
 

@@ -19,7 +19,49 @@
   background: none;
 }
 
+.bolinha {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--azul-gradiente);
+  border-radius: 50%;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
 
+.botao_hamburguer {
+  position: relative;
+}
+
+.botao_hamburguer span {
+  font-weight: bold;
+}
+
+.bolinha-carrinho {
+  position: absolute;
+  top: -5px;
+  right: -13px;
+  background: var(--azul-gradiente);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botao_carrinho_menu {
+  position: relative;
+}
 
 /* CARRINHO */
 .menu-carrinho {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { usePesquisa } from "../context/PesquisaContext";
 import { useCarrinho } from "../context/CarrinhoContext";
@@ -53,6 +54,8 @@ const Header = ({ tipo }) => {
   }, [menuAberto, menuCarrinhoAberto, fecharMenu, fecharMenuCarrinho]);
 
   const quantidadeItensCarrinho = carrinho.length;
+
+  const precoTotal = carrinho.reduce((total, produto) => total + produto.preco * produto.quantidade, 0).toFixed(2);
 
   return (
     <header className={`cabecalho ${mostrarHeader ? "visivel" : "escondido"}`}>
@@ -111,9 +114,25 @@ const Header = ({ tipo }) => {
             <div className="botao_hamburguer linha3"></div>
           </div>
           {quantidadeItensCarrinho > 0 && !menuAberto && (
-            <div className="bolinha">
-              <span>{quantidadeItensCarrinho}</span>
-            </div>
+            <motion.div
+              className="bolinha"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            >
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={quantidadeItensCarrinho}
+                  initial={{ rotateX: 90, opacity: 0 }}
+                  animate={{ rotateX: 0, opacity: 1 }}
+                  exit={{ rotateX: -90, opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  {quantidadeItensCarrinho}
+                </motion.span>
+              </AnimatePresence>
+            </motion.div>
           )}
         </button>
 
@@ -170,15 +189,51 @@ const Header = ({ tipo }) => {
               <li key={index}>
                 <img src={produto.imagens} alt={produto.nome} width="50" />
                 <p>{produto.nome}</p>
-                <p>Preço Total R${(produto.preco * produto.quantidade).toFixed(2)}</p>
+                <p>
+                  Preço Total R$
+                  <motion.span
+                    key={produto.preco * produto.quantidade}
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 5 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    {(produto.preco * produto.quantidade).toFixed(2)}
+                  </motion.span>
+                </p>
                 <p>Quantidade: {produto.quantidade}</p>
 
-                <button onClick={() => alterarQuantidade(produto.idproduto, 1)}>+</button>
+                <button
+                  onClick={() => alterarQuantidade(produto.idproduto, 1)}
+                  disabled={produto.quantidade >= 5}
+                >
+                  +
+                </button>
                 <button onClick={() => alterarQuantidade(produto.idproduto, -1)}>-</button>
                 <button onClick={() => removerDoCarrinho(produto.idproduto)}>&#x02A2F;</button>
               </li>
             ))}
           </ul>
+        )}
+
+        {carrinho.length > 0 && (
+          <div className="total-compra">
+            <p>
+              Preço Total: R$
+              <motion.span
+                key={precoTotal}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                {precoTotal}
+              </motion.span>
+            </p>
+            <Link to="/" className="continuar-compra-link">
+              Continuar Compra
+            </Link>
+          </div>
         )}
       </div>
     </header>

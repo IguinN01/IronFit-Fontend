@@ -3,7 +3,7 @@
 }
 
 .bloco_todos_produtos {
-  padding-top: 200px;
+  padding-top: 160px;
 }
 
 .filtro_preco {
@@ -53,46 +53,30 @@
   background-color: var(--branco-ff);
 }
 
-.bolinha {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20px;
-  height: 20px;
+.botao_filtros {
+  display: block;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  color: var(--branco-ff);
   background: var(--azul-gradiente);
-  border-radius: 50%;
-  color: white;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease-in-out;
 }
 
-.botao_hamburguer {
-  position: relative;
+.botao_filtros:hover {
+  filter: brightness(0.8);
 }
 
-.botao_hamburguer span {
-  font-weight: bold;
+.filtros {
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition: max-height 2s ease; /* fechar o menu de filtro */
 }
 
-.bolinha-carrinho {
-  position: absolute;
-  top: -5px;
-  right: -13px;
-  background: var(--azul-gradiente);
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.botao_carrinho_menu {
-  position: relative;
+.filtros.aberto {
+  max-height: 1000px; 
+  transition: max-height 3s ease; /* abrir o menu de filtro */
 }

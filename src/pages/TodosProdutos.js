@@ -15,6 +15,7 @@ const TodosProdutos = () => {
   const [precoRange, setPrecoRange] = useState([0, 300]);
   const [ordenacao, setOrdenacao] = useState("relevancia");
   const [categoria, setCategoria] = useState("todas");
+  const [filtrosVisiveis, setFiltrosVisiveis] = useState(false);
 
   const { termoPesquisa } = usePesquisa();
   const { adicionarAoCarrinho } = useCarrinho();
@@ -26,7 +27,7 @@ const TodosProdutos = () => {
         return response.json();
       })
       .then(data => {
-        console.log("Dados recebidos da API:", data);
+        console.log("Dados recebidos da API:", data); /*APAGAR FUTURAMENTE*/
         const produtosEmbaralhados = [...data].sort(() => Math.random() - 0.5);
         setProdutos(produtosEmbaralhados);
         setCarregando(false);
@@ -63,10 +64,14 @@ const TodosProdutos = () => {
   return (
     <section className="bloco_todos_produtos">
       <div className="div_todos_produtos">
+        <button 
+          className="botao_filtros" 
+          onClick={() => setFiltrosVisiveis(!filtrosVisiveis)}
+        >
+          Filtros {filtrosVisiveis ? "▲" : "▼"}
+        </button>
 
-        <section className="filtros">
-          <h3>Filtros</h3>
-
+        <section className={`filtros ${filtrosVisiveis ? "aberto" : ""}`}>
           <div className="filtro filtro_preco">
             <p className="filtro-label">Preço:</p>
             <Slider
