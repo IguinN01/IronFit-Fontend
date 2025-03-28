@@ -3,7 +3,7 @@
 }
 
 .bloco_todos_produtos {
-  padding-top: 160px;
+  padding-top: 232px;
 }
 
 .filtro_preco {
@@ -73,10 +73,12 @@
   max-height: 0;
   overflow: hidden;
   transform: translateY(-10px);
-  transition: max-height 2s ease; /* fechar o menu de filtro */
+  transition: max-height 2s ease;
+  /* fechar o menu de filtro */
 }
 
 .filtros.aberto {
-  max-height: 1000px; 
-  transition: max-height 3s ease; /* abrir o menu de filtro */
+  max-height: 1000px;
+  transition: max-height 3s ease;
+  /* abrir o menu de filtro */
 }

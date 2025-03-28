@@ -187,22 +187,24 @@ const Header = ({ tipo }) => {
           <ul>
             {carrinho.map((produto, index) => (
               <li key={index}>
-                <img src={produto.imagens} alt={produto.nome} width="50" />
-                <p>{produto.nome}</p>
-                <p>
-                  Preço Total R$
-                  <motion.span
-                    key={produto.preco * produto.quantidade}
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 5 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  >
-                    {(produto.preco * produto.quantidade).toFixed(2)}
-                  </motion.span>
-                </p>
-                <p>Quantidade: {produto.quantidade}</p>
-
+                <Link to={`/produto/${produto.idproduto}`} className="produto-link">
+                  <img src={produto.imagens} alt={produto.nome} width="50" />
+                  <p>{produto.nome}</p>
+                  <p>
+                    Preço Total R$
+                    <motion.span
+                      key={produto.preco * produto.quantidade}
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 5 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    >
+                      {(produto.preco * produto.quantidade).toFixed(2)}
+                    </motion.span>
+                  </p>
+                  <p>Quantidade: {produto.quantidade}</p>
+                </Link>
+                
                 <button
                   onClick={() => alterarQuantidade(produto.idproduto, 1)}
                   disabled={produto.quantidade >= 5}

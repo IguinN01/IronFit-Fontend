@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Slider from "rc-slider";
 
 import { usePesquisa } from "../context/PesquisaContext";
@@ -9,12 +9,16 @@ import "rc-slider/assets/index.css";
 import "../css/pages/TodosOsProdutos/todos_produtos.css";
 
 const TodosProdutos = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const categoriaInicial = queryParams.get("categoria") || "todas";
+
   const [produtos, setProdutos] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
   const [precoRange, setPrecoRange] = useState([0, 300]);
   const [ordenacao, setOrdenacao] = useState("relevancia");
-  const [categoria, setCategoria] = useState("todas");
+  const [categoria, setCategoria] = useState(categoriaInicial);
   const [filtrosVisiveis, setFiltrosVisiveis] = useState(false);
 
   const { termoPesquisa } = usePesquisa();
@@ -64,8 +68,8 @@ const TodosProdutos = () => {
   return (
     <section className="bloco_todos_produtos">
       <div className="div_todos_produtos">
-        <button 
-          className="botao_filtros" 
+        <button
+          className="botao_filtros"
           onClick={() => setFiltrosVisiveis(!filtrosVisiveis)}
         >
           Filtros {filtrosVisiveis ? "▲" : "▼"}

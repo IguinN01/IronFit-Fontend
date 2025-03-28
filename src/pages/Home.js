@@ -363,7 +363,7 @@ function Home() {
               }}
             >
               <SwiperSlide className="produtos">
-                <Link to="/" className="categoria_produto">
+                <Link to="/todos_produtos?categoria=Suplementos" className="categoria_produto">
                   <div className="div_img_categoria_produto">
                     <img className="img_categoria_produto" src="./images/pages/Home/suplementos.webp" alt="Suplementos" />
                   </div>
@@ -373,14 +373,14 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link className="aaa" to="/">
+                  <Link className="aaa" to="/todos_produtos?categoria=Suplementos">
                     <p className="texto_link_produto">Ver Suplementos</p>
                   </Link>
                 </div>
               </SwiperSlide>
 
               <SwiperSlide className="produtos">
-                <Link to="/" className="categoria_produto">
+                <Link to="/todos_produtos?categoria=Snacks" className="categoria_produto">
                   <div className="div_img_categoria_produto">
                     <img className="img_categoria_produto" src="./images/pages/Home/snacks.webp" alt="Snacks" />
                   </div>
@@ -390,14 +390,14 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link className="aaa" to="/">
+                  <Link className="aaa" to="/todos_produtos?categoria=Snacks">
                     <p className="texto_link_produto">Ver Snacks</p>
                   </Link>
                 </div>
               </SwiperSlide>
 
               <SwiperSlide className="produtos">
-                <Link to="/" className="categoria_produto">
+                <Link to="/todos_produtos?categoria=Roupas" className="categoria_produto">
                   <div className="div_img_categoria_produto">
                     <img className="img_categoria_produto" src="./images/pages/Home/roupas.png" alt="Roupas" />
                   </div>
@@ -407,14 +407,14 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link className="aaa" to="/">
+                  <Link className="aaa" to="/todos_produtos?categoria=Roupas">
                     <p className="texto_link_produto">Ver Roupas</p>
                   </Link>
                 </div>
               </SwiperSlide>
 
               <SwiperSlide className="produtos">
-                <Link to="/" className="categoria_produto">
+                <Link to="/todos_produtos?categoria=Acessórios" className="categoria_produto">
                   <div className="div_img_categoria_produto">
                     <img className="img_categoria_produto" src="./images/pages/Home/acessorios.png" alt="Acessórios" />
                   </div>
@@ -424,14 +424,14 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link className="aaa" to="/">
+                  <Link className="aaa" to="/todos_produtos?categoria=Acessórios">
                     <p className="texto_link_produto">Ver Acessórios</p>
                   </Link>
                 </div>
               </SwiperSlide>
 
               <SwiperSlide className="produtos">
-                <Link to="/" className="categoria_produto">
+                <Link to="/todos_produtos?categoria=Suplementos" className="categoria_produto">
                   <div className="div_img_categoria_produto">
                     <img className="img_categoria_produto" src="./images/pages/Home/suplementos.webp" alt="Suplementos" />
                   </div>
@@ -441,14 +441,14 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link to="/">
+                  <Link to="/todos_produtos?categoria=Suplementos">
                     <p className="texto_link_produto">Ver Suplementos</p>
                   </Link>
                 </div>
               </SwiperSlide>
 
               <SwiperSlide className="produtos">
-                <Link to="/" className="categoria_produto">
+                <Link to="/todos_produtos?categoria=Snacks" className="categoria_produto">
                   <div className="div_img_categoria_produto">
                     <img className="img_categoria_produto" src="./images/pages/Home/snacks.webp" alt="Snacks" />
                   </div>
@@ -458,14 +458,14 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link to="/">
+                  <Link to="/todos_produtos?categoria=Snacks">
                     <p className="texto_link_produto">Ver Snacks</p>
                   </Link>
                 </div>
               </SwiperSlide>
 
               <SwiperSlide className="produtos">
-                <Link to="/" className="categoria_produto">
+                <Link to="/todos_produtos?categoria=Roupas" className="categoria_produto">
                   <div className="div_img_categoria_produto">
                     <img className="img_categoria_produto" src="./images/pages/Home/roupas.png" alt="Roupas" />
                   </div>
@@ -475,14 +475,14 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link to="/">
+                  <Link to="/todos_produtos?categoria=Roupas">
                     <p className="texto_link_produto">Ver Roupas</p>
                   </Link>
                 </div>
               </SwiperSlide>
 
               <SwiperSlide className="produtos">
-                <Link to="/" className="categoria_produto">
+                <Link to="/todos_produtos?categoria=Acessórios" className="categoria_produto">
                   <div className="div_img_categoria_produto">
                     <img className="img_categoria_produto" src="./images/pages/Home/acessorios.png" alt="Acessórios" />
                   </div>
@@ -492,7 +492,7 @@ function Home() {
                   </div>
                 </Link>
                 <div className="link_categoria">
-                  <Link to="/">
+                  <Link to="/todos_produtos?categoria=Acessórios">
                     <p className="texto_link_produto">Ver Acessórios</p>
                   </Link>
                 </div>

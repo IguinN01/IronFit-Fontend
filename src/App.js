@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { PesquisaProvider } from "./context/PesquisaContext";
 import { CarrinhoProvider } from "./context/CarrinhoContext";
 
-import Header from "./components/Header";
-import HeaderBusca from "./components/HeaderBusca";
+import Header from "./components/Header";  
+import HeaderBusca from "./components/HeaderBusca"; 
 import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import Horarios from "./pages/Horarios";
 import TodosProdutos from "./pages/TodosProdutos";
+import ProdutoDetalhes from "./pages/ProdutoDetalhes";
 
 function App() {
   return (
@@ -22,8 +23,17 @@ function App() {
               path="/todos_produtos"
               element={
                 <>
-                  <HeaderBusca tipo="especifica" />
+                  <HeaderBusca tipo="especifica" /> 
                   <TodosProdutos />
+                </>
+              }
+            />
+            <Route
+              path="/produto/:id"
+              element={
+                <>
+                  <HeaderBusca tipo="especifica" />  
+                  <ProdutoDetalhes />
                 </>
               }
             />
@@ -31,7 +41,7 @@ function App() {
               path="/"
               element={
                 <>
-                  <Header tipo="default" />
+                  <Header tipo="default" />  
                   <Home />
                 </>
               }
@@ -40,7 +50,7 @@ function App() {
               path="/horarios"
               element={
                 <>
-                  <Header tipo="default" />
+                  <Header tipo="default" /> 
                   <Horarios />
                 </>
               }
