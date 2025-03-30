@@ -76,8 +76,8 @@ const Header = ({ tipo }) => {
           <Link to="/">
             <p className="item_menu_hamburguer link_1024">Planos</p>
           </Link>
-          <Link to="/">
-            <p className="item_menu_hamburguer link_1024 link_1280">Sua Conta</p>
+          <Link to="/register">
+            <p className="item_menu_hamburguer link_1024 link_1280">Criar Conta</p>
           </Link>
         </div>
 
@@ -147,8 +147,8 @@ const Header = ({ tipo }) => {
           </li>
 
           <li className="nav-lista_item">
-            <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer menor_1280">Sua Conta</p>
+            <Link to="/register" onClick={fecharMenu}>
+              <p className="item_menu_hamburguer menor_1280">Criar Conta</p>
             </Link>
           </li>
 

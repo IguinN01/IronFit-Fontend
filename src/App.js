@@ -3,62 +3,85 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { PesquisaProvider } from "./context/PesquisaContext";
 import { CarrinhoProvider } from "./context/CarrinhoContext";
+import { AuthProvider } from "./context/AuthContext";
 
-import Header from "./components/Header";  
-import HeaderBusca from "./components/HeaderBusca"; 
+import Header from "./components/Header";
+import HeaderBusca from "./components/HeaderBusca";
 import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import Horarios from "./pages/Horarios";
 import TodosProdutos from "./pages/TodosProdutos";
 import ProdutoDetalhes from "./pages/ProdutoDetalhes";
+import Cadastro from "./pages/Cadastro";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <Router>
-      <PesquisaProvider>
-        <CarrinhoProvider>
-          <Routes>
-            <Route
-              path="/todos_produtos"
-              element={
-                <>
-                  <HeaderBusca tipo="especifica" /> 
-                  <TodosProdutos />
-                </>
-              }
-            />
-            <Route
-              path="/produto/:id"
-              element={
-                <>
-                  <HeaderBusca tipo="especifica" />  
-                  <ProdutoDetalhes />
-                </>
-              }
-            />
-            <Route
-              path="/"
-              element={
-                <>
-                  <Header tipo="default" />  
-                  <Home />
-                </>
-              }
-            />
-            <Route
-              path="/horarios"
-              element={
-                <>
-                  <Header tipo="default" /> 
-                  <Horarios />
-                </>
-              }
-            />
-          </Routes>
-          <Footer />
-        </CarrinhoProvider>
-      </PesquisaProvider>
+      <AuthProvider>
+        <PesquisaProvider>
+          <CarrinhoProvider>
+            <Routes>
+              <Route
+                path="/todos_produtos"
+                element={
+                  <>
+                    <HeaderBusca tipo="especifica" />
+                    <TodosProdutos />
+                  </>
+                }
+              />
+              <Route
+                path="/produto/:id"
+                element={
+                  <>
+                    <HeaderBusca tipo="especifica" />
+                    <ProdutoDetalhes />
+                  </>
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Header tipo="default" />
+                    <Home />
+                  </>
+                }
+              />
+              <Route
+                path="/horarios"
+                element={
+                  <>
+                    <Header tipo="default" />
+                    <Horarios />
+                  </>
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <>
+                    <Header tipo="default" />
+                    <Cadastro />
+                  </>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <>
+                    <Header tipo="default" />
+                    <Login />
+                  </>
+                }
+              />
+            </Routes>
+            <Footer />
+          </CarrinhoProvider>
+        </PesquisaProvider>
+      </AuthProvider>
     </Router>
   );
 }
