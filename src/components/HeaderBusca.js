@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { usePesquisa } from "../context/PesquisaContext";
@@ -9,6 +9,7 @@ import "../css/global/partials/header.css";
 import "../css/global/partials/headerBusca.css";
 
 const Header = ({ tipo }) => {
+  const navigate = useNavigate();
   const [menuAberto, setMenuAberto] = useState(false);
   const [menuCarrinhoAberto, setMenuCarrinhoAberto] = useState(false);
   const [mostrarHeader, setMostrarHeader] = useState(true);
@@ -80,7 +81,7 @@ const Header = ({ tipo }) => {
           </Link>
         </div>
 
-        {location.pathname === "/todos_produtos" && (
+        {(location.pathname.startsWith("/todos_produtos") || location.pathname.startsWith("/produto/")) && (
           <div className="campo-pesquisa">
             <input
               type="text"
@@ -89,14 +90,16 @@ const Header = ({ tipo }) => {
               className="input-pesquisa"
               value={termoPesquisa}
               onChange={(e) => {
+                const termo = e.target.value;
                 setTermoPesquisa(
-                  e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).toLowerCase()
+                  termo.charAt(0).toUpperCase() + termo.slice(1).toLowerCase()
                 );
                 fecharMenuCarrinho();
               }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  e.target.blur();
+                  e.preventDefault();
+                  navigate("/todos_produtos");
                 }
               }}
             />
@@ -204,7 +207,7 @@ const Header = ({ tipo }) => {
                   </p>
                   <p>Quantidade: {produto.quantidade}</p>
                 </Link>
-                
+
                 <button
                   onClick={() => alterarQuantidade(produto.idproduto, 1)}
                   disabled={produto.quantidade >= 5}

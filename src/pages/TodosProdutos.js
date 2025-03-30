@@ -20,9 +20,24 @@ const TodosProdutos = () => {
   const [ordenacao, setOrdenacao] = useState("relevancia");
   const [categoria, setCategoria] = useState(categoriaInicial);
   const [filtrosVisiveis, setFiltrosVisiveis] = useState(false);
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const produtosPorPagina = 7;
 
   const { termoPesquisa } = usePesquisa();
   const { adicionarAoCarrinho } = useCarrinho();
+
+  useEffect(() => {
+    setPaginaAtual(1);
+  }, [termoPesquisa, categoria, precoRange]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const primeiroProduto = document.querySelector(".bloco_todos_produtos");
+      if (primeiroProduto) {
+        primeiroProduto.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
+  }, [paginaAtual]);
 
   useEffect(() => {
     fetch("https://ironfit-backend.onrender.com/produtos")
@@ -31,7 +46,7 @@ const TodosProdutos = () => {
         return response.json();
       })
       .then(data => {
-        console.log("Dados recebidos da API:", data); /*APAGAR FUTURAMENTE*/
+        console.log("Dados recebidos da API:", data); // APAGAR FUTURAMENTE
         const produtosEmbaralhados = [...data].sort(() => Math.random() - 0.5);
         setProdutos(produtosEmbaralhados);
         setCarregando(false);
@@ -44,23 +59,31 @@ const TodosProdutos = () => {
 
   const produtosFiltrados = [...produtos]
     .filter(produto =>
-      produto.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
+      produto.nome.toLowerCase().startsWith(termoPesquisa.toLowerCase())
     )
     .filter(produto =>
       Number(produto.preco) >= precoRange[0] && Number(produto.preco) <= precoRange[1]
     )
     .filter(produto =>
       categoria === "todas" || produto.categoria.toLowerCase() === categoria.toLowerCase()
-    )
-    .sort((a, b) => {
-      if (ordenacao === "menorMaior") return Number(a.preco) - Number(b.preco);
-      if (ordenacao === "maiorMenor") return Number(b.preco) - Number(a.preco);
-      return 0;
-    });
+    );
+
+  if (produtosFiltrados.length === 0 && termoPesquisa) {
+    produtosFiltrados.push(...produtos.filter(produto =>
+      produto.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
+    ));
+  }
 
   const exibirResultadoBusca = termoPesquisa
     ? `Resultados da busca por: "${termoPesquisa}"`
     : "Todos nossos produtos";
+
+  const produtosPaginaAtual = produtosFiltrados.slice(
+    (paginaAtual - 1) * produtosPorPagina,
+    paginaAtual * produtosPorPagina
+  );
+
+  const totalPaginas = Math.ceil(produtosFiltrados.length / produtosPorPagina);
 
   if (carregando) return <p className="bloco_todos_produtos">Carregando produtos...</p>;
   if (erro) return <p className="bloco_todos_produtos">Erro: {erro}</p>;
@@ -124,7 +147,7 @@ const TodosProdutos = () => {
         {produtosFiltrados.length === 0 && <p>Nenhum produto encontrado com esses critérios.</p>}
 
         <ul>
-          {produtosFiltrados.map((produto, index) => (
+          {produtosPaginaAtual.map((produto, index) => (
             <li key={produto.idproduto || `produto-${index}`} id={`produto-${produto.idproduto}`}>
               <Link to={`/produto/${produto.idproduto}`}>
                 {produto.imagens && <img className="img_produto" src={produto.imagens} alt={produto.nome} />}
@@ -141,6 +164,29 @@ const TodosProdutos = () => {
             </li>
           ))}
         </ul>
+
+        <div className="paginas">
+          <button onClick={() => setPaginaAtual(paginaAtual - 1)} disabled={paginaAtual === 1}>
+            &#x021A9;
+          </button>
+
+          {[...Array(totalPaginas)].map((_, index) => {
+            const num = index + 1;
+            return (
+              <button
+                key={num}
+                className={num === paginaAtual ? "pagina-ativa" : ""}
+                onClick={() => setPaginaAtual(num)}
+              >
+                {num}
+              </button>
+            );
+          })}
+
+          <button onClick={() => setPaginaAtual(paginaAtual + 1)} disabled={paginaAtual === totalPaginas}>
+            &#x021AA;
+          </button>
+        </div>
       </div>
     </section>
   );

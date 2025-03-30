@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useCarrinho } from "../context/CarrinhoContext";
 
 import "../css/pages/PodutoDetalhes/produto_detalhes.css";
 
 const ProdutoDetalhes = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { adicionarAoCarrinho } = useCarrinho();
+
   const [produto, setProduto] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
@@ -32,10 +35,7 @@ const ProdutoDetalhes = () => {
 
   return (
     <section className="produto-detalhes">
-      <button
-        className="btn-voltar"
-        onClick={() => navigate(-1)}
-      >
+      <button className="btn-voltar" onClick={() => navigate(-1)}>
         ← Voltar
       </button>
 
@@ -43,6 +43,13 @@ const ProdutoDetalhes = () => {
       <h1>{produto.nome}</h1>
       <p className="produto-preco">Preço: R${produto.preco}</p>
       <p className="produto-descricao">{produto.descricao_produto}</p>
+
+      <button
+        className="adicionar__carrinho"
+        onClick={() => adicionarAoCarrinho(produto)}
+      >
+        Adicionar ao Carrinho
+      </button>
     </section>
   );
 };
