@@ -46,7 +46,6 @@ const TodosProdutos = () => {
         return response.json();
       })
       .then(data => {
-        console.log("Dados recebidos da API:", data); // APAGAR FUTURAMENTE
         const produtosEmbaralhados = [...data].sort(() => Math.random() - 0.5);
         setProdutos(produtosEmbaralhados);
         setCarregando(false);

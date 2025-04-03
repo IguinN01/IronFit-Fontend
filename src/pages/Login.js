@@ -1,11 +1,15 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { ArrowLeft } from "lucide-react";
 
 import FormularioAutenticacao from '../components/FormularioAutenticacao';
 
-import "../css/pages/CadastroLogin/cadastro_login.css"; 
+import "../css/pages/CadastroLogin/cadastro_login.css";
+
 
 const Login = () => {
+  const navigate = useNavigate();
   const tratarLogin = async (dadosFormulario) => {
     const { email, senha } = dadosFormulario;
     const resposta = await fetch('https://ironfit-backend.onrender.com/login', {
@@ -28,13 +32,23 @@ const Login = () => {
   };
 
   return (
-    <div className='formulario'>
-      <h2>Entrar</h2>
-      <FormularioAutenticacao aoEnviar={tratarLogin} ehCadastro={false} />
-      <Link to="/register">
-        <p>CADASTRAR</p>
-      </Link>
-    </div>
+    <main>
+      <div className='formulario'>
+        <div className='titulos-botao'>
+          <h2>Faça Login</h2>
+          <p>Seja bem-vindo novamente</p>
+
+          <button type="button" onClick={() => navigate(-2)}>
+            <ArrowLeft size={24} />
+          </button>
+        </div>
+
+        <FormularioAutenticacao aoEnviar={tratarLogin} ehCadastro={false} />
+        <Link to="/register">
+          <p>Ainda não tem uma conta? Cadastre-se</p>
+        </Link>
+      </div>
+    </main>
   );
 };
 

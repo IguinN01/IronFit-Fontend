@@ -1,3 +1,38 @@
 .formulario {
-  padding-top: 232px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 86px;
+  padding-inline: 16px;
+}
+
+.titulos-botao {
+  display: flex;
+}
+
+.titulos-cadastro {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2px;
+  gap: 8px;  
+  margin-bottom: 16px;
+}
+
+.voltar_cadastro {
+  position: absolute;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.div-lembrar {
+  display: flex;
 }

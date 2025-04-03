@@ -1,0 +1,32 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<mask id="mask0_23_47" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
+<mask id="mask1_23_47" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
+<rect width="16" height="16" fill="url(#pattern0_23_47)"/>
+</mask>
+<g mask="url(#mask1_23_47)">
+<rect width="24" height="27" transform="matrix(-1 0 0 1 20 -5)" fill="#47E0FF"/>
+</g>
+</mask>
+<g mask="url(#mask0_23_47)">
+<mask id="mask2_23_47" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
+<rect width="16" height="16" fill="url(#paint0_linear_23_47)"/>
+</mask>
+<g mask="url(#mask2_23_47)">
+<rect width="16" height="16" fill="url(#paint1_linear_23_47)"/>
+</g>
+</g>
+<defs>
+<pattern id="pattern0_23_47" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_23_47" transform="scale(0.0625)"/>
+</pattern>
+<linearGradient id="paint0_linear_23_47" x1="15.9407" y1="-6.73796e-07" x2="0.0592522" y2="16" gradientUnits="userSpaceOnUse">
+<stop stop-color="#47E0FF"/>
+<stop offset="1" stop-color="#0099CC"/>
+</linearGradient>
+<linearGradient id="paint1_linear_23_47" x1="15.9407" y1="-6.73796e-07" x2="0.0592522" y2="16" gradientUnits="userSpaceOnUse">
+<stop stop-color="#47E0FF"/>
+<stop offset="1" stop-color="#0099CC"/>
+</linearGradient>
+<image id="image0_23_47" width="16" height="16" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFHSURBVHgBpVFNToNAFH4zxbWYWNf1BHbfmOLaaOQGHKE36Bk8Qb0BCdQ1KLC3J6A7E1uBvYTney2QKT9pk37JJO9n3jff+wbgTIi+xsYODCnB4LgowB+a9/5JBDw4GIgFddYIuIICMiHFlPJRLoR58zj5gj78vHvjxA3SjRsYzd7W+XxJ3LCzVyNxwnjrRFaVx7an86nV0XCyDGN1RqrSWfb18+SN89SN5peaFvPhmGvDJ/IBYa2qqAnYMCzwYzdMr9L+M5Hnt3w4TksldGclUYxbBCX0Rg4ZQLuEqLcICgk+uX3H8ZX5kNGrr1iuwDHX9krFlFS0f4IlNl3mWqqY+G17o6aJB/hdhjMi8fr6KfXUX+oEE1SuHw5H8y7ypokg8j8TES2VhGMUaHGvdR+6pNKuqF0sKNTpAhm6J66MPBm879Gdz8U/nPi9w9nTVy0AAAAASUVORK5CYII="/>
+</defs>
+</svg>
