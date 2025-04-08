@@ -46,7 +46,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
   };
 
   const validarSenha = (senha) => {
-    return /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,32}$/.test(senha);
+    return /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@#$]{8,32}$/.test(senha);
   };
 
   const tratarMudanca = (e) => {
@@ -107,7 +107,6 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
       }
     } catch (erro) {
       setErro("Erro inesperado ao enviar os dados.");
-      console.error("Erro ao enviar:", erro);
     }
   };
 
@@ -118,6 +117,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
       const resultado = await signInWithPopup(auth, provider);
       const token = await resultado.user.getIdToken();
       const email = resultado.user.email;
+      const nome = resultado.user.displayName;
 
       const resposta = await fetch("https://ironfit-backend.onrender.com/check-user", {
         method: "POST",
@@ -130,36 +130,12 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
       if (dados.existe) {
         login(token);
         alert("Login com Google realizado!");
-        navigate("/");
+        navigate(-1);
       } else {
-        const novoUsuario = {
-          nome: resultado.user.displayName,
-          email: resultado.user.email,
-          senha: "",
-        };
-
-        try {
-          const respostaCadastro = await fetch("https://ironfit-backend.onrender.com/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(novoUsuario),
-          });
-
-          if (respostaCadastro.ok) {
-            const dadosCadastro = await respostaCadastro.json();
-            login(token);
-            alert("Cadastro realizado e login efetuado com sucesso!");
-            navigate("/");
-          } else {
-            alert("Erro ao criar conta automaticamente.");
-          }
-        } catch (erro) {
-          console.error("Erro ao criar conta com Google:", erro);
-          setErro("Erro ao criar conta automaticamente.");
-        }
+        alert("Conta não cadastrada. Redirecionando para o cadastro.");
+        navigate("/cadastro", { state: { email, nome } });
       }
     } catch (erro) {
-      console.error("Erro no login com Google:", erro);
       setErro("Erro ao autenticar com Google");
     }
   };
@@ -170,10 +146,19 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
       return;
     }
     try {
-      await sendPasswordResetEmail(auth, dadosFormulario.email);
-      alert('E-mail de recuperação enviado!');
+      await sendPasswordResetEmail(auth, dadosFormulario.email, {
+        url: 'https://academia-iron.web.app/redefinir_senha',
+        handleCodeInApp: true,
+      });
+      alert('E-mail de recuperação enviado! Verifique sua caixa de entrada.');
     } catch (erro) {
-      setErro('Erro ao enviar e-mail de recuperação.');
+      if (erro.code === 'auth/user-not-found') {
+        setErro('Não existe uma conta com esse e-mail.');
+      } else if (erro.code === 'auth/invalid-email') {
+        setErro('O e-mail fornecido é inválido.');
+      } else {
+        setErro('Erro ao enviar e-mail de recuperação.');
+      }
     }
   };
 
@@ -181,8 +166,10 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
     <form className='form' onSubmit={tratarEnvio}>
       {ehCadastro && (
         <div className='input'>
-          <label htmlFor="nome">Nome:</label>
+          <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="ALTERAR" />
           <input
+            placeholder='Nome:'
+            className='inputs'
             type="text"
             id="nome"
             name="nome"
@@ -194,8 +181,10 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
       )}
 
       <div className='input'>
-        <label htmlFor="email">E-mail:</label>
+        <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="ALTERAR" />
         <input
+          className='inputs'
+          placeholder='E-Mail:'
           type="email"
           id="email"
           name="email"
@@ -206,9 +195,11 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
       </div>
 
       <div className='input'>
-        <label htmlFor="senha">Senha:</label>
+        <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="ALTERAR" />
         <input
           type={mostrarSenha ? 'text' : 'password'}
+          className='inputs'
+          placeholder='Senha:'
           id="senha"
           name="senha"
           value={dadosFormulario.senha}
@@ -216,7 +207,6 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
           required
           minLength={8}
           maxLength={32}
-          style={{ paddingRight: "40px" }}
         />
         <button
           type="button"
@@ -228,9 +218,11 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
 
       {ehCadastro && (
         <div className='input'>
-          <label htmlFor="confirmacaoSenha">Confirmar Senha:</label>
+          <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="ALTERAR" />
           <input
             type={mostrarConfirmacaoSenha ? 'text' : 'password'}
+            className='inputs'
+            placeholder='Confirmar Senha:'
             id="confirmacaoSenha"
             name="confirmacaoSenha"
             value={dadosFormulario.confirmacaoSenha}
@@ -238,7 +230,6 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
             required
             minLength={8}
             maxLength={32}
-            style={{ paddingRight: "40px" }}
           />
           <button
             type="button"
@@ -248,17 +239,6 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
           </button>
         </div>
       )}
-
-      <div className='div-lembrar'>
-        <input
-          type="checkbox"
-          id="lembrar"
-          name="lembrar"
-          checked={dadosFormulario.lembrar}
-          onChange={tratarMudanca}
-        />
-        <label htmlFor="lembrar">Lembrar Sessão</label>
-      </div>
 
       {erro && <p style={{ color: 'red' }}>{erro}</p>}
       <button type="submit">{ehCadastro ? 'Cadastrar' : 'Entrar'}</button>

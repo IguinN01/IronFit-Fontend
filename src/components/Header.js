@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+
+import { AuthContext } from "../context/AuthContext";
 
 import "../css/global/partials/header.css";
 
 const Header = () => {
+  const { authToken } = useContext(AuthContext);
   const [menuAberto, setmenuAberto] = useState(false);
   const [mostrarHeader, setMostrarHeader] = useState(true);
 
@@ -71,9 +74,16 @@ const Header = () => {
           <Link to="/">
             <p className="item_menu_hamburguer link_1024">Planos</p>
           </Link>
-          <Link to="/register">
-            <p className="item_menu_hamburguer link_1024 link_1280">Criar Conta</p>
-          </Link>
+
+          {authToken ? (
+            <Link to="/perfil">
+              <p className="item_menu_hamburguer link_1024 link_1280">Perfil</p>
+            </Link>
+          ) : (
+          <Link to="/cadastro">
+              <p className="item_menu_hamburguer link_1024 link_1280">Sua Conta</p>
+            </Link>
+          )}
         </div>
         <button
           className="cabecalho_nav_menu_hamburguer"
@@ -94,11 +104,21 @@ const Header = () => {
             </Link>
           </li>
 
-          <li className="nav-lista_item">
-            <Link to="/register" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer menor_1280">Criar Conta</p>
-            </Link>
-          </li>
+          {authToken ? (
+            <>
+              <li className="nav-lista_item">
+                <Link to="/perfil" onClick={fecharMenu}>
+                  <p className="item_menu_hamburguer">Perfil</p>
+                </Link>
+              </li>
+            </>
+          ) : (
+            <li className="nav-lista_item">
+              <Link to="/cadastro" onClick={fecharMenu}>
+                <p className="item_menu_hamburguer menor_1280">Sua Conta</p>
+              </Link>
+            </li>
+          )}
 
           <li className="nav-lista_item">
             <Link to="/todos_produtos" onClick={fecharMenu}>

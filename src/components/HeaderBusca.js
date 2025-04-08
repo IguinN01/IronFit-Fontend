@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { usePesquisa } from "../context/PesquisaContext";
 import { useCarrinho } from "../context/CarrinhoContext";
+import { AuthContext } from "../context/AuthContext";
 
 import "../css/global/partials/header.css";
 import "../css/global/partials/headerBusca.css";
 
 const Header = ({ tipo }) => {
   const navigate = useNavigate();
+  const { authToken } = useContext(AuthContext);
   const [menuAberto, setMenuAberto] = useState(false);
   const [menuCarrinhoAberto, setMenuCarrinhoAberto] = useState(false);
   const [mostrarHeader, setMostrarHeader] = useState(true);
@@ -76,12 +78,18 @@ const Header = ({ tipo }) => {
           <Link to="/">
             <p className="item_menu_hamburguer link_1024">Planos</p>
           </Link>
-          <Link to="/register">
-            <p className="item_menu_hamburguer link_1024 link_1280">Criar Conta</p>
-          </Link>
+          {authToken ? (
+            <Link to="/perfil">
+              <p className="item_menu_hamburguer link_1024 link_1280">Perfil</p>
+            </Link>
+          ) : (
+            <Link to="/cadastro">
+              <p className="item_menu_hamburguer link_1024 link_1280">Sua Conta</p>
+            </Link>
+          )}
         </div>
 
-        {(location.pathname.startsWith("/todos_produtos") || location.pathname.startsWith("/produto/")) && (
+        {(location.pathname.startsWith("/todos_produtos") || location.pathname.startsWith("/produto/") || location.pathname.startsWith("/checkout")) && (
           <div className="campo-pesquisa">
             <input
               type="text"
@@ -146,11 +154,21 @@ const Header = ({ tipo }) => {
             </Link>
           </li>
 
-          <li className="nav-lista_item">
-            <Link to="/register" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer menor_1280">Criar Conta</p>
-            </Link>
-          </li>
+          {authToken ? (
+            <>
+              <li className="nav-lista_item">
+                <Link to="/perfil" onClick={fecharMenu}>
+                  <p className="item_menu_hamburguer">Perfil</p>
+                </Link>
+              </li>
+            </>
+          ) : (
+            <li className="nav-lista_item">
+              <Link to="/cadastro" onClick={fecharMenu}>
+                <p className="item_menu_hamburguer menor_1280">Sua Conta</p>
+              </Link>
+            </li>
+          )}
 
           <li className="nav-lista_item">
             <button onClick={alternarMenuCarrinho} className="item_menu_hamburguer menor_1024 botao_carrinho_menu">
@@ -235,7 +253,7 @@ const Header = ({ tipo }) => {
                 {precoTotal}
               </motion.span>
             </p>
-            <Link to="/" className="continuar-compra-link">
+            <Link to="/checkout" className="continuar-compra-link">
               Continuar Compra
             </Link>
           </div>

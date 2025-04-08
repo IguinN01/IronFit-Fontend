@@ -2,8 +2,25 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding-top: 86px;
+  align-items: center; 
+  padding-top: 94px;
   padding-inline: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.voltar_cadastro {
+  border: none;
+  background: none;
+  position: absolute;
+  cursor: pointer;
+  color: var(--azul-neon);
 }
 
 .titulos-botao {
@@ -13,26 +30,48 @@
 .titulos-cadastro {
   display: flex;
   flex-direction: column;
-  padding-top: 2px;
-  gap: 8px;  
+  padding-top: 3px;
+  gap: 16px;
   margin-bottom: 16px;
 }
 
-.voltar_cadastro {
-  position: absolute;
+.titulos-cadastro h2 {
+  font-size: 1.2rem;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
+.titulos-cadastro b {
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.titulos-cadastro p {
+  font-size: 0.8rem;
+  padding-inline: 26px;
 }
 
 .input {
-  display: flex;
-  flex-direction: column;
   text-align: start;
+  position: relative;
+  display: inline-block;
 }
 
-.div-lembrar {
-  display: flex;
+.inputs {
+  border: none;
+  padding-left: 38px;
+  padding-right: 12px;
+  height: 32px;  
+  border-radius: 6px;  
+  width: 232px;
+}
+
+.input-person {
+  position: absolute;
+  pointer-events: none;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
 }

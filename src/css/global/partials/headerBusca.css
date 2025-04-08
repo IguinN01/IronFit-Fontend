@@ -21,17 +21,20 @@
 
 .bolinha {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
   top: 0;
   right: 0;
   width: 20px;
   height: 20px;
-  background: var(--azul-gradiente);
   border-radius: 50%;
-  color: white;
   font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: solid 1px var(--branco-ff);
+  font-family: var(--fonte-segundaria);
+  color: var(--branco-ff);
+  background: var(--azul-gradiente);
   transition: all 0.3s ease-in-out;
 }
 
@@ -44,19 +47,28 @@
 }
 
 .bolinha-carrinho {
-  position: absolute;
-  top: -5px;
-  right: -13px;
-  background: var(--azul-gradiente);
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
   display: flex;
+  position: absolute;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+  top: -5px;
+  right: -13px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: solid 1px var(--branco-ff);   
+  font-family: var(--fonte-segundaria);
+  background: var(--azul-gradiente);
+  color: var(--branco-ff);
+}
+
+.item_menu_hamburguer:hover span {
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .botao_carrinho_menu {

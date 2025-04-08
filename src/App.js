@@ -8,6 +8,8 @@ import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header";
 import HeaderBusca from "./components/HeaderBusca";
 import Footer from "./components/Footer";
+import RotaProtegida from "./components/RotaProtegida";
+import RotaPublica from "./components/RotaPublica";
 
 import Home from "./pages/Home";
 import Horarios from "./pages/Horarios";
@@ -15,6 +17,9 @@ import TodosProdutos from "./pages/TodosProdutos";
 import ProdutoDetalhes from "./pages/ProdutoDetalhes";
 import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
+import Perfil from "./pages/Perfil";
+import RedefinirSenha from "./pages/RedefinirSenha";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -23,24 +28,6 @@ function App() {
         <PesquisaProvider>
           <CarrinhoProvider>
             <Routes>
-              <Route
-                path="/todos_produtos"
-                element={
-                  <>
-                    <HeaderBusca tipo="especifica" />
-                    <TodosProdutos />
-                  </>
-                }
-              />
-              <Route
-                path="/produto/:id"
-                element={
-                  <>
-                    <HeaderBusca tipo="especifica" />
-                    <ProdutoDetalhes />
-                  </>
-                }
-              />
               <Route
                 path="/"
                 element={
@@ -60,20 +47,71 @@ function App() {
                 }
               />
               <Route
-                path="/register"
+                path="/todos_produtos"
                 element={
                   <>
-                    <Header tipo="default" />
-                    <Cadastro />
+                    <HeaderBusca tipo="especifica" />
+                    <TodosProdutos />
                   </>
+                }
+              />
+              <Route
+                path="/produto/:id"
+                element={
+                  <>
+                    <HeaderBusca tipo="especifica" />
+                    <ProdutoDetalhes />
+                  </>
+                }
+              />
+              <Route
+                path="/cadastro"
+                element={
+                  <RotaPublica>
+                    <>
+                      <Header tipo="default" />
+                      <Cadastro />
+                    </>
+                  </RotaPublica>
                 }
               />
               <Route
                 path="/login"
                 element={
+                  <RotaPublica>
+                    <>
+                      <Header tipo="default" />
+                      <Login />
+                    </>
+                  </RotaPublica>
+                }
+              />
+              <Route
+                path="/perfil"
+                element={
+                  <RotaProtegida>
+                    <>
+                      <Header tipo="default" />
+                      <Perfil />
+                    </>
+                  </RotaProtegida>
+                }
+              />
+              <Route
+                path="/redefinir_senha"
+                element={
                   <>
                     <Header tipo="default" />
-                    <Login />
+                    <RedefinirSenha />
+                  </>
+                }
+              />
+              <Route
+                path="/checkout"
+                element={
+                  <>
+                    <HeaderBusca tipo="especifica" />
+                    <Checkout />
                   </>
                 }
               />

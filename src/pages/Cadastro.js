@@ -27,6 +27,8 @@ const Cadastro = () => {
       const resultado = await signInWithPopup(auth, provider);
       const token = await resultado.user.getIdToken();
       const email = resultado.user.email;
+      const nome = resultado.user.displayName;
+      const uid = resultado.user.uid;
 
       const resposta = await fetch("https://ironfit-backend.onrender.com/check-user", {
         method: "POST",
@@ -39,13 +41,30 @@ const Cadastro = () => {
       if (dados.existe) {
         login(token);
         alert("Login com Google realizado!");
-        navigate("/");
+        navigate(-1);
       } else {
-        alert("Conta não cadastrada. Redirecionando para o cadastro.");
-        navigate("/register", { state: { email, nome: resultado.user.displayName } });
+        const novoUsuario = {
+          nome,
+          email,
+          uid,
+        };
+
+        const respostaCadastro = await fetch("https://ironfit-backend.onrender.com/cadastro", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(novoUsuario),
+        });
+
+        if (respostaCadastro.ok) {
+          await respostaCadastro.json();
+          login(token);
+          alert("Cadastro realizado e login efetuado com sucesso!");
+          navigate(-1);
+        } else {
+          alert("Erro ao criar conta automaticamente.");
+        }
       }
     } catch (erro) {
-      console.error("Erro no login com Google:", erro);
       alert("Erro ao autenticar com Google");
     }
   };
@@ -54,7 +73,7 @@ const Cadastro = () => {
     const { nome, email, senha, confirmacaoSenha } = dadosFormulario;
 
     try {
-      const resposta = await fetch('https://ironfit-backend.onrender.com/register', {
+      const resposta = await fetch('https://ironfit-backend.onrender.com/cadastro', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,15 +85,15 @@ const Cadastro = () => {
         const dados = await resposta.json();
         localStorage.setItem('token', dados.token);
         alert('Cadastro realizado com sucesso!');
+        login(dados.token);
+        navigate(-1);
         return dados;
       } else {
         const erroDados = await resposta.json();
-        console.log('Erro no cadastro:', erroDados);
         alert(erroDados.error || 'Erro ao cadastrar');
         return null;
       }
     } catch (erro) {
-      console.error('Erro ao tentar se comunicar com o servidor:', erro);
       alert('Erro ao tentar se comunicar com o servidor');
       return null;
     }
@@ -85,7 +104,7 @@ const Cadastro = () => {
       <div className='formulario'>
         <div className='titulos-botao'>
           <div className='titulos-cadastro'>
-            <h2>Crie uma Conta</h2>
+            <h2>Crie uma <b>Conta</b></h2>
             <p>Por favor preencha todos os campos abaixo:</p>
           </div>
 
