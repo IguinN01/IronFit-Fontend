@@ -72,12 +72,9 @@ const Header = ({ tipo }) => {
         </div>
 
         <div className="links_1024">
-          <button onClick={alternarMenuCarrinho} className="item_menu_hamburguer link_1024 botao_carrinho_menu">
-            Seu Carrinho
-            {quantidadeItensCarrinho > 0 && (
-              <span className="bolinha-carrinho">{quantidadeItensCarrinho}</span>
-            )}
-          </button>
+          <Link to="/todos_produtos">
+            <p className="item_menu_hamburguer link_1024">Nossos Produtos</p>
+          </Link>
           <Link to="/">
             <p className="item_menu_hamburguer link_1024">Planos</p>
           </Link>
@@ -174,12 +171,18 @@ const Header = ({ tipo }) => {
           )}
 
           <li className="nav-lista_item">
-            <button onClick={alternarMenuCarrinho} className="item_menu_hamburguer menor_1024 botao_carrinho_menu">
+            <button onClick={alternarMenuCarrinho} className="item_menu_hamburguer botao_carrinho_menu">
               Seu Carrinho
               {quantidadeItensCarrinho > 0 && (
                 <span className="bolinha-carrinho">{quantidadeItensCarrinho}</span>
               )}
             </button>
+          </li>
+
+          <li className="nav-lista_item">
+            <Link to="/todos_produtos">
+              <p className="item_menu_hamburguer menor_1024">Nossos Produtos</p>
+            </Link>
           </li>
 
           <li className="nav-lista_item">

@@ -72,12 +72,9 @@ const Header = ({ tipo }) => {
         </div>
 
         <div className="links_1024">
-          <button onClick={alternarMenuCarrinho} className="item_menu_hamburguer link_1024 botao_carrinho_menu">
-            Seu Carrinho
-            {quantidadeItensCarrinho > 0 && (
-              <span className="bolinha-carrinho">{quantidadeItensCarrinho}</span>
-            )}
-          </button>
+          <Link to="/todos_produtos">
+            <p className="item_menu_hamburguer link_1024">Nossos Produtos</p>
+          </Link>
           <Link to="/">
             <p className="item_menu_hamburguer link_1024">Planos</p>
           </Link>
@@ -127,27 +124,6 @@ const Header = ({ tipo }) => {
             <div className="botao_hamburguer linha2"></div>
             <div className="botao_hamburguer linha3"></div>
           </div>
-          {quantidadeItensCarrinho > 0 && !menuAberto && (
-            <motion.div
-              className="bolinha"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            >
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={quantidadeItensCarrinho}
-                  initial={{ rotateX: 90, opacity: 0 }}
-                  animate={{ rotateX: 0, opacity: 1 }}
-                  exit={{ rotateX: -90, opacity: 0 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                >
-                  {quantidadeItensCarrinho}
-                </motion.span>
-              </AnimatePresence>
-            </motion.div>
-          )}
         </button>
 
         <ul className={`nav-lista ${menuAberto ? "ativo" : ""}`}>
@@ -174,12 +150,9 @@ const Header = ({ tipo }) => {
           )}
 
           <li className="nav-lista_item">
-            <button onClick={alternarMenuCarrinho} className="item_menu_hamburguer menor_1024 botao_carrinho_menu">
-              Seu Carrinho
-              {quantidadeItensCarrinho > 0 && (
-                <span className="bolinha-carrinho">{quantidadeItensCarrinho}</span>
-              )}
-            </button>
+            <Link to="/todos_produtos">
+              <p className="item_menu_hamburguer link_1024">Nossos Produtos</p>
+            </Link>
           </li>
 
           <li className="nav-lista_item">
@@ -195,73 +168,6 @@ const Header = ({ tipo }) => {
           </li>
         </ul>
       </nav>
-
-      <div className={`menu-carrinho ${menuCarrinhoAberto ? "ativo" : ""}`}>
-        <button className="cabecalho_nav_menu_hamburguer" onClick={fecharMenuCarrinho} aria-label="Menu">
-          <div className={`linhas_hamburguer ${menuAberto || menuCarrinhoAberto ? "ativo" : ""}`}>
-            <div className="botao_hamburguer linha1"></div>
-            <div className="botao_hamburguer linha2"></div>
-            <div className="botao_hamburguer linha3"></div>
-          </div>
-        </button>
-        <h2>Seu Carrinho</h2>
-        {carrinho.length === 0 ? (
-          <p>Seu carrinho está vazio.</p>
-        ) : (
-          <ul>
-            {carrinho.map((produto, index) => (
-              <li key={index}>
-                <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
-                  <img src={produto.imagens} alt={produto.nome} width="50" />
-                  <p>{produto.nome}</p>
-                  <p>
-                    Preço Total R$
-                    <motion.span
-                      key={produto.preco * produto.quantidade}
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 5 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                    >
-                      {(produto.preco * produto.quantidade).toFixed(2)}
-                    </motion.span>
-                  </p>
-                  <p>Quantidade: {produto.quantidade}</p>
-                </Link>
-
-                <button
-                  onClick={() => alterarQuantidade(produto.idproduto, 1)}
-                  disabled={produto.quantidade >= 5}
-                >
-                  +
-                </button>
-                <button onClick={() => alterarQuantidade(produto.idproduto, -1)}>-</button>
-                <button onClick={() => removerDoCarrinho(produto.idproduto)}>&#x02A2F;</button>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {carrinho.length > 0 && (
-          <div className="total-compra">
-            <p>
-              Preço Total: R$
-              <motion.span
-                key={precoTotal}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-              >
-                {precoTotal}
-              </motion.span>
-            </p>
-            <Link to="/checkout" className="continuar-compra-link">
-              Continuar Compra
-            </Link>
-          </div>
-        )}
-      </div>
     </header>
   );
 };

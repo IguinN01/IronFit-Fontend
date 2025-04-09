@@ -7,6 +7,8 @@ import { AuthProvider } from "./context/AuthContext";
 
 import Header from "./components/Header";
 import HeaderBusca from "./components/HeaderBusca";
+import HeaderCarrinho from "./components/HeaderCarrinho";
+import HeaderProduto from "./components/HeaderProduto";
 import Footer from "./components/Footer";
 import RotaProtegida from "./components/RotaProtegida";
 import RotaPublica from "./components/RotaPublica";
@@ -59,7 +61,7 @@ function App() {
                 path="/produto/:id"
                 element={
                   <>
-                    <HeaderBusca tipo="especifica" />
+                    <HeaderProduto tipo="especifica" />
                     <ProdutoDetalhes />
                   </>
                 }
@@ -110,7 +112,7 @@ function App() {
                 path="/checkout"
                 element={
                   <>
-                    <HeaderBusca tipo="especifica" />
+                    <HeaderCarrinho tipo="especifica" />
                     <Checkout />
                   </>
                 }

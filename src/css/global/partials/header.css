@@ -143,6 +143,10 @@
 	transition-delay: .6s;
 }
 
+.nav-lista.ativo li:nth-child(6) {
+	transition-delay: .8s;
+}
+
 .links_1024 {
 	display: none;
 }
