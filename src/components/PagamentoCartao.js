@@ -17,7 +17,9 @@ const PagamentoCartao = () => {
   useEffect(() => {
     const mp = new window.MercadoPago(process.env.REACT_APP_MERCADO_PAGO_PUBLIC_KEY);
     setMercadoPago(mp);
+  }, []);
 
+  useEffect(() => {
     if (mercadoPago && !cardForm) {
       const cardFormInstance = mercadoPago.cardForm({
         amount: calcularTotalCarrinho().toFixed(2),
@@ -40,33 +42,36 @@ const PagamentoCartao = () => {
           }
         }
       });
+
       setCardForm(cardFormInstance);
     }
-  }, [mercadoPago, cardForm]);
+  }, [mercadoPago]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setIsLoading(true);
 
     try {
-      const {
-        token,
-        paymentMethodId,
-        issuerId,
-        installments,
-        amount,
-        payer
-      } = cardForm.getCardFormData();
+      const formData = cardForm.getCardFormData();
 
-      const response = await axios.post("https://ironfit-backend.onrender.com/pagamento-cartao", {
-        token,
-        payment_method_id: paymentMethodId,
-        issuer_id: issuerId,
-        transaction_amount: Number(amount),
-        installments: Number(installments),
-        payer
-      });
+      const paymentData = {
+        token: formData.token,
+        payment_method_id: formData.paymentMethodId,
+        issuer_id: formData.issuerId,
+        transaction_amount: Number(formData.amount),
+        installments: Number(formData.installments),
+        payer: {
+          email: formData.cardholderEmail,
+          identification: {
+            type: formData.identificationType,
+            number: formData.identificationNumber
+          }
+        }
+      };
+
+      console.log("Dados enviados:", paymentData);
+
+      const response = await axios.post("https://ironfit-backend.onrender.com/pagamento-cartao", paymentData);
 
       console.log("Resposta do pagamento:", response.data);
       setStatus("Pagamento realizado com sucesso!");
