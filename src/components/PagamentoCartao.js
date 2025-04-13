@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 import { useCarrinho } from "../context/CarrinhoContext";
 
 const PagamentoCartao = () => {
@@ -9,6 +8,7 @@ const PagamentoCartao = () => {
   const [cardForm, setCardForm] = useState(null);
   const [status, setStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [erroPagamento, setErroPagamento] = useState(null);
 
   const calcularTotalCarrinho = () => {
     return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
@@ -50,55 +50,92 @@ const PagamentoCartao = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setErroPagamento(null);
 
     try {
-      const formData = cardForm.getCardFormData();
+      if (!cardForm) {
+        throw new Error("cardForm não inicializado ainda");
+      }
 
-      const paymentData = {
-        token: formData.token,
-        payment_method_id: formData.paymentMethodId,
-        issuer_id: formData.issuerId,
-        transaction_amount: Number(formData.amount),
-        installments: Number(formData.installments),
-        payer: {
-          email: formData.cardholderEmail,
-          identification: {
-            type: formData.identificationType,
-            number: formData.identificationNumber
-          }
+      const cardFormData = await cardForm.getCardFormData();
+      console.log("🔍 Dados retornados de cardForm:", cardFormData);
+
+      if (!cardFormData.token || cardFormData.token.trim() === "") {
+        throw new Error("Token do cartão não foi gerado. Verifique os campos.");
+      }
+
+      cardFormData.cardholder = {
+        name: document.getElementById("form-nome").value,
+        identification: {
+          type: cardFormData.identificationType,
+          number: cardFormData.identificationNumber,
         }
       };
 
-      console.log("Dados enviados:", paymentData);
+      delete cardFormData.cardholderName;
+      delete cardFormData.identificationType;
+      delete cardFormData.identificationNumber;
+      delete cardFormData.merchantAccountId;
 
-      const response = await axios.post("https://ironfit-backend.onrender.com/pagamento-cartao", paymentData);
+      const payload = {
+        token: cardFormData.token,
+        payment_method_id: cardFormData.paymentMethodId,
+        issuer_id: cardFormData.issuerId,
+        transaction_amount: Number(cardFormData.amount),
+        installments: Number(cardFormData.installments),
+        payer: {
+          email: cardFormData.cardholderEmail,
+          identification: {
+            type: cardFormData.cardholder.identification.type,
+            number: cardFormData.cardholder.identification.number,
+          },
+        },
+      };
 
-      console.log("Resposta do pagamento:", response.data);
+      const response = await fetch("https://ironfit-backend.onrender.com/pagamento-cartao", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("❌ Erro ao pagar: ", data);
+        throw new Error(data?.error || "Erro desconhecido");
+      }
+
+      console.log("✅ Pagamento realizado com sucesso:", data);
       setStatus("Pagamento realizado com sucesso!");
-    } catch (error) {
-      console.error("Erro ao pagar:", error.response?.data || error);
-      setStatus("Erro ao processar o pagamento.");
+    } catch (err) {
+      console.error("❌ Erro no handleSubmit:", err.message);
+      setErroPagamento(err.message);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <form id="form-pagamento" onSubmit={handleSubmit} style={{ paddingTop: "122px" }}>
-      <input type="text" id="form-nome" />
-      <input type="email" id="form-email" />
-      <input type="text" id="form-numero" />
-      <input type="text" id="form-validade" />
-      <input type="text" id="form-cvv" />
+    <form id="form-pagamento" onSubmit={handleSubmit}>
+      <input type="text" id="form-nome" placeholder="Nome no cartão" />
+      <input type="email" id="form-email" placeholder="E-mail" />
+      <input type="text" id="form-numero" placeholder="Número do cartão" />
+      <input type="text" id="form-validade" placeholder="MM/AA" />
+      <input type="text" id="form-cvv" placeholder="CVV" />
       <select id="form-parcelas"></select>
-      <select id="form-tipo-doc"></select>
-      <input type="text" id="form-doc" />
+      <select id="form-tipo-doc">
+        <option value="CPF">CPF</option>
+        <option value="CNPJ">CNPJ</option>
+      </select>
+      <input type="text" id="form-doc" placeholder="Documento (CPF)" />
       <select id="form-banco"></select>
 
       <button type="submit" disabled={isLoading}>
         {isLoading ? "Processando..." : "Pagar"}
       </button>
-      <p>{status}</p>
+
+      {erroPagamento && <p style={{ color: 'red' }}>{erroPagamento}</p>}
+      {status && <p>{status}</p>}
     </form>
   );
 };
