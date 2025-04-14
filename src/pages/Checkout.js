@@ -29,7 +29,7 @@ const Checkout = () => {
   return (
     <div className="pagina-checkout" style={{ paddingTop: "142px" }}>
 
-      {carrinho.length === 0 ? (
+      {/* {carrinho.length === 0 ? (
         <p>Seu carrinho está vazio.</p>
       ) : (
         <>
@@ -54,7 +54,7 @@ const Checkout = () => {
         </>
       )}
 
-      <hr />
+      <hr /> */}
 
       <div>
         <h1>Finalizar Compra</h1>
