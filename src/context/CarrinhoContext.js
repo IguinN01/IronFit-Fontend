@@ -9,6 +9,14 @@ export const CarrinhoProvider = ({ children }) => {
     return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
   });
 
+  const totalCarrinho = Number(
+    carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0).toFixed(2)
+  );
+
+  const limparCarrinho = () => {
+    setCarrinho([]);
+  };
+
   useEffect(() => {
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
   }, [carrinho]);
@@ -48,7 +56,14 @@ export const CarrinhoProvider = ({ children }) => {
   };
 
   return (
-    <CarrinhoContext.Provider value={{ carrinho, adicionarAoCarrinho, removerDoCarrinho, alterarQuantidade }}>
+    <CarrinhoContext.Provider value={{
+      carrinho,
+      adicionarAoCarrinho,
+      removerDoCarrinho,
+      alterarQuantidade,
+      totalCarrinho,
+      limparCarrinho
+    }}>
       {children}
     </CarrinhoContext.Provider>
   );

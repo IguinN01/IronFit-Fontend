@@ -10,6 +10,7 @@ import HeaderBusca from "./components/HeaderBusca";
 import HeaderCarrinho from "./components/HeaderCarrinho";
 import HeaderProduto from "./components/HeaderProduto";
 import Footer from "./components/Footer";
+
 import RotaProtegida from "./components/RotaProtegida";
 import RotaPublica from "./components/RotaPublica";
 

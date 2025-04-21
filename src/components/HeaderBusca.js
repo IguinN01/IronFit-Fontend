@@ -39,22 +39,39 @@ const Header = ({ tipo }) => {
   };
 
   useEffect(() => {
+    if (menuCarrinhoAberto) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, [menuCarrinhoAberto, location.pathname]);
+
+  useEffect(() => {
     let prevScrollPos = window.pageYOffset;
 
     const handleScroll = () => {
+      if (menuCarrinhoAberto) return;
+
       const currentScrollPos = window.pageYOffset;
       setMostrarHeader(prevScrollPos > currentScrollPos);
       prevScrollPos = currentScrollPos;
 
-      if (menuAberto || menuCarrinhoAberto) {
-        fecharMenu();
-        fecharMenuCarrinho();
-      }
+      if (menuAberto) fecharMenu();
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuAberto, menuCarrinhoAberto, fecharMenu, fecharMenuCarrinho]);
+  }, [menuAberto, menuCarrinhoAberto, fecharMenu]);
+
+  useEffect(() => {
+    if (menuCarrinhoAberto) {
+      setMostrarHeader(true);
+    }
+  }, [menuCarrinhoAberto]);
 
   const quantidadeItensCarrinho = carrinho.length;
 
@@ -78,7 +95,7 @@ const Header = ({ tipo }) => {
               <span className="bolinha-carrinho">{quantidadeItensCarrinho}</span>
             )}
           </button>
-          <Link to="/">
+          <Link to="/#planos" onClick={fecharMenu}>
             <p className="item_menu_hamburguer link_1024">Planos</p>
           </Link>
           {authToken ? (
@@ -152,8 +169,8 @@ const Header = ({ tipo }) => {
 
         <ul className={`nav-lista ${menuAberto ? "ativo" : ""}`}>
           <li className="nav-lista_item">
-            <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer">Chat AI</p>
+            <Link to="/#planos" onClick={fecharMenu}>
+              <p className="item_menu_hamburguer menor_1024">Planos</p>
             </Link>
           </li>
 
@@ -180,12 +197,6 @@ const Header = ({ tipo }) => {
                 <span className="bolinha-carrinho">{quantidadeItensCarrinho}</span>
               )}
             </button>
-          </li>
-
-          <li className="nav-lista_item">
-            <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer menor_1024">Planos</p>
-            </Link>
           </li>
 
           <li className="nav-lista_item">

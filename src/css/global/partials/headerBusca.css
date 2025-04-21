@@ -58,7 +58,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: solid 1px var(--branco-ff);   
+  border: solid 1px var(--branco-ff);
   font-family: var(--fonte-segundaria);
   background: var(--azul-gradiente);
   color: var(--branco-ff);
@@ -115,4 +115,22 @@
 
 .botao_carrinho:hover {
   color: #f00;
+}
+
+.menu-carrinho ul {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.menu-carrinho ul::-webkit-scrollbar {
+  display: none;
+}
+
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
 }

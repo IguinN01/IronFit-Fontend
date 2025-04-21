@@ -71,7 +71,7 @@ const Header = () => {
           <Link to="/todos_produtos">
             <p className="item_menu_hamburguer link_1024">Nossos Produtos</p>
           </Link>
-          <Link to="/">
+          <Link to="/#planos" onClick={fecharMenu}>
             <p className="item_menu_hamburguer link_1024">Planos</p>
           </Link>
 
@@ -80,7 +80,7 @@ const Header = () => {
               <p className="item_menu_hamburguer link_1024 link_1280">Perfil</p>
             </Link>
           ) : (
-          <Link to="/cadastro">
+            <Link to="/cadastro">
               <p className="item_menu_hamburguer link_1024 link_1280">Sua Conta</p>
             </Link>
           )}
@@ -99,8 +99,8 @@ const Header = () => {
 
         <ul className={`nav-lista ${menuAberto ? "ativo" : ""}`}>
           <li className="nav-lista_item">
-            <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer">Chat AI</p>
+            <Link to="/#planos" onClick={fecharMenu}>
+              <p className="item_menu_hamburguer menor_1024">Planos</p>
             </Link>
           </li>
 
@@ -108,7 +108,7 @@ const Header = () => {
             <>
               <li className="nav-lista_item">
                 <Link to="/perfil" onClick={fecharMenu}>
-                  <p className="item_menu_hamburguer">Perfil</p>
+                  <p className="item_menu_hamburguer menor_1024">Perfil</p>
                 </Link>
               </li>
             </>
@@ -123,12 +123,6 @@ const Header = () => {
           <li className="nav-lista_item">
             <Link to="/todos_produtos" onClick={fecharMenu}>
               <p className="item_menu_hamburguer menor_1024">Nossos Produtos</p>
-            </Link>
-          </li>
-
-          <li className="nav-lista_item">
-            <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer menor_1024">Planos</p>
             </Link>
           </li>
 

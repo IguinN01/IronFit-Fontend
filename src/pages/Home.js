@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCreative } from "swiper/modules";
@@ -9,6 +10,20 @@ import "swiper/css/pagination";
 import "../css/pages/Home/home.css";
 
 function Home() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#planos") {
+      const section = document.getElementById("planos");
+      if (section) {
+        const yOffset = -76; 
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   return (
     <main className="principal">
       <section className="bloco_principal">
@@ -20,7 +35,7 @@ function Home() {
             <p className="texto_inicial">Comece uma forma melhor de você!</p>
             <p className="texto_inicial">Venha se juntar a nós!</p>
           </div>
-          <Link to="/">
+          <Link to="#planos">
             <p className="texto_comecar">Começar Agora</p>
           </Link>
         </div>
@@ -55,7 +70,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bloco_planos">
+      <section id="planos" className="bloco_planos">
         <div className="div_planos">
           <div className="titulo_texto_planos">
             <h1 className="titulo_planos">

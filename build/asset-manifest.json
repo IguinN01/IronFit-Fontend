@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.2b6141e6.css",
-    "main.js": "/static/js/main.b14a5f62.js",
+    "main.js": "/static/js/main.f696141b.js",
     "static/media/Img_academia_fundo.jpg": "/static/media/Img_academia_fundo.a1e6cd34b672d8e94c1b.jpg",
     "index.html": "/index.html",
     "main.2b6141e6.css.map": "/static/css/main.2b6141e6.css.map",
-    "main.b14a5f62.js.map": "/static/js/main.b14a5f62.js.map"
+    "main.f696141b.js.map": "/static/js/main.f696141b.js.map"
   },
   "entrypoints": [
     "static/css/main.2b6141e6.css",
-    "static/js/main.b14a5f62.js"
+    "static/js/main.f696141b.js"
   ]
 }

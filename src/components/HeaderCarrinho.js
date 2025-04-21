@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 
 import { usePesquisa } from "../context/PesquisaContext";
-import { useCarrinho } from "../context/CarrinhoContext";
 import { AuthContext } from "../context/AuthContext";
 
 import "../css/global/partials/header.css";
@@ -18,7 +16,6 @@ const Header = ({ tipo }) => {
 
   const location = useLocation();
   const { termoPesquisa, setTermoPesquisa } = usePesquisa();
-  const { carrinho, alterarQuantidade, removerDoCarrinho } = useCarrinho();
 
   const fecharMenu = useCallback(() => setMenuAberto(false), []);
 
@@ -32,10 +29,6 @@ const Header = ({ tipo }) => {
     if (menuCarrinhoAberto) {
       setMenuCarrinhoAberto(false);
     }
-  };
-
-  const alternarMenuCarrinho = () => {
-    setMenuCarrinhoAberto((prev) => !prev);
   };
 
   useEffect(() => {
@@ -56,10 +49,6 @@ const Header = ({ tipo }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [menuAberto, menuCarrinhoAberto, fecharMenu, fecharMenuCarrinho]);
 
-  const quantidadeItensCarrinho = carrinho.length;
-
-  const precoTotal = carrinho.reduce((total, produto) => total + produto.preco * produto.quantidade, 0).toFixed(2);
-
   return (
     <header className={`cabecalho ${mostrarHeader ? "visivel" : "escondido"}`}>
       <nav className={`cabecalho_nav ${menuAberto ? "ativo" : ""}`}>
@@ -75,7 +64,7 @@ const Header = ({ tipo }) => {
           <Link to="/todos_produtos">
             <p className="item_menu_hamburguer link_1024">Nossos Produtos</p>
           </Link>
-          <Link to="/">
+          <Link to="/#planos" onClick={fecharMenu}>
             <p className="item_menu_hamburguer link_1024">Planos</p>
           </Link>
           {authToken ? (
@@ -128,8 +117,8 @@ const Header = ({ tipo }) => {
 
         <ul className={`nav-lista ${menuAberto ? "ativo" : ""}`}>
           <li className="nav-lista_item">
-            <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer">Chat AI</p>
+            <Link to="/#planos" onClick={fecharMenu}>
+              <p className="item_menu_hamburguer menor_1024">Planos</p>
             </Link>
           </li>
 
@@ -151,13 +140,7 @@ const Header = ({ tipo }) => {
 
           <li className="nav-lista_item">
             <Link to="/todos_produtos">
-              <p className="item_menu_hamburguer link_1024">Nossos Produtos</p>
-            </Link>
-          </li>
-
-          <li className="nav-lista_item">
-            <Link to="/" onClick={fecharMenu}>
-              <p className="item_menu_hamburguer menor_1024">Planos</p>
+              <p className="item_menu_hamburguer menor_1024">Nossos Produtos</p>
             </Link>
           </li>
 

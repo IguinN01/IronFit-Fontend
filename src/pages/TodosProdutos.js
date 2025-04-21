@@ -28,6 +28,10 @@ const TodosProdutos = () => {
 
   useEffect(() => {
     setPaginaAtual(1);
+  }, [ordenacao]);
+
+  useEffect(() => {
+    setPaginaAtual(1);
   }, [termoPesquisa, categoria, precoRange]);
 
   useEffect(() => {
@@ -77,7 +81,16 @@ const TodosProdutos = () => {
     ? `Resultados da busca por: "${termoPesquisa}"`
     : "Todos nossos produtos";
 
-  const produtosPaginaAtual = produtosFiltrados.slice(
+  const produtosOrdenados = [...produtosFiltrados].sort((a, b) => {
+    const precoA = Number(a.preco);
+    const precoB = Number(b.preco);
+
+    if (ordenacao === "menorMaior") return precoA - precoB;
+    if (ordenacao === "maiorMenor") return precoB - precoA;
+    return 0;
+  });
+
+  const produtosPaginaAtual = produtosOrdenados.slice(
     (paginaAtual - 1) * produtosPorPagina,
     paginaAtual * produtosPorPagina
   );
