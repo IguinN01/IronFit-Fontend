@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  
 
 export default function PagamentoPix({ amount = "10" }) {
   const [qrCodeBase64, setQrCodeBase64] = useState(null);
@@ -8,7 +7,6 @@ export default function PagamentoPix({ amount = "10" }) {
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(null);
   const [copiado, setCopiado] = useState(false);
-  const navigate = useNavigate();  
 
   const verificarLogin = () => {
     const token = localStorage.getItem("token");

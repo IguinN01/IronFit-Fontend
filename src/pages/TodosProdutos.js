@@ -130,6 +130,7 @@ const TodosProdutos = () => {
               <label key={cat} className="radio-label">
                 <input
                   type="radio"
+                  id="radio"
                   name="categoria"
                   value={cat}
                   checked={categoria === cat}

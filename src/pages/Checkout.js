@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
+
 import { useCarrinho } from '../context/CarrinhoContext';
 import PagamentoCredito from '../components/PagamentoCredito';
 import PagamentoPix from '../components/PagamentoPix';
@@ -47,9 +49,11 @@ const Checkout = () => {
           <div style={{ maxHeight: "300px", overflowY: "auto" }}>
             {carrinho.map((produto) => (
               <li key={produto.idproduto}>
-                <img src={produto.imagens} alt={produto.nome} width="60" />
-                <div>
+                <Link to={`/produto/${produto.idproduto}`}>
+                  <img src={produto.imagens} alt={produto.nome} width="60" />
                   <p>{produto.nome}</p>
+                </Link>
+                <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <button onClick={() => alterarQuantidade(produto.idproduto, -1)}>-</button>
                     <span>{produto.quantidade}</span>
@@ -77,6 +81,7 @@ const Checkout = () => {
               <label>
                 <input
                   type="radio"
+                  id="radio"
                   value="credito"
                   checked={metodoPagamento === 'credito'}
                   onChange={() => setMetodoPagamento('credito')}
@@ -87,6 +92,7 @@ const Checkout = () => {
               <label style={{ marginLeft: '16px' }}>
                 <input
                   type="radio"
+                  id="radio"
                   value="pix"
                   checked={metodoPagamento === 'pix'}
                   onChange={() => setMetodoPagamento('pix')}

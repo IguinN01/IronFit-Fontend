@@ -99,6 +99,7 @@ const RedefinirSenha = () => {
             <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="Senha" />
             <input
               type={mostrarSenha ? 'text' : 'password'}
+              id="novaSenha"
               className='inputs'
               placeholder='Nova senha:'
               value={novaSenha}
@@ -119,6 +120,7 @@ const RedefinirSenha = () => {
             <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="Confirmar" />
             <input
               type={mostrarConfirmacaoSenha ? 'text' : 'password'}
+              id="confirmarSenha"
               className='inputs'
               placeholder='Confirmar nova senha:'
               value={confirmarSenha}

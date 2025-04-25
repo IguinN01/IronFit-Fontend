@@ -14,6 +14,9 @@ const Header = ({ tipo }) => {
   const [menuCarrinhoAberto, setMenuCarrinhoAberto] = useState(false);
   const [mostrarHeader, setMostrarHeader] = useState(true);
 
+  const [produtos, setProdutos] = useState([]);
+  const [ordenacao] = useState("relevancia");
+
   const location = useLocation();
   const { termoPesquisa, setTermoPesquisa } = usePesquisa();
 
@@ -30,6 +33,38 @@ const Header = ({ tipo }) => {
       setMenuCarrinhoAberto(false);
     }
   };
+
+  const produtosFiltrados = produtos.filter((produto) =>
+    produto.nome.toLowerCase().startsWith(termoPesquisa.toLowerCase())
+  );
+
+  const usarIncludes =
+    termoPesquisa &&
+    produtosFiltrados.length === 0 &&
+    produtos.filter((produto) =>
+      produto.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
+    );
+
+  const resultadosPesquisa = produtosFiltrados.length > 0
+    ? produtosFiltrados
+    : usarIncludes || [];
+
+  const produtosOrdenados = [...resultadosPesquisa].sort((a, b) => {
+    if (ordenacao === "preco-asc") {
+      return a.preco - b.preco;
+    } else if (ordenacao === "preco-desc") {
+      return b.preco - a.preco;
+    } else if (ordenacao === "relevancia") {
+      return 0.5 - Math.random();
+    }
+    return 0;
+  });
+
+  useEffect(() => {
+    fetch('https://ironfit-backend.onrender.com/produtos')
+      .then(res => res.json())
+      .then(data => setProdutos(data));
+  }, []);
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;
@@ -82,6 +117,7 @@ const Header = ({ tipo }) => {
           <div className="campo-pesquisa">
             <input
               type="text"
+              id="pesquisa"
               maxLength={85}
               placeholder="Encontre o que procura aqui..."
               className="input-pesquisa"
@@ -100,6 +136,27 @@ const Header = ({ tipo }) => {
                 }
               }}
             />
+          </div>
+        )}
+
+        {termoPesquisa && resultadosPesquisa.length > 0 && (
+          <div className="destaques-home">
+            <h2>Resultado da pesquisa:</h2>
+            <div className="produtos-grid">
+              {produtosOrdenados.slice(0, 3).map((produto) => (
+                <Link
+                  to={`/produto/${produto.idproduto}`}
+                  key={produto.idproduto}
+                  onClick={() => setTermoPesquisa("")}
+                >
+                  <div className="produto-card">
+                    <img className="img-pesquisado" src={produto.imagens} alt={produto.nome} />
+                    <h3>{produto.nome}</h3>
+                    <p>R${produto.preco}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         )}
 

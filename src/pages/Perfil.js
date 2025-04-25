@@ -172,6 +172,7 @@ const Perfil = () => {
             <h3>Atualizar E-mail</h3>
             <input
               type="email"
+              id="AtualizarEmail"
               value={novoEmail}
               onChange={(e) => setNovoEmail(e.target.value)}
               style={{ padding: '8px', width: '300px', overflow:'hidden' }}
@@ -192,6 +193,7 @@ const Perfil = () => {
                 <label>Senha atual:</label><br />
                 <input
                   type={mostrarSenha ? 'text' : 'password'}
+                  id="senhaAtual"
                   value={senhaAtual}
                   onChange={(e) => setSenhaAtual(e.target.value)}
                   style={{ padding: '8px', width: '300px', overflow:'hidden', marginBottom: '10px' }}
@@ -202,6 +204,7 @@ const Perfil = () => {
             <label>Nova senha:</label><br />
             <input
               type={mostrarSenha ? 'text' : 'password'}
+              id="novaSenha"
               value={novaSenha}
               onChange={(e) => setNovaSenha(e.target.value)}
               style={{ padding: '8px', width: '300px', overflow:'hidden', marginBottom: '10px' }}
@@ -210,6 +213,7 @@ const Perfil = () => {
             <label>Confirmar nova senha:</label><br />
             <input
               type={mostrarSenha ? 'text' : 'password'}
+              id="confirmarNovaSenha"
               value={confirmarSenha}
               onChange={(e) => setConfirmarSenha(e.target.value)}
               style={{ padding: '8px', width: '300px', overflow:'hidden', marginBottom: '10px' }}

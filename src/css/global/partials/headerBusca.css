@@ -134,3 +134,7 @@ body.no-scroll {
   position: fixed;
   width: 100%;
 }
+
+.img-pesquisado {
+  width: 75px;
+}

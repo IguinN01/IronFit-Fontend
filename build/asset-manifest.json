@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.2b6141e6.css",
-    "main.js": "/static/js/main.f696141b.js",
+    "main.css": "/static/css/main.6f633ab7.css",
+    "main.js": "/static/js/main.f16766da.js",
     "static/media/Img_academia_fundo.jpg": "/static/media/Img_academia_fundo.a1e6cd34b672d8e94c1b.jpg",
     "index.html": "/index.html",
-    "main.2b6141e6.css.map": "/static/css/main.2b6141e6.css.map",
-    "main.f696141b.js.map": "/static/js/main.f696141b.js.map"
+    "main.6f633ab7.css.map": "/static/css/main.6f633ab7.css.map",
+    "main.f16766da.js.map": "/static/js/main.f16766da.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b6141e6.css",
-    "static/js/main.f696141b.js"
+    "static/css/main.6f633ab7.css",
+    "static/js/main.f16766da.js"
   ]
 }

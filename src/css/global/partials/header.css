@@ -267,7 +267,7 @@ html {
 	}
 
 	.menor_1024 {
-		display: none;
+		display: none !important;
 	}
 
 	.nav-lista.ativo li:nth-child(5) {

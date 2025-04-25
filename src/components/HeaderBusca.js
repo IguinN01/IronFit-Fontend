@@ -113,6 +113,7 @@ const Header = ({ tipo }) => {
           <div className="campo-pesquisa">
             <input
               type="text"
+              id="pesquisa"
               maxLength={85}
               placeholder="Encontre o que procura aqui..."
               className="input-pesquisa"
@@ -146,7 +147,7 @@ const Header = ({ tipo }) => {
           </div>
           {quantidadeItensCarrinho > 0 && !menuAberto && (
             <motion.div
-              className="bolinha"
+              className="menor_1024 bolinha"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
