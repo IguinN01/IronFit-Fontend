@@ -4,119 +4,116 @@ import { cpf } from 'cpf-cnpj-validator';
 
 import { useCarrinho } from '../context/CarrinhoContext';
 
-export default function PagamentoCredito({ aoTokenizar }) {
-  const { totalCarrinho, limparCarrinho } = useCarrinho();
+export default function PagamentoCredito({ aoTokenizar, valorTotal }) {
+  const verificarLogin = () => {
+    const token = localStorage.getItem("token");
+    return token && token !== '';
+  };
+
+  const { limparCarrinho } = useCarrinho();
   const [mensagemSucesso, setMensagemSucesso] = useState('');
   const [mensagemErro, setMensagemErro] = useState('');
   const [formVisivel, setFormVisivel] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (window._cardForm) {
-      window._cardForm.unmount();
-      delete window._cardForm;
-    }
+    if (!window._cardForm || !window._cardForm.mounted) {
+      if (window._cardForm) {
+        try {
+          window._cardForm.unmount();
+        } catch (erro) {
+          console.warn("⚠️ Formulário ainda não estava montado:", erro);
+        }
+        delete window._cardForm;
+      }
 
-    const mercadopago = new window.MercadoPago("TEST-118c78db-f963-423b-bafe-bbf415ea5ba6", {
-      locale: 'pt-BR'
-    });
+      const mercadopago = new window.MercadoPago("TEST-118c78db-f963-423b-bafe-bbf415ea5ba6", {
+        locale: 'pt-BR'
+      });
 
-    if (!window._cardForm) {
       window._cardForm = mercadopago.cardForm({
-        amount: String(totalCarrinho.toFixed(2)),
+        amount: String(valorTotal),
         autoMount: true,
         form: {
           id: "formulario-pagamento",
-          cardholderName: {
-            id: "nome-cartao",
-            placeholder: "Nome impresso no cartão"
-          },
-          cardholderEmail: {
-            id: "email-comprador",
-            placeholder: "E-mail"
-          },
-          cardNumber: {
-            id: "numero-cartao",
-            placeholder: "Número do cartão"
-          },
-          cardExpirationDate: {
-            id: "cardExpirationDate",
-            placeholder: "MM/AA"
-          },
-          securityCode: {
-            id: "codigo-seguranca",
-            placeholder: "CVC"
-          },
-          identificationNumber: {
-            id: "numero-documento",
-            placeholder: "CPF"
-          },
-          issuer: {
-            id: "bandeira-cartao"
-          },
-          installments: {
-            id: "parcelas"
-          }
+          cardholderName: { id: "nome-cartao", placeholder: "Nome impresso no cartão" },
+          cardholderEmail: { id: "email-comprador", placeholder: "E-mail" },
+          cardNumber: { id: "numero-cartao", placeholder: "Número do cartão" },
+          cardExpirationDate: { id: "cardExpirationDate", placeholder: "MM/AA" },
+          securityCode: { id: "codigo-seguranca", placeholder: "CVC" },
+          identificationNumber: { id: "numero-documento", placeholder: "CPF" },
+          issuer: { id: "bandeira-cartao" },
+          installments: { id: "parcelas" }
         },
         callbacks: {
           onFormMounted: error => {
-            if (error) return console.warn("Erro ao montar o formulário:", error);
-
-            const inputNumeroCartao = document.getElementById("numero-cartao");
-            if (inputNumeroCartao) {
-              inputNumeroCartao.maxLength = 19;
-
-              inputNumeroCartao.addEventListener("input", (e) => {
-                let value = e.target.value.replace(/\D/g, "");
-                value = value.slice(0, 19);
-
-                const partes = value.match(/.{1,4}/g);
-                e.target.value = partes ? partes.join(" ") : "";
-              });
-            }
-
-            const inputVencimento = document.getElementById("cardExpirationDate");
-            if (inputVencimento) {
-              inputVencimento.maxLength = 5;
-
-              inputVencimento.addEventListener("input", (e) => {
-                let value = e.target.value.replace(/\D/g, "");
-                if (value.length >= 3) {
-                  value = value.slice(0, 4).replace(/(\d{2})(\d{1,2})/, "$1/$2");
-                }
-                e.target.value = value;
-              });
+            if (error) {
+              console.warn("❌ Erro ao montar o formulário:", error);
+            } else {
+              console.log("✅ Formulário montado com sucesso.");
             }
           },
-          onSubmit: event => {
+          onSubmit: async event => {
             event.preventDefault();
 
-            const vencimento = document.getElementById("cardExpirationDate").value.trim();
-            const [mes, ano] = vencimento.split('/');
+            setMensagemErro("");
+            setMensagemSucesso("");
 
-            if (!/^\d{2}\/\d{2}$/.test(vencimento) || !mes || !ano) {
+            const nomeCartao = document.getElementById("nome-cartao").value.trim();
+            const email = document.getElementById("email-comprador").value.trim();
+            const numeroCartao = document.getElementById("numero-cartao").value.trim();
+            const vencimento = document.getElementById("cardExpirationDate").value.trim();
+            const cvc = document.getElementById("codigo-seguranca").value.trim();
+            const cpfValor = document.getElementById("numero-documento").value.trim();
+            const dados = window._cardForm.getCardFormData();
+
+            const campos = [
+              { nome: "Nome no cartão", valor: nomeCartao },
+              { nome: "Email", valor: email },
+              { nome: "Número do cartão", valor: numeroCartao },
+              { nome: "Vencimento", valor: vencimento },
+              { nome: "CVC", valor: cvc },
+              { nome: "CPF", valor: cpfValor },
+            ];
+
+            const campoVazio = campos.find(campo => campo.valor === "");
+
+            if (campoVazio) {
+              setMensagemErro(`❌ O campo "${campoVazio.nome}" deve ser preenchido.`);
+              return;
+            }
+
+            if (!/^\d{2}\/\d{2}$/.test(vencimento)) {
               setMensagemErro("❌ Vencimento inválido. Use o formato MM/AA.");
               return;
             }
 
-            const dados = window._cardForm.getCardFormData();
+            const [mes, ano] = vencimento.split("/");
 
-            if (!cpf.isValid(dados.identificationNumber)) {
-              setMensagemErro("❌ CPF inválido.");
-              setMensagemSucesso('');
+            if (!mes || !ano) {
+              setMensagemErro("❌ Data de vencimento incompleta.");
               return;
             }
 
-            const numeroCartao = document.getElementById("numero-cartao").value;
+            if (cvc.length < 3) {
+              setMensagemErro("❌ O código de segurança (CVC) deve ter ao menos 3 dígitos.");
+              return;
+            }
+
             const numeroCartaoLimpo = numeroCartao.replace(/\D/g, '');
             if (numeroCartaoLimpo.length !== 16) {
-              setMensagemSucesso('');
               setMensagemErro("❌ Número do cartão inválido. Ele deve conter 16 dígitos.");
+              return;
+            }
+
+            if (!cpf.isValid(dados.identificationNumber)) {
+              setMensagemErro("❌ CPF inválido.");
               return;
             }
 
             if (!dados.token) {
               console.warn("❌ Token não foi gerado:", dados);
+              setMensagemErro("❌ Erro ao gerar o token do cartão.");
               return;
             }
 
@@ -128,67 +125,121 @@ export default function PagamentoCredito({ aoTokenizar }) {
               identificationNumber: dados.identificationNumber,
               identificationType: "CPF",
               email: dados.cardholderEmail,
-              amount: String(totalCarrinho)
+              amount: String(valorTotal)
             };
 
             console.log("📦 Dados enviados para o backend (cartão):", dadosParaEnvio);
 
-            fetch('https://ironfit-backend.onrender.com/pagamento-credito', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(dadosParaEnvio)
-            })
-              .then(response => response.json())
-              .then(data => {
-                console.log('✅ Backend respondeu:', data);
-              })
-              .catch(error => {
-                console.error('❌ Erro ao enviar dados para o backend:', error);
+            try {
+              const resposta = await fetch('https://ironfit-backend.onrender.com/pagamento-credito', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dadosParaEnvio)
               });
 
-            setTimeout(() => {
-              limparCarrinho();
-            }, 4500);
+              const resultado = await resposta.json();
+              console.log('✅ Backend respondeu:', resultado);
 
-            setMensagemErro('');
-            setMensagemSucesso("✅ Pagamento realizado com sucesso!");
-            setFormVisivel(false);
+              setMensagemErro('');
+              setMensagemSucesso("✅ Pagamento realizado com sucesso!");
+              setFormVisivel(false);
 
-            setTimeout(() => {
-              navigate('/');
-            }, 4500);
+              setTimeout(() => {
+                limparCarrinho();
+                navigate('/');
+              }, 4500);
+            } catch (erro) {
+              console.error("❌ Erro no pagamento:", erro);
+              setMensagemErro("❌ Falha ao processar o pagamento.");
+            }
           }
         }
       });
+
+      window._cardForm.mounted = true;
+
+      const nomeCartaoInput = document.getElementById("nome-cartao");
+      if (nomeCartaoInput) {
+        nomeCartaoInput.setAttribute("maxlength", "30");
+        nomeCartaoInput.addEventListener("input", (e) => {
+          e.target.value = e.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
+        });
+      }
+
+      const emailInput = document.getElementById("email-comprador");
+      if (emailInput) {
+        emailInput.setAttribute("maxlength", "75");
+      }
+
+      const numeroCartaoInput = document.getElementById("numero-cartao");
+      if (numeroCartaoInput) {
+        numeroCartaoInput.setAttribute("maxlength", "19");
+        numeroCartaoInput.addEventListener("input", (e) => {
+          let valor = e.target.value.replace(/\D/g, '');
+          valor = valor.slice(0, 16);
+          valor = valor.replace(/(\d{4})(?=\d)/g, '$1 ');
+          e.target.value = valor;
+        });
+      }
+
+      const vencimentoInput = document.getElementById("cardExpirationDate");
+      if (vencimentoInput) {
+        vencimentoInput.setAttribute("maxlength", "5");
+      }
+
+      const cvcInput = document.getElementById("codigo-seguranca");
+      if (cvcInput) {
+        cvcInput.setAttribute("maxlength", "4");
+        cvcInput.addEventListener("input", (e) => {
+          e.target.value = e.target.value.replace(/\D/g, '');
+        });
+      }
+
+      const cpfInput = document.getElementById("numero-documento");
+      if (cpfInput) {
+        cpfInput.setAttribute("maxlength", "11");
+        cpfInput.addEventListener("input", (e) => {
+          e.target.value = e.target.value.replace(/\D/g, '');
+        });
+      }
     }
-  }, [totalCarrinho, limparCarrinho, aoTokenizar, navigate]);
+  }, [valorTotal, limparCarrinho, navigate]);
 
   return (
     <>
-      {formVisivel && (
-        <form id="formulario-pagamento">
-          <input type="text" id="nome-cartao" placeholder="Nome no cartão" />
-          <input type="email" id="email-comprador" placeholder="Email" />
-          <input type="text" id="numero-cartao" placeholder="Número do cartão" />
-          <input type="text" id="cardExpirationDate" placeholder="MM/AA" required />
-          <input type="text" id="codigo-seguranca" placeholder="CVC" />
-          <input type="text" id="numero-documento" placeholder="CPF" />
+      {!verificarLogin() ? (
+        <div style={{ color: "red", marginTop: "20px" }}>
+          <p>Você precisa estar logado para realizar o pagamento com cartão de crédito.</p>
+          <p><a href="/login" style={{ color: "blue" }}>Clique aqui para fazer login.</a></p>
+        </div>
+      ) : (
+        <>
+          {formVisivel && (
+            <form id="formulario-pagamento">
+              <input type="text" id="nome-cartao" placeholder="Nome no cartão" />
+              <input type="email" id="email-comprador" placeholder="Confirme seu E-Mail" />
+              <input type="text" id="numero-cartao" placeholder="Número do cartão" />
+              <input type="text" id="cardExpirationDate" placeholder="MM/AA" required />
+              <input type="text" id="codigo-seguranca" placeholder="CVC" />
+              <input type="text" id="numero-documento" placeholder="CPF" />
 
-          <select id="bandeira-cartao"></select>
-          <select id="parcelas"></select>
-          <button type="submit">Pagar</button>
-        </form>
-      )}
+              <select id="bandeira-cartao"></select>
+              <select id="parcelas"></select>
+              <button type="submit">Pagar</button>
+            </form>
+          )}
 
-      {mensagemSucesso && (
-        <p style={{ marginTop: '10px' }}>
-          {mensagemSucesso}
-        </p>
-      )}
-      {mensagemErro && (
-        <p style={{ marginTop: '10px' }}>
-          {mensagemErro}
-        </p>
+          {mensagemSucesso && (
+            <p style={{ marginTop: '10px' }}>
+              {mensagemSucesso}
+            </p>
+          )}
+          {mensagemErro && (
+            <p style={{ marginTop: '10px' }}>
+              {mensagemErro}
+            </p>
+          )}
+        </>
       )}
     </>
   );

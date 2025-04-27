@@ -4,14 +4,18 @@ import { Link } from "react-router-dom";
 import { useCarrinho } from '../context/CarrinhoContext';
 import PagamentoCredito from '../components/PagamentoCredito';
 import PagamentoPix from '../components/PagamentoPix';
+import CalcularFrete from '../components/CalcularFrete';
 
 const Checkout = () => {
   const { carrinho, alterarQuantidade, removerDoCarrinho } = useCarrinho();
   const [metodoPagamento, setMetodoPagamento] = useState('credito');
+  const [frete, setFrete] = useState(null);
 
   const precoTotal = carrinho
     .reduce((total, produto) => total + produto.preco * produto.quantidade, 0)
     .toFixed(2);
+
+  const totalGeral = (parseFloat(precoTotal) + parseFloat(frete)).toFixed(2);
 
   const handlePagamento = async (dadosPagamento) => {
     try {
@@ -59,7 +63,6 @@ const Checkout = () => {
                     <span>{produto.quantidade}</span>
                     <button onClick={() => alterarQuantidade(produto.idproduto, 1)}>+</button>
                   </div>
-                  <p>Subtotal: R$ {(produto.preco * produto.quantidade).toFixed(2)}</p>
                 </div>
                 <button onClick={() => removerDoCarrinho(produto.idproduto)}>
                   Remover
@@ -68,45 +71,54 @@ const Checkout = () => {
             ))}
           </div>
 
-          <p>
-            <strong>Total: R$ {precoTotal}</strong>
-          </p>
+          <p>Subtotal: R$ {precoTotal}</p>
+
+          <CalcularFrete
+            carrinho={carrinho}
+            onFreteSelecionado={(valorFrete) => setFrete(valorFrete)}
+          />
+
+          {frete !== null && (
+            <p><strong>Total: R$ {totalGeral}</strong></p>
+          )}
 
           <hr />
 
-          <div>
-            <h1>Finalizar Compra</h1>
+          {frete !== null && (
+            <div>
+              <h1>Finalizar Compra</h1>
 
-            <div style={{ marginBottom: '16px' }}>
-              <label>
-                <input
-                  type="radio"
-                  id="radio"
-                  value="credito"
-                  checked={metodoPagamento === 'credito'}
-                  onChange={() => setMetodoPagamento('credito')}
-                />
-                Cartão de Crédito
-              </label>
+              <div style={{ marginBottom: '16px' }}>
+                <label>
+                  <input
+                    type="radio"
+                    id="radio"
+                    value="credito"
+                    checked={metodoPagamento === 'credito'}
+                    onChange={() => setMetodoPagamento('credito')}
+                  />
+                  Cartão de Crédito
+                </label>
 
-              <label style={{ marginLeft: '16px' }}>
-                <input
-                  type="radio"
-                  id="radio"
-                  value="pix"
-                  checked={metodoPagamento === 'pix'}
-                  onChange={() => setMetodoPagamento('pix')}
-                />
-                PIX
-              </label>
+                <label style={{ marginLeft: '16px' }}>
+                  <input
+                    type="radio"
+                    id="radio"
+                    value="pix"
+                    checked={metodoPagamento === 'pix'}
+                    onChange={() => setMetodoPagamento('pix')}
+                  />
+                  PIX
+                </label>
+              </div>
+
+              {metodoPagamento === 'credito' ? (
+                <PagamentoCredito aoTokenizar={handlePagamento} valorTotal={totalGeral} />
+              ) : (
+                <PagamentoPix />
+              )}
             </div>
-
-            {metodoPagamento === 'credito' ? (
-              <PagamentoCredito aoTokenizar={handlePagamento} />
-            ) : (
-              <PagamentoPix />
-            )}
-          </div>
+          )}
         </>
       )}
     </div>
