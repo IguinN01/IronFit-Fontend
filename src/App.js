@@ -23,6 +23,7 @@ import Login from "./pages/Login";
 import Perfil from "./pages/Perfil";
 import RedefinirSenha from "./pages/RedefinirSenha";
 import Checkout from "./pages/Checkout";
+import Planos from "./pages/Planos";
 
 function App() {
   return (
@@ -115,6 +116,15 @@ function App() {
                   <>
                     <HeaderCarrinho tipo="especifica" />
                     <Checkout />
+                  </>
+                }
+              />
+              <Route
+                path="/planos"
+                element={
+                  <>
+                    <Header tipo="default" />
+                    <Planos />
                   </>
                 }
               />

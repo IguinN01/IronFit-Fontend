@@ -64,7 +64,7 @@ const Rodape = () => {
 					<p className="creditos2">Termos e Condições</p>
 				</div>
 			</div>
-		</footer>
+		</footer >
 	);
 };
 

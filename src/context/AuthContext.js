@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import { signInWithPopup, GoogleAuthProvider, getIdToken } from 'firebase/auth';
+import { auth } from '../firebase';
 
 const AuthContext = createContext();
 
@@ -31,6 +33,33 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const loginComGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const resultado = await signInWithPopup(auth, provider);
+      const idToken = await getIdToken(resultado.user);
+
+      const resposta = await fetch("https://ironfit-backend.onrender.com/auth/google", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken }),
+      });
+
+      const dados = await resposta.json();
+
+      if (!resposta.ok || !dados.token) {
+        throw new Error(dados?.mensagem || "Erro ao autenticar com Google");
+      }
+
+      await login(dados.token); 
+      return { sucesso: true };
+    } catch (erro) {
+      console.error("Erro no login com Google:", erro);
+      logout();
+      return { sucesso: false, erro };
+    }
+  };
+
   const atualizarEmailLocal = (novoEmail) => {
     setUser((prev) => ({ ...prev, email: novoEmail }));
   };
@@ -58,7 +87,14 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ authToken, user, login, logout, atualizarEmailLocal }}>
+    <AuthContext.Provider value={{
+      authToken,
+      user,
+      login,
+      logout,
+      loginComGoogle,
+      atualizarEmailLocal
+    }}>
       {children}
     </AuthContext.Provider>
   );

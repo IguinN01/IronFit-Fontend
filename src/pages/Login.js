@@ -17,7 +17,7 @@ const Login = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, senha }),
-    });
+    });   
 
     if (resposta.ok) {
       const dados = await resposta.json();

@@ -17,6 +17,9 @@ const Checkout = () => {
 
   const totalGeral = (parseFloat(precoTotal) + parseFloat(frete)).toFixed(2);
 
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  localStorage.setItem("frete", frete);
+
   const handlePagamento = async (dadosPagamento) => {
     try {
       const resposta = await fetch("https://ironfit-backend.onrender.com/pagamento-credito", {
@@ -32,8 +35,11 @@ const Checkout = () => {
 
       if (resposta.ok) {
         console.log("Resultado:", resultado);
+
+        alert("Pagamento e pedido realizados com sucesso!");
+
       } else {
-        alert("Falha no pagamento: " + resultado.mensagem || resultado.message);
+        alert("Falha no pagamento: " + (resultado.mensagem || resultado.message));
         console.error("Erro:", resultado);
       }
 
@@ -84,7 +90,7 @@ const Checkout = () => {
 
           <hr />
 
-          {frete !== null && (
+          {frete !== null && !isNaN(totalGeral) && (
             <div>
               <h1>Finalizar Compra</h1>
 

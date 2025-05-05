@@ -117,6 +117,9 @@ export default function PagamentoCredito({ aoTokenizar, valorTotal }) {
               return;
             }
 
+            const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+            const frete = parseFloat(localStorage.getItem("frete")) || 0;
+
             const dadosParaEnvio = {
               token: dados.token,
               paymentMethodId: dados.paymentMethodId,
@@ -125,7 +128,14 @@ export default function PagamentoCredito({ aoTokenizar, valorTotal }) {
               identificationNumber: dados.identificationNumber,
               identificationType: "CPF",
               email: dados.cardholderEmail,
-              amount: String(valorTotal)
+              amount: String(valorTotal),
+              carrinho: carrinho.map(item => ({
+                nome: item.nome,
+                imagem: item.imagens,
+                valor: item.preco,
+                quantidade: item.quantidade || 1
+              })),
+              frete
             };
 
             console.log("📦 Dados enviados para o backend (cartão):", dadosParaEnvio);
@@ -133,9 +143,18 @@ export default function PagamentoCredito({ aoTokenizar, valorTotal }) {
             try {
               const resposta = await fetch('https://ironfit-backend.onrender.com/pagamento-credito', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${localStorage.getItem("token")}`
+                },
                 body: JSON.stringify(dadosParaEnvio)
               });
+
+              const token = localStorage.getItem("token");
+              if (!token) {
+                setMensagemErro("❌ Você precisa estar logado para finalizar o pagamento.");
+                return;
+              }
 
               const resultado = await resposta.json();
               console.log('✅ Backend respondeu:', resultado);

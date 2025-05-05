@@ -16,7 +16,7 @@ function Home() {
     if (location.hash === "#planos") {
       const section = document.getElementById("planos");
       if (section) {
-        const yOffset = -76; 
+        const yOffset = -76;
         const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
         window.scrollTo({ top: y, behavior: "smooth" });
@@ -148,7 +148,7 @@ function Home() {
                     </p>
                   </div>
                   <div className="link">
-                    <Link to="/">
+                    <Link to="/planos" state={{ plano: 'iron-warrior' }}>
                       <p className="link_matriculese">
                         Começar Agora!
                       </p>
@@ -188,7 +188,7 @@ function Home() {
                     </p>
                   </div>
                   <div className="link">
-                    <Link to="/">
+                    <Link to="/planos" state={{ plano: 'iron-legend' }}>
                       <p className="link_matriculese">
                         Começar Agora!
                       </p>
@@ -222,7 +222,7 @@ function Home() {
                     </p>
                   </div>
                   <div className="link">
-                    <Link to="/">
+                    <Link to="/planos" state={{ plano: 'iron-champion' }}>
                       <p className="link_matriculese">
                         Começar Agora!
                       </p>
@@ -256,7 +256,7 @@ function Home() {
                     </p>
                   </div>
                   <div className="link">
-                    <Link to="/">
+                    <Link to="/planos" state={{ plano: 'iron-warrior' }}>
                       <p className="link_matriculese">
                         Começar Agora!
                       </p>
@@ -296,7 +296,7 @@ function Home() {
                     </p>
                   </div>
                   <div className="link">
-                    <Link to="/">
+                    <Link to="/planos" state={{ plano: 'iron-legend' }}>
                       <p className="link_matriculese">
                         Começar Agora!
                       </p>
@@ -330,7 +330,7 @@ function Home() {
                     </p>
                   </div>
                   <div className="link">
-                    <Link to="/">
+                    <Link to="/planos" state={{ plano: 'iron-champion' }}>
                       <p className="link_matriculese">
                         Começar Agora!
                       </p>

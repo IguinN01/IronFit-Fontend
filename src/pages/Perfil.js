@@ -7,6 +7,7 @@ const Perfil = () => {
   const { user, logout, atualizarEmailLocal } = useContext(AuthContext);
   const [dadosUsuario, setDadosUsuario] = useState(null);
   const [temSenha, setTemSenha] = useState(null);
+  const [pedidos, setPedidos] = useState([]);
 
   const [novoEmail, setNovoEmail] = useState('');
   const [mensagemEmail, setMensagemEmail] = useState('');
@@ -36,6 +37,22 @@ const Perfil = () => {
     }
   };
 
+  const carregarPedidos = async () => {
+    if (!user?.id) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      const resposta = await fetch(`https://ironfit-backend.onrender.com/usuario/${user.id}/pedidos`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      const pedidosData = await resposta.json();
+      setPedidos(pedidosData);
+    } catch (erro) {
+      console.error('Erro ao carregar pedidos:', erro);
+    }
+  };
+
   const verificarTemSenha = async () => {
     if (!user?.id) return;
 
@@ -50,6 +67,7 @@ const Perfil = () => {
 
   useEffect(() => {
     carregarDados();
+    carregarPedidos();
     verificarTemSenha();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -141,108 +159,139 @@ const Perfil = () => {
   };
 
   return (
-    <div style={{ paddingTop: '92px', maxWidth: '500px', margin: '0 auto' }}>
-      {dadosUsuario?.foto && (
-        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-          <img
-            src={dadosUsuario.foto}
-            alt="Foto de perfil"
-            style={{
-              width: '120px',
-              height: '120px',
-              borderRadius: '50%',
-              objectFit: 'cover',
-              boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
-            }}
-          />
-        </div>
-      )}
-      <h1>Meu Perfil</h1>
-      <p>Bem-vindo! Aqui você pode ver e editar seus dados.</p>
-
-      {dadosUsuario ? (
-        <div>
-          <p><strong>Nome:</strong> {dadosUsuario.nome}</p>
-          <p><strong>E-mail atual:</strong> {dadosUsuario.email}</p>
-          <p><strong>Conta criada em:</strong> {new Date(dadosUsuario.criado_em).toLocaleString('pt-BR')}</p>
-
-          <hr style={{ margin: '20px 0' }} />
-
-          <div>
-            <h3>Atualizar E-mail</h3>
-            <input
-              type="email"
-              id="AtualizarEmail"
-              value={novoEmail}
-              onChange={(e) => setNovoEmail(e.target.value)}
-              style={{ padding: '8px', width: '300px', overflow:'hidden' }}
+    <>
+      <div style={{ paddingTop: '92px', maxWidth: '500px', margin: '0 auto' }}>
+        {dadosUsuario?.foto && (
+          <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+            <img
+              src={dadosUsuario.foto}
+              alt="Foto de perfil"
+              style={{
+                width: '120px',
+                height: '120px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
+              }}
             />
-            <button onClick={atualizarEmail} style={{ marginTop: '10px' }}>
-              Atualizar e-mail
-            </button>
-            {mensagemEmail && <p style={{ marginTop: '10px' }}>{mensagemEmail}</p>}
           </div>
+        )}
+        <h1>Meu Perfil</h1>
+        <p>Bem-vindo! Aqui você pode ver, editar seus dados e ver seus últimos pedidos.</p>
 
-          <hr style={{ margin: '20px 0' }} />
-
+        {dadosUsuario ? (
           <div>
-            <h3>{temSenha === false ? 'Definir Senha' : 'Alterar Senha'}</h3>
+            <p><strong>Nome:</strong> {dadosUsuario.nome}</p>
+            <p><strong>E-mail atual:</strong> {dadosUsuario.email}</p>
+            <p><strong>Conta criada em:</strong> {new Date(dadosUsuario.criado_em).toLocaleString('pt-BR')}</p>
 
-            {temSenha && (
-              <>
-                <label>Senha atual:</label><br />
-                <input
-                  type={mostrarSenha ? 'text' : 'password'}
-                  id="senhaAtual"
-                  value={senhaAtual}
-                  onChange={(e) => setSenhaAtual(e.target.value)}
-                  style={{ padding: '8px', width: '300px', overflow:'hidden', marginBottom: '10px' }}
-                />
-              </>
-            )}
+            <hr style={{ margin: '20px 0' }} />
 
-            <label>Nova senha:</label><br />
-            <input
-              type={mostrarSenha ? 'text' : 'password'}
-              id="novaSenha"
-              value={novaSenha}
-              onChange={(e) => setNovaSenha(e.target.value)}
-              style={{ padding: '8px', width: '300px', overflow:'hidden', marginBottom: '10px' }}
-            />
-
-            <label>Confirmar nova senha:</label><br />
-            <input
-              type={mostrarSenha ? 'text' : 'password'}
-              id="confirmarNovaSenha"
-              value={confirmarSenha}
-              onChange={(e) => setConfirmarSenha(e.target.value)}
-              style={{ padding: '8px', width: '300px', overflow:'hidden', marginBottom: '10px' }}
-            />
-
-            <div style={{ marginBottom: '10px' }}>
+            <div>
+              <h3>Atualizar E-mail</h3>
               <input
-                type="checkbox"
-                id="mostrarSenha"
-                checked={mostrarSenha}
-                onChange={() => setMostrarSenha(!mostrarSenha)}
+                type="email"
+                id="AtualizarEmail"
+                value={novoEmail}
+                onChange={(e) => setNovoEmail(e.target.value)}
+                style={{ padding: '8px', width: '300px', overflow: 'hidden' }}
               />
-              <label htmlFor="mostrarSenha" style={{ marginLeft: '5px' }}>
-                Mostrar senhas
-              </label>
+              <button onClick={atualizarEmail} style={{ marginTop: '10px' }}>
+                Atualizar e-mail
+              </button>
+              {mensagemEmail && <p style={{ marginTop: '10px' }}>{mensagemEmail}</p>}
             </div>
 
-            <button onClick={atualizarSenha}>
-              {temSenha === false ? 'Definir Senha' : 'Atualizar Senha'}
-            </button>
-            {mensagemSenha && <p style={{ marginTop: '10px' }}>{mensagemSenha}</p>}
-          </div>
-        </div>
-      ) : (
-        <p>Carregando informações...</p>
-      )}
+            <hr style={{ margin: '20px 0' }} />
 
-      <button onClick={handleLogout} style={{ marginTop: '30px' }}>Sair</button>
-    </div>
+            <div>
+              <h3>{temSenha === false ? 'Definir Senha' : 'Alterar Senha'}</h3>
+
+              {temSenha && (
+                <>
+                  <label>Senha atual:</label><br />
+                  <input
+                    type={mostrarSenha ? 'text' : 'password'}
+                    id="senhaAtual"
+                    value={senhaAtual}
+                    onChange={(e) => setSenhaAtual(e.target.value)}
+                    style={{ padding: '8px', width: '300px', overflow: 'hidden', marginBottom: '10px' }}
+                  />
+                </>
+              )}
+
+              <label>Nova senha:</label><br />
+              <input
+                type={mostrarSenha ? 'text' : 'password'}
+                id="novaSenha"
+                value={novaSenha}
+                onChange={(e) => setNovaSenha(e.target.value)}
+                style={{ padding: '8px', width: '300px', overflow: 'hidden', marginBottom: '10px' }}
+              />
+
+              <label>Confirmar nova senha:</label><br />
+              <input
+                type={mostrarSenha ? 'text' : 'password'}
+                id="confirmarNovaSenha"
+                value={confirmarSenha}
+                onChange={(e) => setConfirmarSenha(e.target.value)}
+                style={{ padding: '8px', width: '300px', overflow: 'hidden', marginBottom: '10px' }}
+              />
+
+              <div style={{ marginBottom: '10px' }}>
+                <input
+                  type="checkbox"
+                  id="mostrarSenha"
+                  checked={mostrarSenha}
+                  onChange={() => setMostrarSenha(!mostrarSenha)}
+                />
+                <label htmlFor="mostrarSenha" style={{ marginLeft: '5px' }}>
+                  Mostrar senhas
+                </label>
+              </div>
+
+              <button onClick={atualizarSenha}>
+                {temSenha === false ? 'Definir Senha' : 'Atualizar Senha'}
+              </button>
+              {mensagemSenha && <p style={{ marginTop: '10px' }}>{mensagemSenha}</p>}
+            </div>
+          </div>
+        ) : (
+          <p>Carregando informações...</p>
+        )}
+
+        <button onClick={handleLogout} style={{ marginTop: '30px' }}>Sair</button>
+      </div>
+
+      <hr style={{ margin: '20px 0' }} />
+
+      <div>
+        <h3>Últimos Pedidos</h3>
+        {pedidos.length > 0 ? (
+          pedidos.map((pedido, index) => (
+            <div key={index}>
+              <p><strong>Pedido {pedido.id}</strong></p>
+              <ul>
+                {pedido.itens.map((item, idx) => (
+                  <li key={idx}>
+                    <img src={item.imagem} alt={item.nome} style={{ width: '50px', marginRight: '10px' }} />
+                    {item.nome} - R${item.valor}
+                    <p>Quantidade: {item.quantidade}</p>
+                  </li>
+                ))}
+              </ul>
+              <p><strong>Total do Frete:</strong> R${pedido.frete}</p>
+              <p><strong>Total:</strong> R${pedido.total}</p>
+              <p><strong>Data do Pedido:</strong> {new Date(pedido.data_pedido).toLocaleString('pt-BR')}</p>
+            </div>
+          ))
+        ) : (
+          <p>Você ainda não fez nenhum pedido.</p>
+        )}
+      </div>
+
+      <hr style={{ margin: '20px 0' }} />
+    </>
   );
 };
 

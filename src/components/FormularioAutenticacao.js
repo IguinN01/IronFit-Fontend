@@ -23,6 +23,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
     }));
   }, [nomeGoogle, emailGoogle]);
 
+  const { loginComGoogle } = useContext(AuthContext);
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [mostrarConfirmacaoSenha, setMostrarConfirmacaoSenha] = useState(false);
   const [erro, setErro] = useState('');
@@ -110,33 +111,14 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
     }
   };
 
-  const loginComGoogle = async () => {
-    const provider = new GoogleAuthProvider();
-
-    try {
-      const resultado = await signInWithPopup(auth, provider);
-      const token = await resultado.user.getIdToken();
-      const email = resultado.user.email;
-      const nome = resultado.user.displayName;
-
-      const resposta = await fetch("https://ironfit-backend.onrender.com/check-user", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const dados = await resposta.json();
-
-      if (dados.existe) {
-        login(token);
-        alert("Login com Google realizado!");
-        navigate(-1);
-      } else {
-        alert("Conta não cadastrada. Redirecionando para o cadastro.");
-        navigate("/cadastro", { state: { email, nome } });
-      }
-    } catch (erro) {
-      setErro("Erro ao autenticar com Google");
+  const handleGoogleLogin = async () => {
+    const resultado = await loginComGoogle();
+  
+    if (resultado.sucesso) {
+      alert("Login com Google realizado com sucesso!");
+      navigate(-1);
+    } else {
+      alert("Erro ao autenticar com Google");
     }
   };
 
@@ -245,7 +227,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
       {!ehCadastro && (
         <>
           <button type="button" onClick={recuperarSenha}>Esqueci a senha</button>
-          <button type="button" onClick={loginComGoogle}>Login com Google</button>
+          <button type="button" onClick={handleGoogleLogin}>Login com Google</button>
         </>
       )}
     </form>

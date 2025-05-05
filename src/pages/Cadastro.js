@@ -13,6 +13,7 @@ import { AuthContext } from '../context/AuthContext';
 import "../css/pages/CadastroLogin/cadastro_login.css";
 
 const Cadastro = () => {
+  const { loginComGoogle } = useContext(AuthContext);
   const location = useLocation();
   const emailGoogle = location.state?.email || "";
   const nomeGoogle = location.state?.nome || "";
@@ -20,51 +21,13 @@ const Cadastro = () => {
   const { login } = useContext(AuthContext);
   const auth = getAuth(app);
 
-  const loginComGoogle = async () => {
-    const provider = new GoogleAuthProvider();
+  const handleGoogleLogin = async () => {
+    const resultado = await loginComGoogle();
 
-    try {
-      const resultado = await signInWithPopup(auth, provider);
-      const token = await resultado.user.getIdToken();
-      const email = resultado.user.email;
-      const nome = resultado.user.displayName;
-      const uid = resultado.user.uid;
-
-      const resposta = await fetch("https://ironfit-backend.onrender.com/check-user", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const dados = await resposta.json();
-
-      if (dados.existe) {
-        login(token);
-        alert("Login com Google realizado!");
-        navigate(-1);
-      } else {
-        const novoUsuario = {
-          nome,
-          email,
-          uid,
-        };
-
-        const respostaCadastro = await fetch("https://ironfit-backend.onrender.com/cadastro", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(novoUsuario),
-        });
-
-        if (respostaCadastro.ok) {
-          await respostaCadastro.json();
-          login(token);
-          alert("Cadastro realizado e login efetuado com sucesso!");
-          navigate(-1);
-        } else {
-          alert("Erro ao criar conta automaticamente.");
-        }
-      }
-    } catch (erro) {
+    if (resultado.sucesso) {
+      alert("Login com Google realizado com sucesso!");
+      navigate(-1);
+    } else {
       alert("Erro ao autenticar com Google");
     }
   };
@@ -114,7 +77,7 @@ const Cadastro = () => {
         </div>
 
         <FormularioAutenticacao aoEnviar={tratarCadastro} ehCadastro={true} emailGoogle={emailGoogle} nomeGoogle={nomeGoogle} />
-        <button onClick={loginComGoogle}>Cadastrar com Google</button>
+        <button onClick={handleGoogleLogin}>Cadastrar com Google</button>
         <Link to="/login">
           <p>Já tem uma conta? Faça Login</p>
         </Link>
