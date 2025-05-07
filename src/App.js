@@ -10,6 +10,7 @@ import HeaderBusca from "./components/HeaderBusca";
 import HeaderCarrinho from "./components/HeaderCarrinho";
 import HeaderProduto from "./components/HeaderProduto";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 import RotaProtegida from "./components/RotaProtegida";
 import RotaPublica from "./components/RotaPublica";
@@ -28,6 +29,7 @@ import Planos from "./pages/Planos";
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <AuthProvider>
         <PesquisaProvider>
           <CarrinhoProvider>

@@ -98,17 +98,6 @@
 }
 
 @media screen and (min-width: 1024px) {
-
-  .titulo_sobre_nos,
-  .titulo_bloco_sobre {
-    font-size: 1.8rem;
-  }
-
-  .paragrafo_sobre_nos,
-  .descricao_mais_sobre {
-    font-size: 1.4rem;
-  }
-
   .blocos_mais_sobre {
     flex-direction: row;
   }
@@ -130,16 +119,16 @@
 
 @media screen and (min-width: 1920px) {
   .titulo_sobre_nos {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .paragrafo_sobre_nos,
   .descricao_mais_sobre {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 
   .titulo_bloco_sobre {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .bloco_mais_sobre {

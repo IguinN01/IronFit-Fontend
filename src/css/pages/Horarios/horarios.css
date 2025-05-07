@@ -57,6 +57,12 @@
 }
 
 @media screen and (min-width: 425px) {
+  .bloco_horario {
+    margin-inline: 3vw;
+  }
+}
+
+@media screen and (min-width: 768px) {
   .titulo_horario {
     font-size: 1.4rem;
   }
@@ -68,11 +74,17 @@
   }
 
   .bloco_horario {
-    margin-inline: 3vw;
+    margin-top: 85px;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
+  .bloco_horario {
+    margin-top: 94px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
   .titulo_horario {
     font-size: 1.6rem;
   }
@@ -81,38 +93,6 @@
   .bloco_horario th,
   .texto_horario {
     font-size: 1.2rem;
-  }
-
-  .bloco_horario {
-    margin-top: 85px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .titulo_horario {
-    font-size: 1.8rem;
-  }
-
-  .bloco_horario table,
-  .bloco_horario th,
-  .texto_horario {
-    font-size: 1.4rem;
-  }
-
-  .bloco_horario {
-    margin-top: 94px;
-  }
-}
-
-@media screen and (min-width: 1920px) {
-  .titulo_horario {
-    font-size: 2rem;
-  }
-
-  .bloco_horario table,
-  .bloco_horario th,
-  .texto_horario {
-    font-size: 1.6rem;
   }
 
   .bloco_horario {

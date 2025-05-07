@@ -16,7 +16,7 @@ function Home() {
     if (location.hash === "#planos") {
       const section = document.getElementById("planos");
       if (section) {
-        const yOffset = -76;
+        const yOffset = -26;
         const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
         window.scrollTo({ top: y, behavior: "smooth" });
@@ -158,7 +158,7 @@ function Home() {
               </SwiperSlide>
 
               <SwiperSlide>
-                <div className="mensal_semestral_anual plano_semestral inverter-hover">
+                <div className="mensal_semestral_anual plano_semestral">
                   <div className="div_nome_plano">
                     <h2 className="nome_plano">
                       Plano Iron Legend
@@ -182,9 +182,6 @@ function Home() {
                     </p>
                     <p className="texto_beneficios"><b className="certo">&#10003;</b>
                       Acompanhamento personalizado gratuito a cada 3 meses
-                    </p>
-                    <p className="texto_beneficios"><b className="certo">&#10003;</b>
-                      Acesso VIP a eventos e desafios exclusivos
                     </p>
                   </div>
                   <div className="link">
@@ -266,7 +263,7 @@ function Home() {
               </SwiperSlide>
 
               <SwiperSlide className="planos_1024">
-                <div className="mensal_semestral_anual plano_semestral inverter-hover">
+                <div className="mensal_semestral_anual plano_semestral">
                   <div className="div_nome_plano">
                     <h2 className="nome_plano">
                       Plano Iron Legend
@@ -290,9 +287,6 @@ function Home() {
                     </p>
                     <p className="texto_beneficios"><b className="certo">&#10003;</b>
                       Acompanhamento personalizado gratuito a cada 3 meses
-                    </p>
-                    <p className="texto_beneficios"><b className="certo">&#10003;</b>
-                      Acesso VIP a eventos e desafios exclusivos
                     </p>
                   </div>
                   <div className="link">

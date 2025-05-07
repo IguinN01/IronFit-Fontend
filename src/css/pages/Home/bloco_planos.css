@@ -145,6 +145,10 @@
   transition: 0.6s ease;
 }
 
+.desc_109 {
+  padding-inline: 6px;
+}
+
 @media screen and (min-width: 375px) {
   .desc_149 {
     padding-inline: 12px;
@@ -200,6 +204,10 @@
   .descricao_plano {
     padding: 0px 32px;
   }
+
+  .beneficios_plano {
+    padding-inline: 10px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -230,9 +238,12 @@
     font-size: 1.3rem;
   }
 
-  .desc_119,
   .desc_149 {
     padding-inline: 0px;
+  }
+
+  .desc_119 {
+    padding-inline: 10px;
   }
 
   .mensal_semestral_anual {
@@ -253,7 +264,43 @@
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1280px) {
+  .carrossel_planos {
+    margin-inline: 4vw;
+  }
+
+  .desc_109 {
+    padding-inline: 8px;
+  }
+
+  .mensal_semestral_anual {
+    height: 678px;
+  }
+
+  .mensal_semestral_anual:hover {
+    height: 700px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .desc_109 {
+    padding-inline: 16px;
+  }
+
+  .desc_149 {
+    padding-inline: 20px;
+  }
+
+  .desc_119 {
+    padding-inline: 20px;
+  }
+
+  .beneficios_plano {
+    padding-inline: 22px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
 
   .titulo_planos,
   .valor_plano,
@@ -282,71 +329,10 @@
   }
 
   .desc_109 {
-    padding-inline: 0px;
+    padding-inline: 26px;
   }
 
-  .desc_149 {
-    padding-inline: 12px;
-  }
-
-  .mensal_semestral_anual {
-    padding: 16px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .carrossel_planos {
-    margin-inline: 4vw;
-  }
-
-  .desc_109 {
-    padding-inline: 10px;
-  }
-
-  .mensal_semestral_anual {
-    height: 678px;
-  }
-
-  .mensal_semestral_anual:hover {
-    height: 700px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .desc_109 {
-    padding-inline: 16px;
-  }
-}
-
-@media screen and (min-width: 1920px) {
-
-  .titulo_planos,
-  .valor_plano,
-  .nome_plano,
-  .link_matriculese {
-    font-size: 2rem;
-  }
-
-  .texto_planos,
-  .descricao_plano,
-  .texto_beneficios,
-  .certo {
-    font-size: 1.6rem;
-  }
-
-  .mensal_semestral_anual:hover .nome_plano {
-    font-size: 2.2rem;
-  }
-
-  .mensal_semestral_anual:hover .descricao_plano {
-    font-size: 1.6rem;
-  }
-
-  .mensal_semestral_anual:hover .certo {
-    font-size: 1.7rem;
-  }
-
-  .desc_109 {
+  .beneficios_plano {
     padding-inline: 24px;
   }
 }

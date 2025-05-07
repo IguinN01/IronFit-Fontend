@@ -1,0 +1,232 @@
+.div_assinatura {
+  text-align: center;
+  padding-top: 102px;
+}
+
+.nome_assinatura {
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.nome_assinatura b {
+  font-weight: 400;
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.descricao_assinatura {
+  padding-top: 22px;
+  padding-inline: 6vw;
+  font-size: .8rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.valores_assinatura {
+  text-align: start;
+  padding-inline: 7vw;
+  font-size: .9rem;
+  margin-bottom: 20px;
+}
+
+.valores_assinatura strong {
+  font-size: 1rem;
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.div_planos_assinatura {
+  padding-inline: 2vw;
+}
+
+.input_assinatura {
+  border: none;
+  padding: 4px 10px 5px 8px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  width: 55%;
+  margin-bottom: 20px;
+}
+
+.input_assinatura:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.botao_assinatura {
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: .9rem;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 3px 6px 5px 6px;
+  color: var(--cinza);
+  background: var(--azul-gradiente);
+}
+
+.info_assinatura {
+  padding-inline: 6vw;
+  font-size: .8rem;
+  font-weight: 300;
+}
+
+@media screen and (min-width: 425px) {
+  .nome_assinatura {
+    font-size: 1.6rem;
+  }
+
+  .descricao_assinatura,
+  .info_assinatura {
+    font-size: 1rem;
+  }
+
+  .valores_assinatura,
+  .botao_assinatura {
+    font-size: 1.1rem;
+  }
+
+  .valores_assinatura strong {
+    font-size: 1.2rem;
+  }
+
+  .input_assinatura {
+    font-size: 1rem;
+    padding: 6px 10px 7px 10px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    width: 60%;
+  }
+
+  .botao_assinatura {
+    padding: 4px 8px 6px 10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .div_assinatura {
+    padding-top: 118px;
+  }
+
+  .nome_assinatura {
+    font-size: 1.8rem;
+  }
+
+  .descricao_assinatura,
+  .info_assinatura {
+    font-size: 1.2rem;
+  }
+
+  .valores_assinatura {
+    font-size: 1.3rem;
+    padding-inline: 9vw;
+  }
+
+  .botao_assinatura {
+    font-size: 1.3rem;
+  }
+
+  .valores_assinatura strong {
+    font-size: 1.5rem;
+  }
+
+  .input_assinatura {
+    font-size: 1.2rem;
+    padding: 6px 10px 7px 10px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    width: 65%;
+  }
+
+  .botao_assinatura {
+    padding: 4px 8px 7px 10px;
+  }
+
+  .bloco_assinatura {
+    padding-block: 28px;
+    margin-inline: 6vw;
+    border-radius: 12px;
+    background-color: var(--cinza);
+  }
+
+  .bloco_valor_descricao {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .div_assinatura {
+    padding-top: 132px;
+  }
+
+  .bloco_assinatura {
+    margin-inline: 10vw;
+    padding-inline: 4vw;
+  }
+
+  .valores_assinatura {
+    padding-inline: 8vw;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .div_assinatura {
+    padding-top: 132px;
+  }
+
+  .bloco_assinatura {
+    margin-inline: 16vw;
+    padding-inline: 4vw;
+    padding-block: 64px;
+  }
+
+  .valores_assinatura {
+    padding-inline: 7vw;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .div_assinatura {
+    padding-top: 162px;
+  }
+
+  .bloco_assinatura {
+    margin-inline: 18vw;
+  }
+
+  .valores_assinatura {
+    padding-inline: 5vw;
+  }
+
+  .nome_assinatura {
+    font-size: 2rem;
+  }
+
+  .descricao_assinatura,
+  .info_assinatura {
+    font-size: 1.4rem;
+  }
+
+  .valores_assinatura {
+    font-size: 1.5rem;
+  }
+
+  .botao_assinatura {
+    font-size: 1.5rem;
+  }
+
+  .valores_assinatura strong {
+    font-size: 1.7rem;
+  }
+
+  .input_assinatura {
+    font-size: 1.4rem;
+    width: 72%;
+  }
+}

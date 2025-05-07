@@ -40,38 +40,31 @@ const Header = ({ tipo }) => {
 
   useEffect(() => {
     if (menuCarrinhoAberto) {
-      document.body.classList.add('no-scroll');
-    } else {
-      document.body.classList.remove('no-scroll');
-    }
-
-    return () => {
-      document.body.classList.remove('no-scroll');
-    };
-  }, [menuCarrinhoAberto, location.pathname]);
-
-  useEffect(() => {
-    let prevScrollPos = window.pageYOffset;
-
-    const handleScroll = () => {
-      if (menuCarrinhoAberto) return;
-
-      const currentScrollPos = window.pageYOffset;
-      setMostrarHeader(prevScrollPos > currentScrollPos);
-      prevScrollPos = currentScrollPos;
-
-      if (menuAberto) fecharMenu();
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuAberto, menuCarrinhoAberto, fecharMenu]);
-
-  useEffect(() => {
-    if (menuCarrinhoAberto) {
       setMostrarHeader(true);
     }
   }, [menuCarrinhoAberto]);
+
+  useEffect(() => {
+    setMostrarHeader(true);
+    const timeout = setTimeout(() => {
+      let prevScrollPos = window.pageYOffset;
+
+      const handleScroll = () => {
+        if (menuCarrinhoAberto) return;
+
+        const currentScrollPos = window.pageYOffset;
+        setMostrarHeader(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+        prevScrollPos = currentScrollPos;
+
+        if (menuAberto) fecharMenu();
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [location, menuAberto, menuCarrinhoAberto, fecharMenu]);
 
   const quantidadeItensCarrinho = carrinho.length;
 
@@ -89,7 +82,7 @@ const Header = ({ tipo }) => {
         </div>
 
         <div className="links_1024">
-          <button onClick={alternarMenuCarrinho} className="item_menu_hamburguer link_1024 botao_carrinho_menu">
+          <button onClick={alternarMenuCarrinho} className="item_menu_hamburguer link_1024 botao_carrinho_menu seu_carrinho_1024">
             Seu Carrinho
             {quantidadeItensCarrinho > 0 && (
               <span className="bolinha-carrinho">{quantidadeItensCarrinho}</span>
@@ -179,7 +172,7 @@ const Header = ({ tipo }) => {
             <>
               <li className="nav-lista_item">
                 <Link to="/perfil" onClick={fecharMenu}>
-                  <p className="item_menu_hamburguer">Perfil</p>
+                  <p className="item_menu_hamburguer menor_1280">Perfil</p>
                 </Link>
               </li>
             </>

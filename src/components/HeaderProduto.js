@@ -86,21 +86,27 @@ const Header = ({ tipo }) => {
   }, [menuCarrinhoAberto, location.pathname]);
 
   useEffect(() => {
-    let prevScrollPos = window.pageYOffset;
+    setMostrarHeader(true);
 
-    const handleScroll = () => {
-      if (menuCarrinhoAberto) return;
+    const timeout = setTimeout(() => {
+      let prevScrollPos = window.pageYOffset;
 
-      const currentScrollPos = window.pageYOffset;
-      setMostrarHeader(prevScrollPos > currentScrollPos);
-      prevScrollPos = currentScrollPos;
+      const handleScroll = () => {
+        if (menuCarrinhoAberto) return;
 
-      if (menuAberto) fecharMenu();
-    };
+        const currentScrollPos = window.pageYOffset;
+        setMostrarHeader(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+        prevScrollPos = currentScrollPos;
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuAberto, menuCarrinhoAberto, fecharMenu]);
+        if (menuAberto) fecharMenu();
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [location, menuAberto, menuCarrinhoAberto, fecharMenu]);
 
   useEffect(() => {
     if (menuCarrinhoAberto) {
@@ -232,7 +238,7 @@ const Header = ({ tipo }) => {
             <>
               <li className="nav-lista_item">
                 <Link to="/perfil" onClick={fecharMenu}>
-                  <p className="item_menu_hamburguer">Perfil</p>
+                  <p className="item_menu_hamburguer menor_1280">Perfil</p>
                 </Link>
               </li>
             </>
@@ -275,7 +281,7 @@ const Header = ({ tipo }) => {
             <div className="botao_hamburguer linha3"></div>
           </div>
         </button>
-        <h2>Seu Carrinho</h2>
+        <h2 className="titulo_carrinho">Seu Carrinho</h2>
         {carrinho.length === 0 ? (
           <p>Seu carrinho está vazio.</p>
         ) : (

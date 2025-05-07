@@ -134,13 +134,10 @@
   }
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 768px) {
   .img_unidade {
     height: 280px;
   }
-}
-
-@media screen and (min-width: 768px) {
 
   .titulo_unidade,
   .nome_cidade_unidade {
@@ -207,21 +204,6 @@
 }
 
 @media screen and (min-width: 1024px) {
-
-  .titulo_unidade,
-  .nome_cidade_unidade {
-    font-size: 1.8rem;
-  }
-
-  .texto_unidade,
-  .nome_rua_unidade {
-    font-size: 1.4rem;
-  }
-
-  .link_matricula_ver_mais {
-    font-size: 1.5rem;
-  }
-
   .div_unidade {
     display: flex;
     flex-direction: column;
@@ -260,15 +242,15 @@
 
   .titulo_unidade,
   .nome_cidade_unidade {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .texto_unidade,
   .nome_rua_unidade {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 
   .link_matricula_ver_mais {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 }

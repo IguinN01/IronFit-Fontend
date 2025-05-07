@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../context/AuthContext';
 
-import { getAuth, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from 'firebase/auth';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { app } from "../firebase";
 
 const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGoogle = "" }) => {
@@ -27,7 +27,6 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [mostrarConfirmacaoSenha, setMostrarConfirmacaoSenha] = useState(false);
   const [erro, setErro] = useState('');
-  const { login } = useContext(AuthContext);
   const auth = getAuth(app);
   const navigate = useNavigate();
 

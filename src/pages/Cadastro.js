@@ -2,9 +2,6 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { app } from "../firebase";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-
 import { ArrowLeft } from "lucide-react";
 
 import FormularioAutenticacao from '../components/FormularioAutenticacao';
@@ -19,7 +16,6 @@ const Cadastro = () => {
   const nomeGoogle = location.state?.nome || "";
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
-  const auth = getAuth(app);
 
   const handleGoogleLogin = async () => {
     const resultado = await loginComGoogle();

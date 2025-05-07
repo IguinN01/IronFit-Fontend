@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+
+import "../css/pages/EscolhaPlano/Planos.css";
 
 export default function EscolherPlano() {
   const location = useLocation();
@@ -31,17 +33,7 @@ export default function EscolherPlano() {
 
   const planoInfo = planosInfo[planoSelecionado];
 
-  const hoje = new Date();
-  const billingDay = 10;
-  const anoAtual = hoje.getFullYear();
-  const mesAtual = hoje.getMonth();
-
-  let dataCobranca;
-  if (hoje.getDate() <= billingDay) {
-    dataCobranca = new Date(anoAtual, mesAtual, billingDay);
-  } else {
-    dataCobranca = new Date(anoAtual, mesAtual + 1, billingDay);
-  }
+  const dataCobranca = new Date();
 
   const dataExpiracao = new Date(dataCobranca);
   if (planoInfo) {
@@ -89,30 +81,95 @@ export default function EscolherPlano() {
   };
 
   return (
-    <div>
-      <input
-        type="email"
-        placeholder="Digite seu e-mail"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+    <>
+      <div className='div_assinatura'>
+        {planoInfo && (
+          <div className='bloco_assinatura'>
+            <div>
+              <h2
+                className="nome_assinatura"
+                dangerouslySetInnerHTML={{
+                  __html: planoInfo.nome.replace(/(Warrior|Champion|Legend)/, '<b>$1</b>'),
+                }}
+              ></h2>
+              <p className='descricao_assinatura'>{planoInfo.descricao}</p>
 
-      <h1>Resumo do Plano</h1>
+              <div className='bloco_valor_descricao'>
+                <div className='valores_assinatura'>
+                  <p><strong>Valor:</strong> {planoInfo.valor}</p>
+                  <p><strong>Primeira cobrança:</strong> {formatarData(dataCobranca)}</p>
+                  <p><strong>Plano expira em:</strong> {formatarData(dataExpiracao)}</p>
+                </div>
 
-      {planoInfo && (
-        <div>
-          <h2>{planoInfo.nome}</h2>
-          <p><strong>Valor:</strong> {planoInfo.valor}</p>
-          <p>{planoInfo.descricao}</p>
-          <p><strong>Primeira cobrança:</strong> {formatarData(dataCobranca)}</p>
-          <p><strong>Plano expira em:</strong> {formatarData(dataExpiracao)}</p>
-          <p>Você pode cancelar a qualquer momento antes do próximo ciclo.</p>
-        </div>
-      )}
+                <div className='div_planos_assinatura'>
+                  {planoSelecionado === 'iron-legend' && (
+                    <div className="plano_semestral_assinatura">
+                      <div className="beneficios_plano">
+                        <p className="texto_beneficios"><b className="certo">&#10003;</b>
+                          Todos os benefícios do Plano Iron Chapion
+                        </p>
+                        <p className="texto_beneficios"><b className="certo">&#10003;</b>
+                          Maior desconto (economize R$480,00 no ano)
+                        </p>
+                        <p className="texto_beneficios"><b className="certo">&#10003;</b>
+                          Brinde exclusivo para novos assinantes
+                        </p>
+                      </div>
+                    </div>
+                  )}
 
-      <button onClick={criarAssinatura}>
-        Assinar
-      </button>
-    </div>
+                  {planoSelecionado === 'iron-champion' && (
+                    <div className="plano_anual_assinatura">
+                      <div className="beneficios_plano">
+                        <p className="texto_beneficios"><b className="certo">&#10003;</b>
+                          Todos os benefícios do Plano Iron Warrior
+                        </p>
+                        <p className="texto_beneficios"><b className="certo">&#10003;</b>
+                          Desconto especial (economize R$120,00 em 6 meses)
+                        </p>
+                        <p className="texto_beneficios"><b className="certo">&#10003;</b>
+                          Avaliação física gratuita a cada 3 meses
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {planoSelecionado === 'iron-warrior' && (
+                    <div className="plano_mensal_assinatura">
+                      <div className="beneficios_plano">
+                        <p className="texto_beneficios"><b className="certo">&#10003;</b>
+                          Acesso ilimitado à academia
+                        </p>
+                        <p className="texto_beneficios"><b className="certo">&#10003;</b>
+                          Participação em aulas coletivas
+                        </p>
+                        <p className="texto_beneficios"><b className="certo">&#10003;</b>
+                          Suporte básico de treino
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <input
+                  type="email"
+                  placeholder="Digite seu e-mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className='input_assinatura'
+                />
+                <button className='botao_assinatura' onClick={criarAssinatura}>
+                  Assinar
+                </button>
+              </div>
+
+              <p className='info_assinatura'>Você pode cancelar a qualquer momento antes do próximo ciclo.</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }

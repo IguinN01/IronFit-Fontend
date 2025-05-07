@@ -155,6 +155,10 @@
 	display: none;
 }
 
+.link_1920 {
+	display: none;
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -196,7 +200,7 @@ html {
 		top: 19px;
 	}
 
-	.nav-lista.ativo {
+	.nav-lista_home.ativo {
 		top: 74px;
 	}
 }
@@ -220,7 +224,7 @@ html {
 		right: 28px;
 	}
 
-	.nav-lista.ativo {
+	.nav-lista_home.ativo {
 		top: 85px;
 	}
 }
@@ -258,12 +262,12 @@ html {
 	}
 
 	.link_1024 {
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 		margin-bottom: 0;
 	}
 
 	.link_1024:hover {
-		font-size: 1.55rem;
+		font-size: 1.45rem;
 	}
 
 	.menor_1024 {
@@ -284,12 +288,8 @@ html {
 		display: none;
 	}
 
-	.nav-lista.ativo li:nth-child(3) {
-		transition-delay: .3s;
-	}
-
-	.nav-lista.ativo li:nth-child(5) {
-		transition-delay: .4s;
+	.nav-lista.ativo li:nth-child(4) {
+		transition-delay: .35s;
 	}
 
 	.nav-lista {
@@ -309,14 +309,6 @@ html {
 		font-size: 2.5rem;
 	}
 
-	.item_menu_hamburguer {
-		font-size: 1.8rem;
-	}
-
-	.item_menu_hamburguer:hover {
-		font-size: 1.9rem;
-	}
-
 	.cabecalho_nav_menu_hamburguer {
 		top: 41px;
 		right: 42px;
@@ -334,11 +326,11 @@ html {
 	}
 
 	.link_1024 {
-		font-size: 1.8rem;
+		font-size: 1.6rem;
 	}
 
 	.link_1024:hover {
-		font-size: 1.85rem;
+		font-size: 1.63rem;
 	}
 
 	.linhas_hamburguer.ativo .linha1 {
@@ -351,7 +343,25 @@ html {
 		background-color: var(--branco-f5);
 	}
 
-	.nav-lista.ativo {
+	.nav-lista_home.ativo {
 		top: 116px;
+	}
+
+	.link_1920 {
+		display: flex;
+		font-size: 1.6rem;
+	}
+
+	.link_1920:hover {
+		font-size: 1.63rem;
+	}
+
+	.linhas_hamburguer_home {
+		display: none;
+	}
+
+	.links_1024_home {
+		gap: 26px;
+		right: 52px;
 	}
 }

@@ -67,22 +67,27 @@ const Header = ({ tipo }) => {
   }, []);
 
   useEffect(() => {
-    let prevScrollPos = window.pageYOffset;
+    setMostrarHeader(true);
 
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      setMostrarHeader(prevScrollPos > currentScrollPos);
-      prevScrollPos = currentScrollPos;
+    const timeout = setTimeout(() => {
+      let prevScrollPos = window.pageYOffset;
 
-      if (menuAberto || menuCarrinhoAberto) {
-        fecharMenu();
-        fecharMenuCarrinho();
-      }
-    };
+      const handleScroll = () => {
+        if (menuCarrinhoAberto) return;
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuAberto, menuCarrinhoAberto, fecharMenu, fecharMenuCarrinho]);
+        const currentScrollPos = window.pageYOffset;
+        setMostrarHeader(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+        prevScrollPos = currentScrollPos;
+
+        if (menuAberto) fecharMenu();
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [location, menuAberto, menuCarrinhoAberto, fecharMenu]);
 
   return (
     <header className={`cabecalho ${mostrarHeader ? "visivel" : "escondido"}`}>
@@ -183,7 +188,7 @@ const Header = ({ tipo }) => {
             <>
               <li className="nav-lista_item">
                 <Link to="/perfil" onClick={fecharMenu}>
-                  <p className="item_menu_hamburguer">Perfil</p>
+                  <p className="item_menu_hamburguer menor_1280">Perfil</p>
                 </Link>
               </li>
             </>
