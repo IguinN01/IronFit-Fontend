@@ -228,37 +228,49 @@ const Header = ({ tipo }) => {
             {carrinho.map((produto, index) => (
               <li className="item_produtos" key={index}>
 
-                <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
-                  <img className="img_lista_carrinho" src={produto.imagens} alt={produto.nome} width="50" />
+                <div className="img_desc_carrinho">
+                  <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
+                    <img className="img_lista_carrinho" src={produto.imagens} alt={produto.nome} width="50" />
+                  </Link>
 
                   <div className="descricao_produtos_lista">
-                    <p>{produto.nome}</p>
-                    <p>
-                      Preço R$
-                      <motion.span
-                        key={produto.preco * produto.quantidade}
-                        initial={{ opacity: 0, y: -5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 5 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                      >
-                        {(produto.preco * produto.quantidade).toFixed(2)}
-                      </motion.span>
-                    </p>
-                    <p>Quantidade: {produto.quantidade}</p>
+                    <div className="descricao_carrinho">
+                      <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
+                        <span className="nome_carrinho">{produto.nome}</span>
+                      </Link>
+
+                      <div className="ajuste_botao">
+                        <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
+                          <span>
+                            Preço R$
+                            <motion.span
+                              key={produto.preco * produto.quantidade}
+                              initial={{ opacity: 0, y: -5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 5 }}
+                              transition={{ duration: 0.3, ease: "easeOut" }}
+                            >
+                              {(produto.preco * produto.quantidade).toFixed(2)}
+                            </motion.span>
+                          </span>
+                        </Link>
+                        <button className="botao_remover" onClick={() => removerDoCarrinho(produto.idproduto)}>&#x02A2F;</button>
+                      </div>
+                    </div>
+
+                    <div>
+                      <button onClick={() => alterarQuantidade(produto.idproduto, -1)}>-</button>
+
+                      <span>{produto.quantidade}</span>
+
+                      <button
+                        onClick={() => alterarQuantidade(produto.idproduto, 1)}
+                        disabled={produto.quantidade >= 5}>
+                        +
+                      </button>
+                    </div>
                   </div>
-                </Link>
-
-                <div>
-                  <button
-                    onClick={() => alterarQuantidade(produto.idproduto, 1)}
-                    disabled={produto.quantidade >= 5}>
-                    +
-                  </button>
-                  <button onClick={() => alterarQuantidade(produto.idproduto, -1)}>-</button>
-                  <button onClick={() => removerDoCarrinho(produto.idproduto)}>&#x02A2F;</button>
                 </div>
-
               </li>
             ))}
           </ul>
