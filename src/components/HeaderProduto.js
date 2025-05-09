@@ -31,7 +31,14 @@ const Header = ({ tipo }) => {
   }, [fecharMenu]);
 
   const alternarMenu = () => {
-    setMenuAberto((prev) => !prev);
+    setMenuAberto((prev) => {
+      const novoEstado = !prev;
+      if (novoEstado) {
+        setTermoPesquisa("");
+      }
+      return novoEstado;
+    });
+
     if (menuCarrinhoAberto) {
       setMenuCarrinhoAberto(false);
     }
@@ -66,6 +73,10 @@ const Header = ({ tipo }) => {
     }
     return 0;
   });
+
+  useEffect(() => {
+    setTermoPesquisa("");
+  }, [location.pathname, setTermoPesquisa]);
 
   useEffect(() => {
     fetch('https://ironfit-backend.onrender.com/produtos')
@@ -110,8 +121,14 @@ const Header = ({ tipo }) => {
 
   useEffect(() => {
     if (menuCarrinhoAberto) {
-      setMostrarHeader(true);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuCarrinhoAberto]);
 
   const quantidadeItensCarrinho = carrinho.length;
@@ -281,9 +298,10 @@ const Header = ({ tipo }) => {
             <div className="botao_hamburguer linha3"></div>
           </div>
         </button>
-        <h2 className="titulo_carrinho">Seu Carrinho</h2>
+
+        <h2 className="titulo_carrinho">Seu <b>Carrinho</b></h2>
         {carrinho.length === 0 ? (
-          <p>Seu carrinho está vazio.</p>
+          <p className="carrinho_vazio">Seu carrinho está vazio.</p>
         ) : (
           <ul>
             {carrinho.map((produto, index) => (

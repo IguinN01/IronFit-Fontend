@@ -39,9 +39,19 @@ const Header = ({ tipo }) => {
   };
 
   useEffect(() => {
+    setTermoPesquisa("");
+  }, [location.pathname, setTermoPesquisa]);
+
+  useEffect(() => {
     if (menuCarrinhoAberto) {
-      setMostrarHeader(true);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuCarrinhoAberto]);
 
   useEffect(() => {
@@ -209,39 +219,46 @@ const Header = ({ tipo }) => {
             <div className="botao_hamburguer linha3"></div>
           </div>
         </button>
-        <h2>Seu Carrinho</h2>
+
+        <h2 className="titulo_carrinho">Seu <b>Carrinho</b></h2>
         {carrinho.length === 0 ? (
-          <p>Seu carrinho está vazio.</p>
+          <p className="carrinho_vazio">Seu carrinho está vazio.</p>
         ) : (
-          <ul>
+          <ul className="lista_produtos">
             {carrinho.map((produto, index) => (
-              <li key={index}>
+              <li className="item_produtos" key={index}>
+
                 <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
-                  <img src={produto.imagens} alt={produto.nome} width="50" />
-                  <p>{produto.nome}</p>
-                  <p>
-                    Preço Total R$
-                    <motion.span
-                      key={produto.preco * produto.quantidade}
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 5 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                    >
-                      {(produto.preco * produto.quantidade).toFixed(2)}
-                    </motion.span>
-                  </p>
-                  <p>Quantidade: {produto.quantidade}</p>
+                  <img className="img_lista_carrinho" src={produto.imagens} alt={produto.nome} width="50" />
+
+                  <div className="descricao_produtos_lista">
+                    <p>{produto.nome}</p>
+                    <p>
+                      Preço R$
+                      <motion.span
+                        key={produto.preco * produto.quantidade}
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                      >
+                        {(produto.preco * produto.quantidade).toFixed(2)}
+                      </motion.span>
+                    </p>
+                    <p>Quantidade: {produto.quantidade}</p>
+                  </div>
                 </Link>
 
-                <button
-                  onClick={() => alterarQuantidade(produto.idproduto, 1)}
-                  disabled={produto.quantidade >= 5}
-                >
-                  +
-                </button>
-                <button onClick={() => alterarQuantidade(produto.idproduto, -1)}>-</button>
-                <button onClick={() => removerDoCarrinho(produto.idproduto)}>&#x02A2F;</button>
+                <div>
+                  <button
+                    onClick={() => alterarQuantidade(produto.idproduto, 1)}
+                    disabled={produto.quantidade >= 5}>
+                    +
+                  </button>
+                  <button onClick={() => alterarQuantidade(produto.idproduto, -1)}>-</button>
+                  <button onClick={() => removerDoCarrinho(produto.idproduto)}>&#x02A2F;</button>
+                </div>
+
               </li>
             ))}
           </ul>
@@ -249,7 +266,7 @@ const Header = ({ tipo }) => {
 
         {carrinho.length > 0 && (
           <div className="total-compra">
-            <p>
+            <p className="preco_total">
               Preço Total: R$
               <motion.span
                 key={precoTotal}

@@ -28,7 +28,14 @@ const Header = ({ tipo }) => {
   }, [fecharMenu]);
 
   const alternarMenu = () => {
-    setMenuAberto((prev) => !prev);
+    setMenuAberto((prev) => {
+      const novoEstado = !prev;
+      if (novoEstado) {
+        setTermoPesquisa("");
+      }
+      return novoEstado;
+    });
+
     if (menuCarrinhoAberto) {
       setMenuCarrinhoAberto(false);
     }
@@ -59,6 +66,10 @@ const Header = ({ tipo }) => {
     }
     return 0;
   });
+
+  useEffect(() => {
+    setTermoPesquisa("");
+  }, [location.pathname, setTermoPesquisa]);
 
   useEffect(() => {
     fetch('https://ironfit-backend.onrender.com/produtos')
