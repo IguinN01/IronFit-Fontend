@@ -157,20 +157,28 @@ const Header = ({ tipo }) => {
 
         {termoPesquisa && resultadosPesquisa.length > 0 && (
           <div className="destaques-home">
-            <h2>Resultado da pesquisa:</h2>
+            <h2 className="titulo_pesquisa">Resultado da Pesquisa:</h2>
             <div className="produtos-grid">
               {produtosOrdenados.slice(0, 3).map((produto) => (
-                <Link
-                  to={`/produto/${produto.idproduto}`}
-                  key={produto.idproduto}
-                  onClick={() => setTermoPesquisa("")}
-                >
-                  <div className="produto-card">
+                <div className="produto-card">
+                  <Link
+                    to={`/produto/${produto.idproduto}`}
+                    key={produto.idproduto}
+                    onClick={() => setTermoPesquisa("")}
+                  >
                     <img className="img-pesquisado" src={produto.imagens} alt={produto.nome} />
-                    <h3>{produto.nome}</h3>
-                    <p>R${produto.preco}</p>
+                  </Link>
+                  <div className="infos_pesquisa">
+                    <Link
+                      to={`/produto/${produto.idproduto}`}
+                      key={produto.idproduto}
+                      onClick={() => setTermoPesquisa("")}
+                    >
+                      <h3>{produto.nome}</h3>
+                      <p>R${produto.preco}</p>
+                    </Link>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -224,7 +232,7 @@ const Header = ({ tipo }) => {
           </li>
         </ul>
       </nav>
-    </header>
+    </header >
   );
 };
 

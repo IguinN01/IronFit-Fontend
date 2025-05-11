@@ -1,0 +1,44 @@
+/* PESQUISA */
+.img-pesquisado {
+  font-size: 1rem;
+  width: 58px;
+  border: solid 4px var(--branco-f5);
+  border-radius: 4px;
+  background: var(--branco-f5);
+}
+
+.titulo_pesquisa {
+  margin-top: 4px;
+  margin-left: 14px;
+  margin-bottom: 10px;
+}
+
+.produtos-grid {
+  margin-inline: 14px;
+}
+
+.produto-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.infos_pesquisa h3 {
+  font-weight: 400;
+  font-size: 1rem;
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.infos_pesquisa p {
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--branco-f5);
+}
+
+.destaques-home {
+  padding-bottom: 1px;
+}

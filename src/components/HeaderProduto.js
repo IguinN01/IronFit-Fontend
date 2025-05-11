@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useCallback, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -8,6 +8,7 @@ import { AuthContext } from "../context/AuthContext";
 
 import "../css/global/partials/header.css";
 import "../css/global/partials/headerBusca.css";
+import "../css/global/partials/itensPesquisa.css";
 
 const Header = ({ tipo }) => {
   const navigate = useNavigate();
@@ -22,6 +23,8 @@ const Header = ({ tipo }) => {
   const location = useLocation();
   const { termoPesquisa, setTermoPesquisa } = usePesquisa();
   const { carrinho, alterarQuantidade, removerDoCarrinho } = useCarrinho();
+
+  const carrinhoRef = useRef(null);
 
   const fecharMenu = useCallback(() => setMenuAberto(false), []);
 
@@ -45,8 +48,14 @@ const Header = ({ tipo }) => {
   };
 
   const alternarMenuCarrinho = () => {
-    setMenuCarrinhoAberto((prev) => !prev);
+    setMenuCarrinhoAberto((prev) => {
+      if (!prev && menuAberto) {
+        setMenuAberto(false);
+      }
+      return !prev;
+    });
   };
+
 
   const produtosFiltrados = produtos.filter((produto) =>
     produto.nome.toLowerCase().startsWith(termoPesquisa.toLowerCase())
@@ -75,26 +84,14 @@ const Header = ({ tipo }) => {
   });
 
   useEffect(() => {
-    setTermoPesquisa("");
-  }, [location.pathname, setTermoPesquisa]);
-
-  useEffect(() => {
     fetch('https://ironfit-backend.onrender.com/produtos')
       .then(res => res.json())
       .then(data => setProdutos(data));
   }, []);
 
   useEffect(() => {
-    if (menuCarrinhoAberto) {
-      document.body.classList.add('no-scroll');
-    } else {
-      document.body.classList.remove('no-scroll');
-    }
-
-    return () => {
-      document.body.classList.remove('no-scroll');
-    };
-  }, [menuCarrinhoAberto, location.pathname]);
+    setTermoPesquisa("");
+  }, [location.pathname, setTermoPesquisa]);
 
   useEffect(() => {
     setMostrarHeader(true);
@@ -103,9 +100,8 @@ const Header = ({ tipo }) => {
       let prevScrollPos = window.pageYOffset;
 
       const handleScroll = () => {
-        if (menuCarrinhoAberto) return;
-
         const currentScrollPos = window.pageYOffset;
+
         setMostrarHeader(prevScrollPos > currentScrollPos || currentScrollPos < 10);
         prevScrollPos = currentScrollPos;
 
@@ -117,17 +113,23 @@ const Header = ({ tipo }) => {
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [location, menuAberto, menuCarrinhoAberto, fecharMenu]);
+  }, [location, menuAberto, fecharMenu]);
 
   useEffect(() => {
-    if (menuCarrinhoAberto) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    function handleClickForaCarrinho(event) {
+      if (
+        menuCarrinhoAberto &&
+        carrinhoRef.current &&
+        !carrinhoRef.current.contains(event.target)
+      ) {
+        setMenuCarrinhoAberto(false);
+      }
     }
 
+    document.addEventListener("mousedown", handleClickForaCarrinho);
+
     return () => {
-      document.body.style.overflow = "";
+      document.removeEventListener("mousedown", handleClickForaCarrinho);
     };
   }, [menuCarrinhoAberto]);
 
@@ -192,20 +194,28 @@ const Header = ({ tipo }) => {
 
         {termoPesquisa && resultadosPesquisa.length > 0 && (
           <div className="destaques-home">
-            <h2>Resultado da pesquisa:</h2>
+            <h2 className="titulo_pesquisa">Resultado da Pesquisa:</h2>
             <div className="produtos-grid">
               {produtosOrdenados.slice(0, 3).map((produto) => (
-                <Link
-                  to={`/produto/${produto.idproduto}`}
-                  key={produto.idproduto}
-                  onClick={() => setTermoPesquisa("")}
-                >
-                  <div className="produto-card">
+                <div className="produto-card">
+                  <Link
+                    to={`/produto/${produto.idproduto}`}
+                    key={produto.idproduto}
+                    onClick={() => setTermoPesquisa("")}
+                  >
                     <img className="img-pesquisado" src={produto.imagens} alt={produto.nome} />
-                    <h3>{produto.nome}</h3>
-                    <p>R${produto.preco}</p>
+                  </Link>
+                  <div className="infos_pesquisa">
+                    <Link
+                      to={`/produto/${produto.idproduto}`}
+                      key={produto.idproduto}
+                      onClick={() => setTermoPesquisa("")}
+                    >
+                      <h3>{produto.nome}</h3>
+                      <p>R${produto.preco}</p>
+                    </Link>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -221,7 +231,7 @@ const Header = ({ tipo }) => {
             <div className="botao_hamburguer linha2"></div>
             <div className="botao_hamburguer linha3"></div>
           </div>
-          {quantidadeItensCarrinho > 0 && !menuAberto && (
+          {quantidadeItensCarrinho > 0 && !menuCarrinhoAberto && !menuAberto && (
             <motion.div
               className="bolinha"
               initial={{ scale: 0, opacity: 0 }}
@@ -290,7 +300,7 @@ const Header = ({ tipo }) => {
         </ul>
       </nav>
 
-      <div className={`menu-carrinho ${menuCarrinhoAberto ? "ativo" : ""}`}>
+      <div ref={carrinhoRef} className={`menu-carrinho ${menuCarrinhoAberto ? "ativo" : ""}`}>
         <button className="cabecalho_nav_menu_hamburguer" onClick={fecharMenuCarrinho} aria-label="Menu">
           <div className={`linhas_hamburguer ${menuAberto || menuCarrinhoAberto ? "ativo" : ""}`}>
             <div className="botao_hamburguer linha1"></div>
@@ -303,35 +313,56 @@ const Header = ({ tipo }) => {
         {carrinho.length === 0 ? (
           <p className="carrinho_vazio">Seu carrinho está vazio.</p>
         ) : (
-          <ul>
+          <ul className="lista_produtos">
             {carrinho.map((produto, index) => (
-              <li key={index}>
-                <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
-                  <img src={produto.imagens} alt={produto.nome} width="50" />
-                  <p>{produto.nome}</p>
-                  <p>
-                    Preço Total R$
-                    <motion.span
-                      key={produto.preco * produto.quantidade}
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 5 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                    >
-                      {(produto.preco * produto.quantidade).toFixed(2)}
-                    </motion.span>
-                  </p>
-                  <p>Quantidade: {produto.quantidade}</p>
-                </Link>
+              <li className="item_produtos" key={index}>
 
-                <button
-                  onClick={() => alterarQuantidade(produto.idproduto, 1)}
-                  disabled={produto.quantidade >= 5}
-                >
-                  +
-                </button>
-                <button onClick={() => alterarQuantidade(produto.idproduto, -1)}>-</button>
-                <button onClick={() => removerDoCarrinho(produto.idproduto)}>&#x02A2F;</button>
+                <div className="img_desc_carrinho">
+                  <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
+                    <img className="img_lista_carrinho" src={produto.imagens} alt={produto.nome} width="50" />
+                  </Link>
+
+                  <div className="descricao_produtos_lista">
+                    <div className="descricao_carrinho">
+                      <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
+                        <span className="nome_carrinho">{produto.nome}</span>
+                      </Link>
+
+                      <div className="ajuste_botao">
+                        <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
+                          <span>
+                            Preço: R$
+                            <motion.span
+                              key={produto.preco * produto.quantidade}
+                              initial={{ opacity: 0, y: -5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 5 }}
+                              transition={{ duration: 0.3, ease: "easeOut" }}
+                            >
+                              {(produto.preco * produto.quantidade).toFixed(2)}
+                            </motion.span>
+                          </span>
+                        </Link>
+                        <button className="botao_remover" onClick={() => removerDoCarrinho(produto.idproduto)}>&#x02A2F;</button>
+                      </div>
+                    </div>
+
+                    <div className="div_quantidade">
+                      <button
+                        className="botoes_carrinho" onClick={() => alterarQuantidade(produto.idproduto, -1)}>
+                        -
+                      </button>
+
+                      <span className="span_quantidade">{produto.quantidade}</span>
+
+                      <button className="botoes_carrinho"
+                        onClick={() => alterarQuantidade(produto.idproduto, 1)}
+                        disabled={produto.quantidade >= 5}>
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
@@ -339,7 +370,7 @@ const Header = ({ tipo }) => {
 
         {carrinho.length > 0 && (
           <div className="total-compra">
-            <p>
+            <p className="preco_total">
               Preço Total: R$
               <motion.span
                 key={precoTotal}

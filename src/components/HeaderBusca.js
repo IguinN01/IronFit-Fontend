@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useCallback, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -15,6 +15,8 @@ const Header = ({ tipo }) => {
   const [menuAberto, setMenuAberto] = useState(false);
   const [menuCarrinhoAberto, setMenuCarrinhoAberto] = useState(false);
   const [mostrarHeader, setMostrarHeader] = useState(true);
+
+  const carrinhoRef = useRef(null);
 
   const location = useLocation();
   const { termoPesquisa, setTermoPesquisa } = usePesquisa();
@@ -35,7 +37,12 @@ const Header = ({ tipo }) => {
   };
 
   const alternarMenuCarrinho = () => {
-    setMenuCarrinhoAberto((prev) => !prev);
+    setMenuCarrinhoAberto((prev) => {
+      if (!prev && menuAberto) {
+        setMenuAberto(false);
+      }
+      return !prev;
+    });
   };
 
   useEffect(() => {
@@ -43,26 +50,14 @@ const Header = ({ tipo }) => {
   }, [location.pathname, setTermoPesquisa]);
 
   useEffect(() => {
-    if (menuCarrinhoAberto) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuCarrinhoAberto]);
-
-  useEffect(() => {
     setMostrarHeader(true);
+
     const timeout = setTimeout(() => {
       let prevScrollPos = window.pageYOffset;
 
       const handleScroll = () => {
-        if (menuCarrinhoAberto) return;
-
         const currentScrollPos = window.pageYOffset;
+
         setMostrarHeader(prevScrollPos > currentScrollPos || currentScrollPos < 10);
         prevScrollPos = currentScrollPos;
 
@@ -74,7 +69,25 @@ const Header = ({ tipo }) => {
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [location, menuAberto, menuCarrinhoAberto, fecharMenu]);
+  }, [location, menuAberto, fecharMenu]);
+
+  useEffect(() => {
+    function handleClickForaCarrinho(event) {
+      if (
+        menuCarrinhoAberto &&
+        carrinhoRef.current &&
+        !carrinhoRef.current.contains(event.target)
+      ) {
+        setMenuCarrinhoAberto(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickForaCarrinho);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickForaCarrinho);
+    };
+  }, [menuCarrinhoAberto]);
 
   const quantidadeItensCarrinho = carrinho.length;
 
@@ -148,7 +161,7 @@ const Header = ({ tipo }) => {
             <div className="botao_hamburguer linha2"></div>
             <div className="botao_hamburguer linha3"></div>
           </div>
-          {quantidadeItensCarrinho > 0 && !menuAberto && (
+          {quantidadeItensCarrinho > 0 && !menuCarrinhoAberto && !menuAberto && (
             <motion.div
               className="menor_1024 bolinha"
               initial={{ scale: 0, opacity: 0 }}
@@ -211,7 +224,7 @@ const Header = ({ tipo }) => {
         </ul>
       </nav>
 
-      <div className={`menu-carrinho ${menuCarrinhoAberto ? "ativo" : ""}`}>
+      <div ref={carrinhoRef} className={`menu-carrinho ${menuCarrinhoAberto ? "ativo" : ""}`}>
         <button className="cabecalho_nav_menu_hamburguer" onClick={fecharMenuCarrinho} aria-label="Menu">
           <div className={`linhas_hamburguer ${menuAberto || menuCarrinhoAberto ? "ativo" : ""}`}>
             <div className="botao_hamburguer linha1"></div>
@@ -242,7 +255,7 @@ const Header = ({ tipo }) => {
                       <div className="ajuste_botao">
                         <Link to={`/produto/${produto.idproduto}`} className="produto-link" onClick={fecharMenuCarrinho}>
                           <span>
-                            Preço R$
+                            Preço: R$
                             <motion.span
                               key={produto.preco * produto.quantidade}
                               initial={{ opacity: 0, y: -5 }}
@@ -258,12 +271,15 @@ const Header = ({ tipo }) => {
                       </div>
                     </div>
 
-                    <div>
-                      <button onClick={() => alterarQuantidade(produto.idproduto, -1)}>-</button>
-
-                      <span>{produto.quantidade}</span>
-
+                    <div className="div_quantidade">
                       <button
+                        className="botoes_carrinho" onClick={() => alterarQuantidade(produto.idproduto, -1)}>
+                        -
+                      </button>
+
+                      <span className="span_quantidade">{produto.quantidade}</span>
+
+                      <button className="botoes_carrinho"
                         onClick={() => alterarQuantidade(produto.idproduto, 1)}
                         disabled={produto.quantidade >= 5}>
                         +
