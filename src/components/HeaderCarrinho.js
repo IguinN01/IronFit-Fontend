@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { usePesquisa } from "../context/PesquisaContext";
 import { AuthContext } from "../context/AuthContext";
@@ -67,6 +68,8 @@ const Header = ({ tipo }) => {
     return 0;
   });
 
+  const [quantidadeProdutosPesquisa, setQuantidadeProdutosPesquisa] = useState(3);
+
   useEffect(() => {
     setTermoPesquisa("");
   }, [location.pathname, setTermoPesquisa]);
@@ -99,6 +102,27 @@ const Header = ({ tipo }) => {
 
     return () => clearTimeout(timeout);
   }, [location, menuAberto, menuCarrinhoAberto, fecharMenu]);
+
+  useEffect(() => {
+    const atualizarQuantidade = () => {
+      if (window.innerWidth >= 1920) {
+        setQuantidadeProdutosPesquisa(5);
+      } else if (window.innerWidth >= 1024) {
+        setQuantidadeProdutosPesquisa(4);
+      } else if (window.innerWidth >= 480) {
+        setQuantidadeProdutosPesquisa(5);
+      } else if (window.innerWidth >= 375) {
+        setQuantidadeProdutosPesquisa(4);
+      } else {
+        setQuantidadeProdutosPesquisa(3);
+      }
+    };
+
+    atualizarQuantidade();
+    window.addEventListener("resize", atualizarQuantidade);
+
+    return () => window.removeEventListener("resize", atualizarQuantidade);
+  }, []);
 
   return (
     <header className={`cabecalho ${mostrarHeader ? "visivel" : "escondido"}`}>
@@ -155,34 +179,43 @@ const Header = ({ tipo }) => {
           </div>
         )}
 
-        {termoPesquisa && resultadosPesquisa.length > 0 && (
-          <div className="destaques-home">
-            <h2 className="titulo_pesquisa">Resultado da Pesquisa:</h2>
-            <div className="produtos-grid">
-              {produtosOrdenados.slice(0, 3).map((produto) => (
-                <div className="produto-card">
-                  <Link
-                    to={`/produto/${produto.idproduto}`}
+        <AnimatePresence mode="wait">
+          {termoPesquisa && resultadosPesquisa.length > 0 && (
+            <motion.div
+              className="destaques-home"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <h2 className="titulo_pesquisa">Resultado da Pesquisa:</h2>
+              <div className="produtos-grid">
+                {produtosOrdenados.slice(0, quantidadeProdutosPesquisa).map((produto) => (
+                  <div
+                    className="produto-card"
                     key={produto.idproduto}
-                    onClick={() => setTermoPesquisa("")}
                   >
-                    <img className="img-pesquisado" src={produto.imagens} alt={produto.nome} />
-                  </Link>
-                  <div className="infos_pesquisa">
                     <Link
                       to={`/produto/${produto.idproduto}`}
-                      key={produto.idproduto}
                       onClick={() => setTermoPesquisa("")}
                     >
-                      <h3>{produto.nome}</h3>
-                      <p>R${produto.preco}</p>
+                      <img className="img-pesquisado" src={produto.imagens} alt={produto.nome} />
                     </Link>
+                    <div className="infos_pesquisa">
+                      <Link
+                        to={`/produto/${produto.idproduto}`}
+                        onClick={() => setTermoPesquisa("")}
+                      >
+                        <h3>{produto.nome}</h3>
+                        <p>R${produto.preco}</p>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <button
           className={`cabecalho_nav_menu_hamburguer ${menuCarrinhoAberto ? "ativo" : ""}`}

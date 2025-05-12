@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { calcularFrete } from '../services/freteService';
 
 function CalcularFrete({ onFreteSelecionado }) {
@@ -55,22 +56,24 @@ function CalcularFrete({ onFreteSelecionado }) {
   };
 
   return (
-    <div>
-      <h2>Calcular Frete</h2>
+    <div className='div_calcular_frete'>
+      <h2 className='calcular_titulo'>Calcular Frete</h2>
 
-      <input
-        type="text"
-        placeholder="Digite seu CEP"
-        value={cep}
-        onChange={handleChangeCep}
-        maxLength="9"
-      />
+      <div className='div_input_frete'>
+        <input
+          className='input_frete'
+          type="text"
+          placeholder="Digite seu CEP"
+          value={cep}
+          onChange={handleChangeCep}
+          maxLength="9"
+        />
 
-      <button onClick={handleCalcularFrete} disabled={loading}>
-        {loading ? 'Calculando...' : 'Calcular'}
-      </button>
-
-      {erro && <p style={{ color: 'red', marginTop: '8px' }}>{erro}</p>}
+        <button className='botao_frete' onClick={handleCalcularFrete} disabled={loading}>
+          {loading ? 'Calculando...' : 'Calcular Frete'}
+        </button>
+      </div>
+      {erro && <p>{erro}</p>}
 
       {frete && (
         <div>

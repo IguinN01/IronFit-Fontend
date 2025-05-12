@@ -28,6 +28,8 @@ const Header = ({ tipo }) => {
 
   const fecharMenu = useCallback(() => setMenuAberto(false), []);
 
+  const [quantidadeProdutosPesquisa, setQuantidadeProdutosPesquisa] = useState(3);
+
   const fecharMenuCarrinho = useCallback(() => {
     setMenuCarrinhoAberto(false);
     fecharMenu();
@@ -56,7 +58,6 @@ const Header = ({ tipo }) => {
     });
   };
 
-
   const produtosFiltrados = produtos.filter((produto) =>
     produto.nome.toLowerCase().startsWith(termoPesquisa.toLowerCase())
   );
@@ -82,6 +83,27 @@ const Header = ({ tipo }) => {
     }
     return 0;
   });
+
+  useEffect(() => {
+    const atualizarQuantidade = () => {
+      if (window.innerWidth >= 1920) {
+        setQuantidadeProdutosPesquisa(5);
+      } else if (window.innerWidth >= 1024) {
+        setQuantidadeProdutosPesquisa(4);
+      } else if (window.innerWidth >= 480) {
+        setQuantidadeProdutosPesquisa(5);
+      } else if (window.innerWidth >= 375) {
+        setQuantidadeProdutosPesquisa(4);
+      } else {
+        setQuantidadeProdutosPesquisa(3);
+      }
+    };
+
+    atualizarQuantidade();
+    window.addEventListener("resize", atualizarQuantidade);
+
+    return () => window.removeEventListener("resize", atualizarQuantidade);
+  }, []);
 
   useEffect(() => {
     fetch('https://ironfit-backend.onrender.com/produtos')
@@ -192,34 +214,43 @@ const Header = ({ tipo }) => {
           </div>
         )}
 
-        {termoPesquisa && resultadosPesquisa.length > 0 && (
-          <div className="destaques-home">
-            <h2 className="titulo_pesquisa">Resultado da Pesquisa:</h2>
-            <div className="produtos-grid">
-              {produtosOrdenados.slice(0, 3).map((produto) => (
-                <div className="produto-card">
-                  <Link
-                    to={`/produto/${produto.idproduto}`}
+        <AnimatePresence mode="wait">
+          {termoPesquisa && resultadosPesquisa.length > 0 && (
+            <motion.div
+              className="destaques-home"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <h2 className="titulo_pesquisa">Resultado da Pesquisa:</h2>
+              <div className="produtos-grid">
+                {produtosOrdenados.slice(0, quantidadeProdutosPesquisa).map((produto) => (
+                  <div
+                    className="produto-card"
                     key={produto.idproduto}
-                    onClick={() => setTermoPesquisa("")}
                   >
-                    <img className="img-pesquisado" src={produto.imagens} alt={produto.nome} />
-                  </Link>
-                  <div className="infos_pesquisa">
                     <Link
                       to={`/produto/${produto.idproduto}`}
-                      key={produto.idproduto}
                       onClick={() => setTermoPesquisa("")}
                     >
-                      <h3>{produto.nome}</h3>
-                      <p>R${produto.preco}</p>
+                      <img className="img-pesquisado" src={produto.imagens} alt={produto.nome} />
                     </Link>
+                    <div className="infos_pesquisa">
+                      <Link
+                        to={`/produto/${produto.idproduto}`}
+                        onClick={() => setTermoPesquisa("")}
+                      >
+                        <h3>{produto.nome}</h3>
+                        <p>R${produto.preco}</p>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <button
           className={`cabecalho_nav_menu_hamburguer ${menuCarrinhoAberto ? "ativo" : ""}`}
@@ -371,7 +402,7 @@ const Header = ({ tipo }) => {
         {carrinho.length > 0 && (
           <div className="total-compra">
             <p className="preco_total">
-              Preço Total: R$
+              Subtotalotal: R$
               <motion.span
                 key={precoTotal}
                 initial={{ opacity: 0, y: -10 }}

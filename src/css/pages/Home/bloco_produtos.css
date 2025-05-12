@@ -70,15 +70,15 @@
   padding-block: 12px;
   margin-inline: 14vw;
   border-radius: 12px;
-  border: solid 1px var(--branco-f5);
+  border: solid 1px var(--branco-ff);
   color: var(--cinza);
-  background-color: var(--branco-f5);
+  background-color: var(--branco-ff);
 }
 
 .texto_link_produto:hover {
   font-weight: 500;
   transition: 0.4s ease-in-out;
-  border: solid 1px var(--branco-f5);
+  border: solid 1px var(--branco-ff);
   background: var(--azul-gradiente);
   background-clip: text;
   -webkit-background-clip: text;

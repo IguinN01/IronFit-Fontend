@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react"; 
+import { ArrowLeft } from "lucide-react";
 
 import FormularioAutenticacao from '../components/FormularioAutenticacao';
-import { AuthContext } from '../context/AuthContext';  
+import { AuthContext } from '../context/AuthContext';
 
 import "../css/pages/CadastroLogin/cadastro_login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);  
+  const { login } = useContext(AuthContext);
 
   const tratarLogin = async (dadosFormulario) => {
     const { email, senha } = dadosFormulario;
@@ -17,11 +17,11 @@ const Login = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, senha }),
-    });   
+    });
 
     if (resposta.ok) {
       const dados = await resposta.json();
-      await login(dados.token); 
+      await login(dados.token);
       alert('Login realizado com sucesso!');
       navigate(-2);
     } else {
@@ -34,9 +34,12 @@ const Login = () => {
     <main>
       <div className='formulario'>
         <div className='titulos-botao'>
-          <h2>Faça Login</h2>
-          <p>Seja bem-vindo novamente</p>
-          <button type="button" onClick={() => navigate(-2)}>
+          <div className='titulos-cadastro'>
+            <h2>Faça <b>Login</b></h2>
+            <p>Seja bem-vindo novamente</p>
+          </div>
+
+          <button className='voltar_cadastro' type="button" onClick={() => navigate(-2)}>
             <ArrowLeft size={24} />
           </button>
         </div>

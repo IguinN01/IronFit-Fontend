@@ -31,7 +31,7 @@ export default function PagamentoPix({ amount = "10" }) {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
-          email: localStorage.getItem("email"), 
+          email: localStorage.getItem("email"),
           amount,
         }),
       });
@@ -57,44 +57,47 @@ export default function PagamentoPix({ amount = "10" }) {
     if (pixCopiaECola) {
       navigator.clipboard.writeText(pixCopiaECola);
       setCopiado(true);
-      setTimeout(() => setCopiado(false), 2000);  
+      setTimeout(() => setCopiado(false), 2000);
     }
   };
 
   return (
-    <div style={{ marginTop: "20px" }}>
-      <h3>Pagamento via Pix</h3>
+    <div>
 
       {!verificarLogin() && (
-        <div style={{ color: "red", marginBottom: "10px" }}>
-          <p>Você precisa estar logado para realizar o pagamento via Pix.</p>
-          <p><a href="/login" style={{ color: "blue" }}>Clique aqui para fazer login.</a></p>
+        <div className='texto_fazer_login'>
+          <p>Você precisa estar logado para realizar o pagamento.</p>
+          <p><a href="/login">Clique aqui para fazer login.</a></p>
         </div>
       )}
 
       {!qrCodeBase64 && verificarLogin() && (
-        <button onClick={gerarPagamentoPix} disabled={carregando}>
-          {carregando ? "Gerando..." : "Gerar QR Code"}
-        </button>
+        <>
+          <div className='botao_gerar_pix'>
+            <button className='botao_pix' onClick={gerarPagamentoPix} disabled={carregando}>
+              {carregando ? "Gerando..." : "Gerar QR Code"}
+            </button>
+          </div>
+        </>
       )}
 
-      {erro && <p style={{ color: "red" }}>{erro}</p>}
+      {erro && <p>{erro}</p>}
 
       {qrCodeBase64 && (
-        <div style={{ marginTop: "10px" }}>
-          <p>Escaneie o QR Code abaixo com seu app de banco:</p>
-          <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code Pix" width={'150px'} />
-          <p>ID do Pagamento: {paymentId}</p>
+        <div className='info_pix'>
+          <p>Escaneie o QR Code abaixo:</p>
+          <img className='qrcode_pix' src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code Pix" />
+          <div>
+            <p>ID do Pagamento: {paymentId}</p>
+            <p>Ou copie o código Pix:</p>
+          </div>
 
           {pixCopiaECola && (
-            <div style={{ marginTop: "10px" }}>
-              <p>Ou copie o código Pix:</p>
-              <textarea
-                readOnly
-                value={pixCopiaECola}
-                style={{ width: "316px", height: "60px" }}
-              />
-              <button onClick={copiarCodigo} style={{ marginTop: "5px" }}>
+            <div>
+              <span className='codigo_pix' style={{ display: 'block', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
+                {pixCopiaECola}
+              </span>
+              <button className='botao_pix' onClick={copiarCodigo}>
                 {copiado ? "Copiado!" : "Copiar código"}
               </button>
             </div>

@@ -74,3 +74,25 @@
 .botao_carrinho_menu {
   position: relative;
 }
+
+@media screen and (min-width: 425px) {
+  .input-pesquisa {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .campo-pesquisa {
+    padding-inline: 32px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .input-pesquisa {
+    font-size: 1.2rem;
+  }
+
+  .campo-pesquisa {
+    padding-inline: 38px;
+  }
+}

@@ -112,7 +112,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
 
   const handleGoogleLogin = async () => {
     const resultado = await loginComGoogle();
-  
+
     if (resultado.sucesso) {
       alert("Login com Google realizado com sucesso!");
       navigate(-1);
@@ -162,7 +162,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
       )}
 
       <div className='input'>
-        <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="ALTERAR" />
+        <img className="input-person" src='/images/pages/CadastroLogin/envelope.svg' alt="ALTERAR" />
         <input
           className='inputs'
           placeholder='E-Mail:'
@@ -176,7 +176,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
       </div>
 
       <div className='input'>
-        <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="ALTERAR" />
+        <img className="input-person" src='/images/pages/CadastroLogin/cadeado.svg' alt="ALTERAR" />
         <input
           type={mostrarSenha ? 'text' : 'password'}
           className='inputs'
@@ -190,6 +190,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
           maxLength={32}
         />
         <button
+          className='botao_mostrar_senha'
           type="button"
           onClick={() => setMostrarSenha(!mostrarSenha)}
         >
@@ -199,7 +200,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
 
       {ehCadastro && (
         <div className='input'>
-          <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="ALTERAR" />
+          <img className="input-person" src='/images/pages/CadastroLogin/personCadeado.svg' alt="ALTERAR" />
           <input
             type={mostrarConfirmacaoSenha ? 'text' : 'password'}
             className='inputs'
@@ -213,6 +214,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
             maxLength={32}
           />
           <button
+            className='botao_mostrar_senha'
             type="button"
             onClick={() => setMostrarConfirmacaoSenha(!mostrarConfirmacaoSenha)}
           >
@@ -221,7 +223,7 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
         </div>
       )}
 
-      {erro && <p style={{ color: 'red' }}>{erro}</p>}
+      {erro && <p>{erro}</p>}
       <button type="submit">{ehCadastro ? 'Cadastrar' : 'Entrar'}</button>
       {!ehCadastro && (
         <>

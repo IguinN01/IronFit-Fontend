@@ -1,0 +1,284 @@
+/* CARRINHO */
+.pagina-checkout {
+  padding-top: 120px;
+}
+
+/* CARRINHO VAZIO */
+.pagamento_vazio {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 36px;
+  gap: 4px;
+  font-size: 1rem;
+}
+
+.pagamento_vazio span {
+  color: var(--branco-f5);
+  transition: .3s ease-in;
+}
+
+.pagamento_vazio a span:hover {
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: .3s ease-in;
+}
+
+/* CARRINHO ITENS */
+.div_titulo_pagamento {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  margin-bottom: 12px;
+}
+
+.botao-voltar_pagamento {
+  border: none;
+  background: none;
+  padding-bottom: 8px;
+  font-size: 26px;
+  margin-left: 18px;
+  color: var(--branco-f5);
+}
+
+.pagamento_titulo {
+  text-align: end;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-right: 22px;
+}
+
+.pagamento_titulo b {
+  font-weight: 400;
+  font-size: 1.2rem;
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.scroll-carrinho {
+  max-height: 53vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scroll-carrinho::-webkit-scrollbar {
+  display: none;
+}
+
+.subtotal_pagamento,
+.total_pagamento {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-left: 16px;
+  margin-top: 4px;
+}
+
+.hr_preco {
+  margin-top: 12px;
+}
+
+/* FRETE */
+.calcular_titulo {
+  font-size: 1rem;
+}
+
+.div_calcular_frete {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 16px;
+  padding-block: 12px;
+}
+
+.div_input_frete {
+  display: flex;
+  flex-direction: column;
+  padding-block: 8px;
+  gap: 6px;
+}
+
+.input_frete {
+  border: none;
+  padding: 4px 10px 5px 8px;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+
+.input_frete:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.botao_frete {
+  border: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: .9rem;
+  border-radius: 6px;
+  padding-block: 6px;
+  color: var(--cinza);
+  background: var(--branco-f5);
+  overflow: hidden;
+  z-index: 0;
+}
+
+.botao_frete::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--azul-gradiente);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.botao_frete:hover::before {
+  opacity: 1;
+}
+
+@media screen and (min-width: 425px) {
+  .botao-voltar_pagamento {
+    font-size: 28px;
+  }
+
+  .pagamento_titulo,
+  .pagamento_titulo b {
+    font-size: 1.4rem;
+  }
+
+  .botao_frete,
+  .pagamento_vazio,
+  .calcular_titulo,
+  .subtotal_pagamento,
+  .total_pagamento {
+    font-size: 1.2rem;
+  }
+
+  .input_frete {
+    font-size: 1rem;
+  }
+
+  .pagina-checkout {
+    padding-inline: 4px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .botao-voltar_pagamento {
+    font-size: 32px;
+  }
+
+  .pagamento_titulo,
+  .pagamento_titulo b {
+    font-size: 1.6rem;
+  }
+
+  .pagamento_vazio,
+  .calcular_titulo,
+  .subtotal_pagamento,
+  .total_pagamento {
+    font-size: 1.4rem;
+  }
+
+  .pagina-checkout {
+    padding-inline: 6px;
+  }
+
+  .div_titulo_pagamento {
+    margin-top: 36px;
+  }
+
+  .div_input_frete {
+    flex-direction: row;
+    margin-top: 6px;
+    gap: 10px;
+  }
+
+  .input_frete {
+    font-size: 1.2rem;
+    margin-top: 0;
+    width: 55vw;
+  }
+
+  .botao_frete {
+    font-size: 1.4rem;
+    padding-inline: 16px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .pagina-checkout {
+    padding-inline: 10px;
+  }
+
+  .div_titulo_pagamento {
+    margin-top: 42px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .scroll-carrinho {
+    max-height: 45vh;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .pagina-checkout {
+    margin-inline: 162px;
+  }
+
+  .botao-voltar_pagamento {
+    font-size: 46px;
+    margin-bottom: 8px;
+  }
+
+  .pagamento_titulo,
+  .pagamento_titulo b {
+    font-size: 1.8rem;
+  }
+
+  .pagamento_vazio,
+  .calcular_titulo,
+  .subtotal_pagamento,
+  .total_pagamento {
+    font-size: 1.6rem;
+  }
+
+  .pagina-checkout {
+    padding-inline: 6px;
+  }
+
+  .div_titulo_pagamento {
+    margin-top: 82px;
+  }
+
+  .div_input_frete {
+    flex-direction: row;
+    margin-top: 6px;
+    gap: 10px;
+  }
+
+  .input_frete {
+    font-size: 1.4rem;
+    margin-top: 0;
+    width: 55vw;
+  }
+
+  .botao_frete {
+    font-size: 1.6rem;
+    padding-inline: 16px;
+  }
+
+  .img_pagamento {
+    width: 96px;
+    border: solid 8px var(--branco-ff);
+  }
+}

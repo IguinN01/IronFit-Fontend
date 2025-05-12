@@ -1,0 +1,314 @@
+/* FAZER LOGIN */
+.div_metodo_pagamento {
+  margin-top: 26px;
+  padding-inline: 16px;
+}
+
+.texto_fazer_login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.texto_fazer_login p,
+a {
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--branco-f5);
+}
+
+.texto_fazer_login a:hover {
+  font-weight: 400;
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: .3s;
+}
+
+/* LOGADO */
+.titulo_finalizar {
+  font-weight: 300;
+  font-style: 1rem;
+  margin-top: -12px;
+  margin-bottom: 16px;
+}
+
+.titulo_finalizar b {
+  font-weight: 500;
+  background: var(--azul-gradiente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.radios_metodo {
+  display: flex;
+  margin-bottom: 12px;
+  gap: 32px;
+  font-size: .8rem;
+}
+
+.radios_metodo input {
+  margin-right: 2px;
+}
+
+/* CARTÃO */
+.formulario-pagamento {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 24px;
+}
+
+.info_pequenas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input_cartao {
+  border: none;
+  padding: 4px 10px 5px 8px;
+  border-radius: 6px;
+  margin-top: 8px;
+  font-size: .8rem;
+}
+
+.input_cartao:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.input_cpf {
+  margin-bottom: 8px;
+}
+
+.parcelas {
+  width: 100%;
+  padding: 3px 32px 3px 3px;
+  font-size: .8rem;
+  border-radius: 4px;
+  color: #333;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20fill='gray'%20viewBox='0%200%2016%2016'%3E%3Cpath%20d='M1.5%205.5l6%206%206-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: block;
+}
+
+.botao_pagar {
+  margin-top: 14px;
+}
+
+/* PIX */
+.botao_pix {
+  border: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: .9rem;
+  border-radius: 6px;
+  padding-block: 6px;
+  width: 100%;
+  margin-top: 28px;
+  color: var(--cinza);
+  background: var(--branco-f5);
+  overflow: hidden;
+  z-index: 0;
+}
+
+.botao_pix::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--azul-gradiente);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.botao_pix:hover::before {
+  opacity: 1;
+}
+
+.info_pix {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 32px;
+  gap: 12px;
+}
+
+.qrcode_pix {
+  width: 30vh;
+}
+
+.codigo_pix {
+  font-size: .7rem;
+  font-weight: 300;
+}
+
+@media screen and (min-width: 425px) {
+
+  .botao_pix,
+  .titulo_finalizar,
+  .texto_fazer_login p,
+  a {
+    font-size: 1.2rem;
+  }
+
+  .radios_metodo,
+  .input_cartao,
+  .parcelas {
+    font-size: 1rem;
+  }
+
+  .radios_metodo input {
+    margin-right: 4px;
+  }
+
+  .botao_pix {
+    padding-bottom: 8px;
+  }
+
+  .codigo_pix {
+    font-size: .9rem;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .formulario-pagamento {
+    padding-inline: 62px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .info_pequenas {
+    flex-direction: row;
+    gap: 64px;
+  }
+
+  .botao_pix,
+  .titulo_finalizar,
+  .texto_fazer_login p,
+  a {
+    font-size: 1.4rem;
+  }
+
+  .radios_metodo,
+  .input_cartao,
+  .parcelas {
+    font-size: 1.2rem;
+  }
+
+  .radios_metodo input {
+    margin-right: 5px;
+  }
+
+  .display_menor_768 {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .botao_gerar_pix {
+    display: flex;
+    margin-inline: 92px;
+  }
+
+  .botao_pix {
+    padding-block: 10px;
+  }
+
+  .codigo_pix {
+    font-size: 1.1rem;
+  }
+
+  .qrcode_pix {
+    width: 25vw;
+  }
+
+  .info_pix {
+    margin-inline: 32px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .div_metodo_pagamento {
+    padding-inline: 146px;
+  }
+
+  .display_menor_768 {
+    flex-direction: row;
+    gap: 64px;
+  }
+
+  .qrcode_pix {
+    width: 30vh;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .div_metodo_pagamento {
+    padding-inline: 264px;
+  }
+
+  .qrcode_pix {
+    width: 25vh;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .div_metodo_pagamento {
+    padding-inline: 292px;
+  }
+
+  .qrcode_pix {
+    width: 20vh;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .div_metodo_pagamento {
+    padding-inline: 332px;
+  }
+
+  .botao_pix,
+  .titulo_finalizar,
+  .texto_fazer_login p,
+  a {
+    font-size: 1.6rem;
+  }
+
+  .input_cartao,
+  .parcelas {
+    font-size: 1.4rem;
+  }
+
+  .botao_pix {
+    padding-bottom: 14px;
+  }
+
+  .botao_gerar_pix {
+    margin-inline: 142px;
+  }
+
+  .codigo_pix {
+    font-size: 1.3rem;
+  }
+
+  .qrcode_pix {
+    width: 15vh;
+  }
+}

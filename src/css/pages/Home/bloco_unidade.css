@@ -91,7 +91,7 @@
   padding-block: 10px;
   border-radius: 8px;
   transition: 0.4s ease-in-out;
-  border: solid 1px var(--branco-f5);
+  border: solid 1px var(--branco-ff);
   background: var(--azul-gradiente);
   background-clip: text;
   -webkit-background-clip: text;

@@ -295,7 +295,7 @@ const Header = ({ tipo }) => {
         {carrinho.length > 0 && (
           <div className="total-compra">
             <p className="preco_total">
-              Preço Total: R$
+              Subtotalotal: R$
               <motion.span
                 key={precoTotal}
                 initial={{ opacity: 0, y: -10 }}

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  align-items: center; 
+  align-items: center;
   padding-top: 94px;
   padding-inline: 16px;
 }
@@ -61,8 +61,8 @@
   border: none;
   padding-left: 38px;
   padding-right: 12px;
-  height: 32px;  
-  border-radius: 6px;  
+  height: 32px;
+  border-radius: 6px;
   width: 232px;
 }
 
@@ -74,4 +74,14 @@
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
+}
+
+.botao_mostrar_senha {
+  position: absolute;
+  border: none;
+  font-size: 1.2rem;
+  margin-top: 6px;
+  right: 14px; 
+  color: var(--cinza);
+  background: var(--branco-ff);
 }

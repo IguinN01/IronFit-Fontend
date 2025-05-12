@@ -137,14 +137,14 @@ const RedefinirSenha = () => {
             </button>
           </div>
 
-          {erro && <p style={{ color: 'red' }}>{erro}</p>}
+          {erro && <p>{erro}</p>}
 
           <button type="submit" disabled={carregando}>
             {carregando ? 'Redefinindo...' : 'Redefinir Senha'}
           </button>
         </form>
       ) : (
-        <p style={{ color: 'red' }}>{erro}</p>
+        <p>{erro}</p>
       )}
     </main>
   );

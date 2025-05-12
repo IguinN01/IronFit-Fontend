@@ -227,39 +227,52 @@ export default function PagamentoCredito({ aoTokenizar, valorTotal }) {
   return (
     <>
       {!verificarLogin() ? (
-        <div style={{ color: "red", marginTop: "20px" }}>
-          <p>Você precisa estar logado para realizar o pagamento com cartão de crédito.</p>
-          <p><a href="/login" style={{ color: "blue" }}>Clique aqui para fazer login.</a></p>
+        <div className='texto_fazer_login'>
+          <p>Você precisa estar logado para realizar o pagamento.</p>
+          <p><a href="/login">Clique aqui para fazer login.</a></p>
         </div>
       ) : (
         <>
           {formVisivel && (
-            <form id="formulario-pagamento">
-              <input type="text" id="nome-cartao" placeholder="Nome no cartão" />
-              <input type="email" id="email-comprador" placeholder="Confirme seu E-Mail" />
-              <input type="text" id="numero-cartao" placeholder="Número do cartão" />
-              <input type="text" id="cardExpirationDate" placeholder="MM/AA" required />
-              <input type="text" id="codigo-seguranca" placeholder="CVC" />
-              <input type="text" id="numero-documento" placeholder="CPF" />
+            <form className='formulario-pagamento' id="formulario-pagamento">
+              <input className='input_cartao' type="text" id="nome-cartao" placeholder="Nome no cartão" />
+              <input className='input_cartao' type="email" id="email-comprador" placeholder="Seu E-Mail" />
 
-              <select id="bandeira-cartao"></select>
-              <select id="parcelas"></select>
-              <button type="submit">Pagar</button>
+              <div className='info_pequenas display_menor_768'>
+                <input className='input_cartao' type="text" id="numero-cartao" placeholder="Número do cartão" />
+                <input className='input_cartao' type="text" id="cardExpirationDate" placeholder="MM/AA" required />
+              </div>
+
+              <div className='info_pequenas input_cpf'>
+                <input className='input_cartao' type="text" id="codigo-seguranca" placeholder="CVC" />
+                <input className='input_cartao' type="text" id="numero-documento" placeholder="CPF" />
+              </div>
+
+              <select id="bandeira-cartao" style={{ display: 'none' }} >
+                <option value="" disabled selected>Bandeira do Cartão</option>
+              </select>
+
+              <select className='parcelas' id="parcelas">
+                <option value="" disabled selected>Parcelas</option>
+              </select>
+
+              <button className='botao_pagar botao_frete' type="submit">Pagar</button>
             </form>
           )}
 
           {mensagemSucesso && (
-            <p style={{ marginTop: '10px' }}>
+            <p>
               {mensagemSucesso}
             </p>
           )}
           {mensagemErro && (
-            <p style={{ marginTop: '10px' }}>
+            <p>
               {mensagemErro}
             </p>
           )}
         </>
-      )}
+      )
+      }
     </>
   );
 }
