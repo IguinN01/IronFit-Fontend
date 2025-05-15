@@ -61,22 +61,24 @@ const Cadastro = () => {
   return (
     <main>
       <div className='formulario'>
-        <div className='titulos-botao'>
-          <div className='titulos-cadastro'>
-            <h2>Crie uma <b>Conta</b></h2>
-            <p>Por favor preencha todos os campos abaixo:</p>
+        <div className='formulario0'>
+          <div className='titulos-botao'>
+            <div className='titulos-cadastro'>
+              <h2>Crie uma <b>Conta</b></h2>
+              <p>Por favor preencha todos os campos abaixo:</p>
+            </div>
+
+            <button className='voltar_cadastro' type="button" onClick={() => navigate(-1)}>
+              <ArrowLeft size={24} />
+            </button>
           </div>
 
-          <button className='voltar_cadastro' type="button" onClick={() => navigate(-1)}>
-            <ArrowLeft size={24} />
-          </button>
+          <FormularioAutenticacao aoEnviar={tratarCadastro} ehCadastro={true} emailGoogle={emailGoogle} nomeGoogle={nomeGoogle} />
+          <button className='botao_cadastro' onClick={handleGoogleLogin}>Cadastrar com Google</button>
+          <Link to="/login">
+            <p className='ja_login'>Já tem uma conta? <p>Faça Login</p></p>
+          </Link>
         </div>
-
-        <FormularioAutenticacao aoEnviar={tratarCadastro} ehCadastro={true} emailGoogle={emailGoogle} nomeGoogle={nomeGoogle} />
-        <button onClick={handleGoogleLogin}>Cadastrar com Google</button>
-        <Link to="/login">
-          <p>Já tem uma conta? Faça Login</p>
-        </Link>
       </div>
     </main>
   );

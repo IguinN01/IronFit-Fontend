@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+
 import { useCarrinho } from "../context/CarrinhoContext";
 
 import "../css/pages/PodutoDetalhes/produto_detalhes.css";
@@ -35,17 +37,20 @@ const ProdutoDetalhes = () => {
 
   return (
     <section className="produto-detalhes">
-      <button className="btn-voltar" onClick={() => navigate(-1)}>
-        ← Voltar
+      <button className="btn-voltar_detalhes" onClick={() => navigate(-1)}>
+        <ArrowLeft size={24} />
       </button>
 
-      <img src={produto.imagens} alt={produto.nome} className="produto-img" />
-      <h1>{produto.nome}</h1>
-      <p className="produto-preco">Preço: R${produto.preco}</p>
-      <p className="produto-descricao">{produto.descricao_produto}</p>
+      <img src={produto.imagens} alt={produto.nome} className="produto-img_detalhes" />
+      <h1 className="nome_detalhe">{produto.nome}</h1>
+
+      <div className="detalhe_preco_descricao">
+        <p className="produto-preco">Preço: R${produto.preco}</p>
+        <p className="produto-descricao">{produto.descricao_produto}</p>
+      </div>
 
       <button
-        className="adicionar__carrinho"
+        className="botao_add_detalhe"
         onClick={() => adicionarAoCarrinho(produto)}
       >
         Adicionar ao Carrinho

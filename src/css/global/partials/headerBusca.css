@@ -65,6 +65,8 @@
 }
 
 .item_menu_hamburguer:hover span {
+  display: inline-block;
+  line-height: 1.2;
   background: var(--azul-gradiente);
   background-clip: text;
   -webkit-background-clip: text;

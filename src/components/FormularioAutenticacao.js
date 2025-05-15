@@ -224,11 +224,11 @@ const FormularioAutenticacao = ({ aoEnviar, ehCadastro, emailGoogle = "", nomeGo
       )}
 
       {erro && <p>{erro}</p>}
-      <button type="submit">{ehCadastro ? 'Cadastrar' : 'Entrar'}</button>
+      <button className='botao_cadastro' type="submit">{ehCadastro ? 'Cadastrar' : 'Entrar'}</button>
       {!ehCadastro && (
         <>
-          <button type="button" onClick={recuperarSenha}>Esqueci a senha</button>
-          <button type="button" onClick={handleGoogleLogin}>Login com Google</button>
+          <button className='botao_cadastro cadastro_margin_top' type="button" onClick={handleGoogleLogin}>Login com Google</button>
+          <button className='botao_cadastro cadastro_margin_top' type="button" onClick={recuperarSenha}>Esqueci a senha</button>
         </>
       )}
     </form>

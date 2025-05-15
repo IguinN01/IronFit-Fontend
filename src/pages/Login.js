@@ -33,21 +33,23 @@ const Login = () => {
   return (
     <main>
       <div className='formulario'>
-        <div className='titulos-botao'>
-          <div className='titulos-cadastro'>
-            <h2>Faça <b>Login</b></h2>
-            <p>Seja bem-vindo novamente</p>
+        <div className='formulario0'>
+          <div className='titulos-botao'>
+            <div className='titulos-cadastro'>
+              <h2>Faça <b>Login</b></h2>
+              <p>Seja bem-vindo novamente</p>
+            </div>
+
+            <button className='voltar_cadastro' type="button" onClick={() => navigate(-2)}>
+              <ArrowLeft size={24} />
+            </button>
           </div>
 
-          <button className='voltar_cadastro' type="button" onClick={() => navigate(-2)}>
-            <ArrowLeft size={24} />
-          </button>
+          <FormularioAutenticacao aoEnviar={tratarLogin} ehCadastro={false} />
+          <Link to="/cadastro">
+            <p className='ja_login' style={{ marginTop: '18px' }}>Ainda não tem uma conta? <p>Cadastre-se</p></p>
+          </Link>
         </div>
-
-        <FormularioAutenticacao aoEnviar={tratarLogin} ehCadastro={false} />
-        <Link to="/cadastro">
-          <p>Ainda não tem uma conta? Cadastre-se</p>
-        </Link>
       </div>
     </main>
   );
