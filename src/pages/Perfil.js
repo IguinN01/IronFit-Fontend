@@ -183,21 +183,23 @@ const Perfil = () => {
               <p className='info_perfil'><strong>Conta criada em:</strong> {new Date(dadosUsuario.criado_em).toLocaleString('pt-BR')}</p>
             </div>
 
-            <hr style={{ margin: '20px 0', width: '100vw', }} />
+            <hr style={{ margin: '20px 0' }} />
 
             <div className='atualizar_perfil'>
               <h3 className='atualizar_titulo'>Atualizar E-mail</h3>
-              <input
-                className='input_atualizar'
-                type="email"
-                id="AtualizarEmail"
-                value={novoEmail}
-                onChange={(e) => setNovoEmail(e.target.value)}
-              />
-              <button className='botao_atualizar' onClick={atualizarEmail}>
-                Atualizar E-mail
-              </button>
-              {mensagemEmail && <p style={{ marginTop: '10px' }}>{mensagemEmail}</p>}
+              <div>
+                <input
+                  className='input_atualizar'
+                  type="email"
+                  id="AtualizarEmail"
+                  value={novoEmail}
+                  onChange={(e) => setNovoEmail(e.target.value)}
+                />
+                <button className='botao_atualizar' onClick={atualizarEmail}>
+                  Atualizar E-mail
+                </button>
+                {mensagemEmail && <p style={{ marginTop: '10px' }}>{mensagemEmail}</p>}
+              </div>
             </div>
 
             <hr style={{ margin: '20px 0' }} />
@@ -274,32 +276,34 @@ const Perfil = () => {
 
         <div className="produtos-container">
           <h3>Últimos Pedidos</h3>
-          {pedidos.length > 0 ? (
-            pedidos.map((pedido, index) => (
-              <div key={index} className="pedido-card">
-                <p><strong>Pedido #{pedido.id}</strong></p>
-                <ul className="pedido-itens">
-                  {pedido.itens.map((item, idx) => (
-                    <li key={idx} className="pedido-item">
-                      <img src={item.imagem} alt={item.nome} />
-                      <div className="pedido-info">
-                        <p>{item.nome}</p>
-                        <p>R${item.valor}</p>
-                        <p>Quantidade: {item.quantidade}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-                <div className="pedido-footer">
-                  <p><strong>Frete:</strong> R${pedido.frete}</p>
-                  <p><strong>Total:</strong> R${pedido.total}</p>
-                  <p><strong>Data do Pedido:</strong> {new Date(pedido.data_pedido).toLocaleString('pt-BR')}</p>
+          <div className='item_pedido'>
+            {pedidos.length > 0 ? (
+              pedidos.map((pedido, index) => (
+                <div key={index} className="pedido-card">
+                  <p><strong>Pedido #{pedido.id}</strong></p>
+                  <ul className="pedido-itens">
+                    {pedido.itens.map((item, idx) => (
+                      <li key={idx} className="pedido-item">
+                        <img src={item.imagem} alt={item.nome} />
+                        <div className="pedido-info">
+                          <p>{item.nome}</p>
+                          <p>R${item.valor}</p>
+                          <p>Quantidade: {item.quantidade}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="pedido-footer">
+                    <p><strong>Frete:</strong> R${pedido.frete}</p>
+                    <p><strong>Total:</strong> R${pedido.total}</p>
+                    <p><strong>Data do Pedido:</strong> {new Date(pedido.data_pedido).toLocaleString('pt-BR')}</p>
+                  </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <p className="sem-pedidos">Você ainda não fez nenhum pedido.</p>
-          )}
+              ))
+            ) : (
+              <p className="sem-pedidos">Você ainda não fez nenhum pedido.</p>
+            )}
+          </div>
         </div>
 
         <hr />

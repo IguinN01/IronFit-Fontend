@@ -72,6 +72,12 @@
   font-size: 1rem;
 }
 
+.atualizar_perfil div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .input_atualizar {
   border: none;
   outline: none;
@@ -234,4 +240,167 @@
   padding: 32px;
   font-style: italic;
   color: var(--branco-f5);
+}
+
+@media screen and (min-width: 425px) {
+  .voltar_perfil {
+    top: 128px;
+    left: 28px;
+  }
+
+  .perfil-container {
+    padding-top: 128px;
+    padding-inline: 12px;
+  }
+
+  .div_img_perfil img {
+    width: 148px;
+  }
+
+  .titulo_perfil {
+    font-size: 1.4rem;
+  }
+
+  .bem-vindo_texto {
+    font-size: 1rem;
+  }
+
+  .info_perfil {
+    font-size: 1.1rem;
+  }
+
+  .redefinir_titulo,
+  .atualizar_titulo {
+    font-size: 1.2rem;
+  }
+
+  .input_atualizar {
+    font-size: 1rem;
+  }
+
+  .botao_atualizar {
+    font-size: 1.1rem;
+  }
+
+  .titulo_input_redefinir {
+    font-size: 1.2rem;
+  }
+
+  .botao_sair {
+    font-size: 1.2rem;
+  }
+
+  .produtos-container h3 {
+    font-size: 1.7rem;
+  }
+
+  .pedido-footer {
+    font-size: 1.05rem;
+  }
+
+  .sem-pedidos {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .voltar_perfil {
+    top: 136px;
+    left: 112px;
+  }
+
+  .perfil-container {
+    padding-top: 136px;
+    max-width: 100vw;
+    padding-inline: 0;
+  }
+
+  .div_img_perfil {
+    margin-bottom: 12px;
+  }
+
+  .titulo_perfil,
+  .bem-vindo_texto,
+  .div_info_perfil,
+  .atualizar_perfil,
+  .div_redefinir_senha,
+  .botao_sair,
+  .produtos-container {
+    margin-inline: 112px;
+    padding-inline: 0;
+  }
+
+  .titulo_perfil {
+    font-size: 1.6rem;
+  }
+
+  .redefinir_titulo,
+  .atualizar_titulo {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .atualizar_perfil div {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .input_atualizar {
+    width: 320px;
+  }
+
+  .botao_atualizar {
+    width: 228px;
+    margin-top: 0;
+    padding-top: 7px;
+  }
+
+  .div_inputs_redefinir {
+    flex-direction: row;
+    margin-top: 12px;
+    margin-left: -12px;
+  }
+
+  .botao_sair {
+    width: 382px;
+  }
+
+  .item_pedido {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+    margin-inline: 282px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .voltar_perfil {
+    top: 156px;
+    left: 246px;
+  }
+
+  .perfil-container {
+    padding-top: 156px;
+    padding-inline: 0;
+  }
+
+  .div_img_perfil {
+    margin-bottom: 12px;
+  }
+
+  .titulo_perfil,
+  .bem-vindo_texto,
+  .div_info_perfil,
+  .atualizar_perfil,
+  .div_redefinir_senha,
+  .botao_sair,
+  .produtos-container {
+    margin-inline: 246px;
+    padding-inline: 0;
+  }
+
+  .item_pedido {
+    margin-inline: 320px;
+  }
 }
