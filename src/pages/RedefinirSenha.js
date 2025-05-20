@@ -4,6 +4,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getAuth, verifyPasswordResetCode, confirmPasswordReset } from 'firebase/auth';
 import { app } from '../firebase';
 
+import "../css/pages/RedefinirSenha/redefinir.css";
+
 const RedefinirSenha = () => {
   const auth = getAuth(app);
   const navigate = useNavigate();
@@ -87,7 +89,7 @@ const RedefinirSenha = () => {
 
   return (
     <main className='formulario' style={{ paddingTop: '92px' }}>
-      <h2>Redefinir Senha</h2>
+      <h2 className='titulo_redefinir'>Redefinir Senha</h2>
 
       {sucesso ? (
         <p>Senha redefinida com sucesso! Redirecionando para o login...</p>
@@ -96,7 +98,7 @@ const RedefinirSenha = () => {
           <p>Redefinindo senha do E-Mail: <strong>{email}</strong></p>
 
           <div className='input'>
-            <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="Senha" />
+            <img className="input-person" src='/images/pages/CadastroLogin/cadeado.svg' alt="ALTERAR" />
             <input
               type={mostrarSenha ? 'text' : 'password'}
               id="novaSenha"
@@ -109,6 +111,7 @@ const RedefinirSenha = () => {
               maxLength={32}
             />
             <button
+              className='botao_mostrar_senha'
               type="button"
               onClick={() => setMostrarSenha(!mostrarSenha)}
             >
@@ -117,7 +120,7 @@ const RedefinirSenha = () => {
           </div>
 
           <div className='input'>
-            <img className="input-person" src='/images/pages/CadastroLogin/person.svg' alt="Confirmar" />
+            <img className="input-person" src='/images/pages/CadastroLogin/personCadeado.svg' alt="ALTERAR" />
             <input
               type={mostrarConfirmacaoSenha ? 'text' : 'password'}
               id="confirmarSenha"
@@ -130,6 +133,7 @@ const RedefinirSenha = () => {
               maxLength={32}
             />
             <button
+              className='botao_mostrar_senha'
               type="button"
               onClick={() => setMostrarConfirmacaoSenha(!mostrarConfirmacaoSenha)}
             >
@@ -139,7 +143,7 @@ const RedefinirSenha = () => {
 
           {erro && <p>{erro}</p>}
 
-          <button type="submit" disabled={carregando}>
+          <button className='botao_cadastro cadastro_margin_top' type="submit" disabled={carregando}>
             {carregando ? 'Redefinindo...' : 'Redefinir Senha'}
           </button>
         </form>

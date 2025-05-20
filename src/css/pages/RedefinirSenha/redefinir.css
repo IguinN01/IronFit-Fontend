@@ -1,0 +1,21 @@
+.titulo_redefinir {
+  margin-top: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .titulo_redefinir {
+    margin-top: 32px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .titulo_redefinir {
+    margin-top: 42px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .titulo_redefinir {
+    margin-top: 62px;
+  }
+}
