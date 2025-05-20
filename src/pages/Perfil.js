@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ArrowLeft } from "lucide-react";
+
 import { AuthContext } from '../context/AuthContext';
+
+import "../css/pages/Perfil/perfil.css";
 
 const Perfil = () => {
   const { user, logout, atualizarEmailLocal } = useContext(AuthContext);
@@ -160,85 +164,87 @@ const Perfil = () => {
 
   return (
     <>
-      <div style={{ paddingTop: '92px', maxWidth: '500px', margin: '0 auto' }}>
-        {dadosUsuario?.foto && (
-          <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-            <img
-              src={dadosUsuario.foto}
-              alt="Foto de perfil"
-              style={{
-                width: '120px',
-                height: '120px',
-                borderRadius: '50%',
-                objectFit: 'cover',
-                boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
-              }}
-            />
-          </div>
-        )}
-        <h1>Meu Perfil</h1>
-        <p>Bem-vindo! Aqui você pode ver, editar seus dados e ver seus últimos pedidos.</p>
+      <div className="perfil-container">
+        <button className='voltar_perfil' type="button" onClick={() => navigate(-1)}>
+          <ArrowLeft size={24} />
+        </button>
+
+        <div className='div_img_perfil'>
+          <img src="./images/global/Icon_circulo_128.svg" alt="Ícone" />
+        </div>
+        <h1 className='titulo_perfil'>Meu <b>Perfil</b></h1>
+        <p className='bem-vindo_texto'>Bem-vindo! Aqui você pode ver, editar seus dados e ver seus últimos pedidos.</p>
 
         {dadosUsuario ? (
           <div>
-            <p><strong>Nome:</strong> {dadosUsuario.nome}</p>
-            <p><strong>E-mail atual:</strong> {dadosUsuario.email}</p>
-            <p><strong>Conta criada em:</strong> {new Date(dadosUsuario.criado_em).toLocaleString('pt-BR')}</p>
+            <div className='div_info_perfil'>
+              <p className='info_perfil'><strong>Nome:</strong> {dadosUsuario.nome}</p>
+              <p className='info_perfil'><strong>E-mail atual:</strong> {dadosUsuario.email}</p>
+              <p className='info_perfil'><strong>Conta criada em:</strong> {new Date(dadosUsuario.criado_em).toLocaleString('pt-BR')}</p>
+            </div>
 
-            <hr style={{ margin: '20px 0' }} />
+            <hr style={{ margin: '20px 0', width: '100vw', }} />
 
-            <div>
-              <h3>Atualizar E-mail</h3>
+            <div className='atualizar_perfil'>
+              <h3 className='atualizar_titulo'>Atualizar E-mail</h3>
               <input
+                className='input_atualizar'
                 type="email"
                 id="AtualizarEmail"
                 value={novoEmail}
                 onChange={(e) => setNovoEmail(e.target.value)}
-                style={{ padding: '8px', width: '300px', overflow: 'hidden' }}
               />
-              <button onClick={atualizarEmail} style={{ marginTop: '10px' }}>
-                Atualizar e-mail
+              <button className='botao_atualizar' onClick={atualizarEmail}>
+                Atualizar E-mail
               </button>
               {mensagemEmail && <p style={{ marginTop: '10px' }}>{mensagemEmail}</p>}
             </div>
 
             <hr style={{ margin: '20px 0' }} />
 
-            <div>
-              <h3>{temSenha === false ? 'Definir Senha' : 'Alterar Senha'}</h3>
+            <div className='div_redefinir_senha'>
+              <h3 className='redefinir_titulo'>{temSenha === false ? 'Definir Senha' : 'Alterar Senha'}</h3>
 
-              {temSenha && (
-                <>
-                  <label>Senha atual:</label><br />
+              <div className='div_inputs_redefinir'>
+                <div className='div_input_redefinir'>
+                  {temSenha && (
+                    <>
+                      <label className='titulo_input_redefinir'>Senha atual:</label><br />
+                      <input
+                        className='input_atualizar'
+                        type={mostrarSenha ? 'text' : 'password'}
+                        id="senhaAtual"
+                        value={senhaAtual}
+                        onChange={(e) => setSenhaAtual(e.target.value)}
+                      />
+                    </>
+                  )}
+                </div>
+
+                <div className='div_input_redefinir'>
+                  <label className='titulo_input_redefinir'>Nova senha:</label><br />
                   <input
+                    className='input_atualizar'
                     type={mostrarSenha ? 'text' : 'password'}
-                    id="senhaAtual"
-                    value={senhaAtual}
-                    onChange={(e) => setSenhaAtual(e.target.value)}
-                    style={{ padding: '8px', width: '300px', overflow: 'hidden', marginBottom: '10px' }}
+                    id="novaSenha"
+                    value={novaSenha}
+                    onChange={(e) => setNovaSenha(e.target.value)}
                   />
-                </>
-              )}
+                </div>
 
-              <label>Nova senha:</label><br />
-              <input
-                type={mostrarSenha ? 'text' : 'password'}
-                id="novaSenha"
-                value={novaSenha}
-                onChange={(e) => setNovaSenha(e.target.value)}
-                style={{ padding: '8px', width: '300px', overflow: 'hidden', marginBottom: '10px' }}
-              />
+                <div className='div_input_redefinir'>
+                  <label className='titulo_input_redefinir'>Confirmar nova senha:</label><br />
+                  <input
+                    className='input_atualizar'
+                    type={mostrarSenha ? 'text' : 'password'}
+                    id="confirmarNovaSenha"
+                    value={confirmarSenha}
+                    onChange={(e) => setConfirmarSenha(e.target.value)} y
+                  />
+                </div>
+              </div>
 
-              <label>Confirmar nova senha:</label><br />
-              <input
-                type={mostrarSenha ? 'text' : 'password'}
-                id="confirmarNovaSenha"
-                value={confirmarSenha}
-                onChange={(e) => setConfirmarSenha(e.target.value)}
-                style={{ padding: '8px', width: '300px', overflow: 'hidden', marginBottom: '10px' }}
-              />
-
-              <div style={{ marginBottom: '10px' }}>
+              <div className='div_mostrar'>
                 <input
                   type="checkbox"
                   id="mostrarSenha"
@@ -250,47 +256,54 @@ const Perfil = () => {
                 </label>
               </div>
 
-              <button onClick={atualizarSenha}>
+              <button className='botao_atualizar' onClick={atualizarSenha}>
                 {temSenha === false ? 'Definir Senha' : 'Atualizar Senha'}
               </button>
               {mensagemSenha && <p style={{ marginTop: '10px' }}>{mensagemSenha}</p>}
             </div>
           </div>
         ) : (
-          <p>Carregando informações...</p>
+          <p className='carrgando'>Carregando informações...</p>
         )}
 
-        <button onClick={handleLogout} style={{ marginTop: '30px' }}>Sair</button>
+        <hr style={{ margin: '20px 0' }} />
+
+        <button className='botao_sair' onClick={handleLogout}>Sair</button>
+
+        <hr style={{ margin: '20px 0' }} />
+
+        <div className="produtos-container">
+          <h3>Últimos Pedidos</h3>
+          {pedidos.length > 0 ? (
+            pedidos.map((pedido, index) => (
+              <div key={index} className="pedido-card">
+                <p><strong>Pedido #{pedido.id}</strong></p>
+                <ul className="pedido-itens">
+                  {pedido.itens.map((item, idx) => (
+                    <li key={idx} className="pedido-item">
+                      <img src={item.imagem} alt={item.nome} />
+                      <div className="pedido-info">
+                        <p>{item.nome}</p>
+                        <p>R${item.valor}</p>
+                        <p>Quantidade: {item.quantidade}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="pedido-footer">
+                  <p><strong>Frete:</strong> R${pedido.frete}</p>
+                  <p><strong>Total:</strong> R${pedido.total}</p>
+                  <p><strong>Data do Pedido:</strong> {new Date(pedido.data_pedido).toLocaleString('pt-BR')}</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="sem-pedidos">Você ainda não fez nenhum pedido.</p>
+          )}
+        </div>
+
+        <hr />
       </div>
-
-      <hr style={{ margin: '20px 0' }} />
-
-      <div>
-        <h3>Últimos Pedidos</h3>
-        {pedidos.length > 0 ? (
-          pedidos.map((pedido, index) => (
-            <div key={index}>
-              <p><strong>Pedido {pedido.id}</strong></p>
-              <ul>
-                {pedido.itens.map((item, idx) => (
-                  <li key={idx}>
-                    <img src={item.imagem} alt={item.nome} style={{ width: '50px', marginRight: '10px' }} />
-                    {item.nome} - R${item.valor}
-                    <p>Quantidade: {item.quantidade}</p>
-                  </li>
-                ))}
-              </ul>
-              <p><strong>Total do Frete:</strong> R${pedido.frete}</p>
-              <p><strong>Total:</strong> R${pedido.total}</p>
-              <p><strong>Data do Pedido:</strong> {new Date(pedido.data_pedido).toLocaleString('pt-BR')}</p>
-            </div>
-          ))
-        ) : (
-          <p>Você ainda não fez nenhum pedido.</p>
-        )}
-      </div>
-
-      <hr style={{ margin: '20px 0' }} />
     </>
   );
 };

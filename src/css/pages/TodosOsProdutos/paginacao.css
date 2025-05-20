@@ -1,0 +1,26 @@
+/* Paginação */
+.paginas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  gap: 5px;
+}
+
+.paginas button {
+  cursor: pointer;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: var(--branco-f5);
+}
+
+.paginas button:hover {
+  background: var(--azul-gradiente);
+}
+
+.paginas .pagina-ativa {
+  font-weight: bold;
+  color: var(--branco-f5);
+  background: var(--azul-gradiente);
+}

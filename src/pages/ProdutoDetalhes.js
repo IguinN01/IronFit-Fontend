@@ -36,26 +36,55 @@ const ProdutoDetalhes = () => {
   if (!produto) return <p>Produto não encontrado</p>;
 
   return (
-    <section className="produto-detalhes">
-      <button className="btn-voltar_detalhes" onClick={() => navigate(-1)}>
-        <ArrowLeft size={24} />
-      </button>
+    <>
+      <section className="produto-detalhes none_1280">
+        <button className="btn-voltar_detalhes" onClick={() => navigate(-1)}>
+          <ArrowLeft size={24} />
+        </button>
 
-      <img src={produto.imagens} alt={produto.nome} className="produto-img_detalhes" />
-      <h1 className="nome_detalhe">{produto.nome}</h1>
+        <img src={produto.imagens} alt={produto.nome} className="produto-img_detalhes" />
+        <h1 className="nome_detalhe">{produto.nome}</h1>
 
-      <div className="detalhe_preco_descricao">
-        <p className="produto-preco">Preço: R${produto.preco}</p>
-        <p className="produto-descricao">{produto.descricao_produto}</p>
-      </div>
+        <div className="detalhe_preco_descricao">
+          <p className="produto-preco">Preço: R${produto.preco}</p>
+          <p className="produto-descricao">{produto.descricao_produto}</p>
+        </div>
 
-      <button
-        className="botao_add_detalhe"
-        onClick={() => adicionarAoCarrinho(produto)}
-      >
-        Adicionar ao Carrinho
-      </button>
-    </section>
+        <button
+          className="botao_add_detalhe"
+          onClick={() => adicionarAoCarrinho(produto)}
+        >
+          Adicionar ao Carrinho
+        </button>
+      </section>
+
+      <section className="produto-detalhes flex_1280">
+        <button className="btn-voltar_detalhes" onClick={() => navigate(-1)}>
+          <ArrowLeft size={24} />
+        </button>
+
+        <div className="produto_detalhes_1280">
+          <div>
+            <p className="produto-descricao">{produto.descricao_produto}</p>
+          </div>
+
+          <div>
+            <img src={produto.imagens} alt={produto.nome} className="produto-img_detalhes" />
+          </div>
+
+          <div className="bloco_nome_preco_add">
+            <h1 className="nome_detalhe">{produto.nome}</h1>
+            <p className="produto-preco">Preço: R${produto.preco}</p>
+            <button
+              className="botao_add_detalhe"
+              onClick={() => adicionarAoCarrinho(produto)}
+            >
+              Adicionar ao Carrinho
+            </button>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

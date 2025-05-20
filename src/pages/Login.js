@@ -47,7 +47,7 @@ const Login = () => {
 
           <FormularioAutenticacao aoEnviar={tratarLogin} ehCadastro={false} />
           <Link to="/cadastro">
-            <p className='ja_login' style={{ marginTop: '18px' }}>Ainda não tem uma conta? <p>Cadastre-se</p></p>
+            <p className='ja_login'>Ainda não tem uma conta? <p>Cadastre-se</p></p>
           </Link>
         </div>
       </div>

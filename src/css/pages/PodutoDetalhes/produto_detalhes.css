@@ -77,6 +77,10 @@
   opacity: 1;
 }
 
+.flex_1280 {
+  display: none;
+}
+
 @media screen and (min-width: 425px) {
   .produto-detalhes {
     padding-top: 172px;
@@ -87,7 +91,7 @@
   }
 
   .produto-img_detalhes {
-    width: 220px; 
+    width: 220px;
   }
 
   .btn-voltar_detalhes {
@@ -104,5 +108,133 @@
 
   .botao_add_detalhe {
     font-size: 1.1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .produto-detalhes {
+    padding-top: 182px;
+  }
+
+  .produto-detalhes {
+    padding-inline: 128px;
+  }
+
+  .produto-img_detalhes {
+    width: 242px;
+  }
+
+  .btn-voltar_detalhes {
+    top: 202px;
+    left: 128px;
+  }
+
+  .nome_detalhe {
+    font-size: 1.6rem;
+  }
+
+  .detalhe_preco_descricao {
+    font-size: 1.3rem;
+  }
+
+  .botao_add_detalhe {
+    font-size: 1.3rem;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .produto-detalhes {
+    padding-top: 192px;
+  }
+
+  .produto-detalhes {
+    padding-inline: 82px;
+  }
+
+  .produto-img_detalhes {
+    width: 262px;
+  }
+
+  .btn-voltar_detalhes {
+    top: 192px;
+    left: 82px;
+  }
+
+  .produto_detalhes_1280 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .produto-descricao {
+    text-align: end;
+    width: 420px;
+  }
+
+  .bloco_nome_preco_add {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 12px;
+    width: 420px;
+  }
+
+  .nome_detalhe {
+    font-size: 1.8rem;
+  }
+
+  .produto-descricao,
+  .produto-preco {
+    font-size: 1.2rem;
+  }
+
+  .botao_add_detalhe {
+    font-size: 1.5rem;
+    padding-bottom: 8px;
+  }
+
+  .nome_detalhe {
+    text-align: start;
+  }
+
+  .none_1280 {
+    display: none;
+  }
+
+  .flex_1280 {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .produto-detalhes {
+    padding-top: 220px;
+  }
+
+  .produto-img_detalhes {
+    width: 286px;
+    border: solid 14px var(--branco-ff);
+  }
+
+  .btn-voltar_detalhes {
+    top: 232px;
+    left: 220px;
+  }
+
+  .nome_detalhe {
+    font-size: 2rem;
+  }
+
+  .produto-descricao,
+  .produto-preco {
+    font-size: 1.4rem;
+  }
+
+  .botao_add_detalhe {
+    font-size: 1.7rem;
+    padding: 10px 24px 12px 24px;
+    width: max-content;
   }
 }

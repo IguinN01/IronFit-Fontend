@@ -6,7 +6,9 @@ import { usePesquisa } from "../context/PesquisaContext";
 import { useCarrinho } from "../context/CarrinhoContext";
 
 import "rc-slider/assets/index.css";
-import "../css/pages/TodosOsProdutos/todos_produtos.css";
+import "../css/pages/TodosOsProdutos/filtro.css";
+import "../css/pages/TodosOsProdutos/produtos.css";
+import "../css/pages/TodosOsProdutos/paginacao.css";
 
 const TodosProdutos = () => {
   const location = useLocation();
@@ -103,45 +105,9 @@ const TodosProdutos = () => {
   return (
     <section className="bloco_todos_produtos">
       <div className="div_todos_produtos">
-        <button
-          className="botao_filtros"
-          onClick={() => setFiltrosVisiveis(!filtrosVisiveis)}
-        >
-          Filtros {filtrosVisiveis ? "▲" : "▼"}
-        </button>
 
-        <section className={`filtros ${filtrosVisiveis ? "aberto" : ""}`}>
-          <div className="filtro filtro_preco">
-            <p className="filtro-label">Preço:</p>
-            <Slider
-              range
-              min={0}
-              max={300}
-              step={5}
-              value={precoRange}
-              onChange={(val) => setPrecoRange(val)}
-            />
-            <p>R$ {precoRange[0]},00 - R$ {precoRange[1]},00</p>
-          </div>
-
-          <div className="filtro">
-            <p className="filtro-label">Categoria:</p>
-            {["todas", "Acessórios", "Roupas", "Snacks", "Suplementos"].map(cat => (
-              <label key={cat} className="radio-label">
-                <input
-                  type="radio"
-                  id="radio"
-                  name="categoria"
-                  value={cat}
-                  checked={categoria === cat}
-                  onChange={(e) => setCategoria(e.target.value)}
-                />
-                {cat.charAt(0).toUpperCase() + cat.slice(1)}
-              </label>
-            ))}
-          </div>
-
-          <div className="filtro">
+        <div className="div_ordem_filtros">
+          <div className="filtro_ordem">
             <label htmlFor="ordenar" className="filtro-label">Ordenar por:</label>
             <select
               id="ordenar"
@@ -154,51 +120,150 @@ const TodosProdutos = () => {
               <option value="maiorMenor">Preço: Maior para Menor</option>
             </select>
           </div>
+
+          <button
+            className="botao_filtros"
+            onClick={() => setFiltrosVisiveis(!filtrosVisiveis)}
+          >
+            Filtros {filtrosVisiveis ? "▲" : "▼"}
+          </button>
+        </div>
+
+        <section className={`filtro_320 filtros ${filtrosVisiveis ? "aberto" : ""}`}>
+          <div className="filtro_preco">
+            <p className="filtro-label">Preço:</p>
+            <div className="div_filtro_preco">
+              <Slider
+                range
+                min={0}
+                max={300}
+                step={5}
+                value={precoRange}
+                onChange={(val) => setPrecoRange(val)}
+              />
+              <p className="valor_filtro">R$ {precoRange[0]},00 - R$ {precoRange[1]},00</p>
+            </div>
+          </div>
+
+          <div className="filtro_categoria">
+            <p className="filtro-label">Categoria:</p>
+            <div className="div_filtro_categoria">
+              {["todas", "Acessórios", "Roupas", "Snacks", "Suplementos"].map(cat => (
+                <label key={cat} className="radio-label">
+                  <input
+                    className="radio_botao"
+                    type="radio"
+                    id="radio"
+                    name="categoria"
+                    value={cat}
+                    checked={categoria === cat}
+                    onChange={(e) => setCategoria(e.target.value)}
+                  />
+                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                </label>
+              ))}
+            </div>
+          </div>
         </section>
 
-        <p className="resultado_busca">{exibirResultadoBusca}</p>
-        {produtosFiltrados.length === 0 && <p>Nenhum produto encontrado com esses critérios.</p>}
-
-        <ul>
-          {produtosPaginaAtual.map((produto, index) => (
-            <li key={produto.idproduto || `produto-${index}`} id={`produto-${produto.idproduto}`}>
-              <Link to={`/produto/${produto.idproduto}`}>
-                {produto.imagens && <img className="img_produto" src={produto.imagens} alt={produto.nome} />}
-                <h2>{produto.nome}</h2>
-                <p>Preço: R${produto.preco}</p>
-                <p>{produto.descricao_produto}</p>
-              </Link>
-              <button
-                className="adicionar__carrinho"
-                onClick={() => adicionarAoCarrinho(produto)}
+        <section className={`filtro_1280 filtros ${filtrosVisiveis ? "aberto" : ""}`}>
+          <div className="filtro_ordem">
+            <label htmlFor="ordenar" className="filtro-label">Ordenar por:</label>
+            <div className="div_filtro_ordem">
+              <select
+                id="ordenar"
+                value={ordenacao}
+                onChange={(e) => setOrdenacao(e.target.value)}
+                className="ordenar-select"
               >
-                Adicionar ao Carrinho
-              </button>
-            </li>
-          ))}
-        </ul>
+                <option value="relevancia">Relevância</option>
+                <option value="menorMaior">Preço: Menor para Maior</option>
+                <option value="maiorMenor">Preço: Maior para Menor</option>
+              </select>
+            </div>
+          </div>
 
-        <div className="paginas">
-          <button onClick={() => setPaginaAtual(paginaAtual - 1)} disabled={paginaAtual === 1}>
-            &#x021A9;
-          </button>
+          <div className="filtro_preco">
+            <p className="filtro-label">Preço:</p>
+            <div className="div_filtro_preco">
+              <Slider
+                range
+                min={0}
+                max={300}
+                step={5}
+                value={precoRange}
+                onChange={(val) => setPrecoRange(val)}
+              />
+              <p className="valor_filtro">R$ {precoRange[0]},00 - R$ {precoRange[1]},00</p>
+            </div>
+          </div>
 
-          {[...Array(totalPaginas)].map((_, index) => {
-            const num = index + 1;
-            return (
-              <button
-                key={num}
-                className={num === paginaAtual ? "pagina-ativa" : ""}
-                onClick={() => setPaginaAtual(num)}
-              >
-                {num}
-              </button>
-            );
-          })}
+          <div className="filtro_categoria">
+            <p className="filtro-label">Categoria:</p>
+            <div className="div_filtro_categoria">
+              {["todas", "Acessórios", "Roupas", "Snacks", "Suplementos"].map(cat => (
+                <label key={cat} className="radio-label">
+                  <input
+                    className="radio_botao"
+                    type="radio"
+                    id="radio"
+                    name="categoria"
+                    value={cat}
+                    checked={categoria === cat}
+                    onChange={(e) => setCategoria(e.target.value)}
+                  />
+                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                </label>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          <button onClick={() => setPaginaAtual(paginaAtual + 1)} disabled={paginaAtual === totalPaginas}>
-            &#x021AA;
-          </button>
+        <div>
+          <p className="resultado_busca">{exibirResultadoBusca}</p>
+          {produtosFiltrados.length === 0 && <p>Nenhum produto encontrado com esses critérios.</p>}
+
+          <ul className="lista_produtos">
+            {produtosPaginaAtual.map((produto, index) => (
+              <li className="item_produto" key={produto.idproduto || `produto-${index}`} id={`produto-${produto.idproduto}`}>
+                <Link className="link_produto_datalhe" to={`/produto/${produto.idproduto}`}>
+                  {produto.imagens && <img className="img_produto" src={produto.imagens} alt={produto.nome} />}
+                  <h2 className="nome_titulo">{produto.nome}</h2>
+                  <p className="nome_preco">Preço: R${produto.preco}</p>
+                  <p className="nome_descricao">{produto.descricao_produto}</p>
+                </Link>
+                <button
+                  className="adicionar__carrinho"
+                  onClick={() => adicionarAoCarrinho(produto)}
+                >
+                  Adicionar ao Carrinho
+                </button>
+              </li>
+            ))}
+          </ul>
+
+          <div className="paginas">
+            <button onClick={() => setPaginaAtual(paginaAtual - 1)} disabled={paginaAtual === 1}>
+              &#x021A9;
+            </button>
+
+            {[...Array(totalPaginas)].map((_, index) => {
+              const num = index + 1;
+              return (
+                <button
+                  key={num}
+                  className={num === paginaAtual ? "pagina-ativa" : ""}
+                  onClick={() => setPaginaAtual(num)}
+                >
+                  {num}
+                </button>
+              );
+            })}
+
+            <button onClick={() => setPaginaAtual(paginaAtual + 1)} disabled={paginaAtual === totalPaginas}>
+              &#x021AA;
+            </button>
+          </div>
         </div>
       </div>
     </section>
